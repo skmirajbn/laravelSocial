@@ -1,0 +1,24 @@
+{
+  "name": "next-social-media",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "start http://localhost:1002 && next dev -p 1002",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "next": "latest",
+    "react": "latest",
+    "react-dom": "latest"
+  },
+  "devDependencies": {
+    "autoprefixer": "latest",
+    "daisyui": "^3.8.2",
+    "eslint": "latest",
+    "eslint-config-next": "latest",
+    "postcss": "latest",
+    "tailwindcss": "latest"
+  }
+}
