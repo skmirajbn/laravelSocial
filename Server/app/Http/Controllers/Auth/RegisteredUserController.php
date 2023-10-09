@@ -19,15 +19,29 @@ class RegisteredUserController extends Controller {
      */
     public function store(Request $request): Response {
         $request->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:' . User::class],
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'user_first_name' => ['required', 'string', 'max:255'],
+            'user_last_name' => ['required', 'string', 'max:255'],
+            'user_username' => ['required', 'string', 'max:255'],
+            'user_email' => ['required', 'string', 'email', 'max:255', 'unique:' . User::class],
+            'user_password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'user_phone' => ['string', 'max:255'],
+            'user_profile_photo' => ['string', 'max:255'],
+            'user_birth_date' => ['required', 'date', 'date_format:d/m/Y'],
+            'user_gender' => ['required', 'integer'],
+            'role_id' => ['required', 'integer'],
         ]);
 
         $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
+            'user_first_name' => $request->fname,
+            'user_last_name' => $request->lname,
+            'user_username' => $request->username,
+            'user_email' => $request->email,
+            'user_password' => Hash::make($request->password),
+            'user_phone' => $request->phone,
+            'user_profile_photo' => $request->photo,
+            'user_birth_date' => $request->date,
+            'user_gender' => $request->gender,
+            'role_id' => $request->role
         ]);
 
         event(new Registered($user));

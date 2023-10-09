@@ -73,7 +73,7 @@ export default function SignUp() {
               <form className="space-y-4" method="dialog">
                 <div className="flex gap-6">
                   <input className="p-2 rounded-md border border-gray-300" type="text" placeholder="First Name" />
-                  <input className="p-2 rounded-md border border-gray-300" type="text" placeholder="Surname" />
+                  <input className="p-2 rounded-md border border-gray-300" type="text" placeholder="Last Name" />
                 </div>
                 <input className="p-2 rounded-md border border-gray-300 w-full" type="text" placeholder="Mobile or Email Address" />
                 <input className="p-2 rounded-md border border-gray-300 w-full" type="password" placeholder="New Password" />
