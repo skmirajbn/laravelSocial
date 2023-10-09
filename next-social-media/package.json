@@ -3,15 +3,17 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "start http://localhost:1002 && next dev -p 1002",
+    "dev": "start http://localhost:3000 && next dev -p 3000",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
   },
   "dependencies": {
-    "next": "latest",
+    "axios": "^0.21.1",
+    "next": "^13.5.4",
     "react": "latest",
-    "react-dom": "latest"
+    "react-dom": "latest",
+    "swr": "^1.3.0"
   },
   "devDependencies": {
     "autoprefixer": "latest",
