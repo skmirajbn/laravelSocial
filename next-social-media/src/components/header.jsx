@@ -1,4 +1,5 @@
 "use client";
+import { useAuth } from "@/hooks/auth";
 import Image from "next/image";
 import Link from "next/link";
 import { useRef } from "react";
@@ -6,10 +7,15 @@ import logo from "./../../public/img/logo.png";
 import profile from "./../../public/img/profile.jpg";
 
 export default function Header() {
+  const { logout } = useAuth({ middleware: "auth" });
   const messageModal = useRef();
   const showToggle = () => {
     messageModal.current.classList.toggle("hidden");
     console.log("message clicked");
+  };
+  const profileDropDown = useRef();
+  const toggleProfileDropdown = (e) => {
+    profileDropDown.current.classList.toggle("hidden");
   };
   return (
     <header class=" flex justify-between items-center bg-white text-black px-5 shadow-lg sticky top-0 z-10 h-20">
@@ -152,9 +158,22 @@ export default function Header() {
           <i class="fa-solid fa-bell "></i>
           <div className="bg-red-600 h-5 w-5 rounded-full absolute flex justify-center items-center text-xs text-white font-medium -right-1 -top-1">28</div>
         </a>
-        <a href="/profile">
+        <div className="flex items-center gap-2 relative" onClick={toggleProfileDropdown}>
           <Image class="w-12 h-12 rounded-full overflow-hidden object-cover" src={profile} alt="" />
-        </a>
+          <i class="fa-solid fa-chevron-down text-sm"></i>
+          {/* DropDown */}
+          <div ref={profileDropDown} className="absolute bg-gray-200 rounded-lg py-3 px-8 -bottom-28 right-0 text-lg font-bold space-y-2 hidden">
+            <Link href="/profile">
+              <h3 className="flex gap-2 items-center text-blue-600">
+                Profile <i class="fa-solid fa-user"></i>
+              </h3>
+            </Link>
+            <div className="bg-gray-400 h-px w-full" />
+            <h3 className="flex flex gap-2 items-center text-red-600" onClick={logout}>
+              Logout <i class="fa-solid fa-right-from-bracket"></i>
+            </h3>
+          </div>
+        </div>
       </div>
     </header>
   );
