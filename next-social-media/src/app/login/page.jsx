@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 
 export default function SignUp() {
   const pathname = usePathname();
-  const { login } = useAuth({
+  const { login, register } = useAuth({
     middleware: "guest",
     redirectIfAuthenticated: "/",
   });
@@ -37,6 +37,40 @@ export default function SignUp() {
     });
   };
 
+  // For Register or Signup user
+
+  const [singUpData, setSignUpData] = useState({
+    user_first_name: "Firs name",
+    user_last_name: "Last Name",
+    user_username: "",
+    user_email: "",
+    user_password: "",
+    user_password_confirmation: "",
+    user_phone: "",
+    user_birth_date: "",
+    user_gender: 1,
+  });
+
+  const handleSignUp = (e) => {
+    e.preventDefault();
+    const registerData = {
+      ...singUpData,
+      setErrors,
+    };
+    console.log(registerData);
+    register(registerData);
+  };
+
+  const handleSignupInput = (e) => {
+    const value = e.target.value;
+    const name = e.target.name;
+    const data = {
+      ...singUpData,
+      [name]: value,
+    };
+    setSignUpData(data);
+  };
+
   return (
     <section className="bg-[#F0F2F5] h-screen flex items-center">
       <div className="container flex justify-center py-32 gap-16 items-center">
@@ -55,7 +89,7 @@ export default function SignUp() {
             <button className="bg-[#1877F2] text-white py-3 rounded-md font-medium text-xl">Log in</button>
             <h5 className="text-center text-blue-600 text-sm">Forgotten Password?</h5>
             <hr />
-            <h2 className="bg-[#42B72A] text-white inline-block w-fit px-6 py-3 rounded-md mx-auto font-medium cursor-pointer" onClick={() => document.getElementById("my_modal_1").showModal()}>
+            <h2 className="bg-[#42B72A] text-white inline-block w-fit px-6 py-3 rounded-md mx-auto font-medium cursor-pointer" onClick={() => document.getElementById("sign_up_modal").showModal()}>
               Create New Account
             </h2>
           </form>
@@ -65,36 +99,42 @@ export default function SignUp() {
         </div>
 
         {/* Open the modal using document.getElementById('ID').showModal() method */}
-        <dialog id="my_modal_1" className="modal">
+        <dialog id="sign_up_modal" className="modal">
           <div className="modal-box space-y-4">
             <h3 className="text-2xl font-bold">Sing Up</h3>
             <p>It's quick and easy.</p>
             <div className="flex justify-center">
-              <form className="space-y-4" method="dialog">
+              <form onSubmit={handleSignUp} className="space-y-4" method="dialog">
                 <div className="flex gap-6">
-                  <input className="p-2 rounded-md border border-gray-300" type="text" placeholder="First Name" />
-                  <input className="p-2 rounded-md border border-gray-300" type="text" placeholder="Last Name" />
+                  <div>
+                    <h3 className="text-red-600 italic text-sm">The Error is: {errors?.password}</h3>
+                    <input className="p-2 rounded-md border border-gray-300" type="text" placeholder="First Name" name="user_first_name" value={singUpData.user_first_name} onChange={handleSignupInput} />
+                  </div>
+                  <input className="p-2 rounded-md border border-gray-300" type="text" placeholder="Last Name" name="user_last_name" value={singUpData.user_last_name} onChange={handleSignupInput} />
                 </div>
-                <input className="p-2 rounded-md border border-gray-300 w-full" type="text" placeholder="Mobile or Email Address" />
-                <input className="p-2 rounded-md border border-gray-300 w-full" type="password" placeholder="New Password" />
+                <input className="p-2 rounded-md border border-gray-300 w-full" type="text" placeholder="Username" name="user_username" value={singUpData.user_username} onChange={handleSignupInput} />
+                <input className="p-2 rounded-md border border-gray-300 w-full" type="text" placeholder="Email Address" name="user_email" value={singUpData.user_email} onChange={handleSignupInput} />
+                <input className="p-2 rounded-md border border-gray-300 w-full" type="text" placeholder="Phone Number" name="user_phone" value={singUpData.user_phone} onChange={handleSignupInput} />
+                <input className="p-2 rounded-md border border-gray-300 w-full" type="password" placeholder="New Password" name="user_password" value={singUpData.user_password} onChange={handleSignupInput} />
+                <input className="p-2 rounded-md border border-gray-300 w-full" type="password" placeholder="Confirm Password" name="user_password_confirmation" value={singUpData.user_password_confirmation} onChange={handleSignupInput} />
                 <div>
                   <h5 className="text-sm">Date of Birth:</h5>
-                  <input className="p-2 rounded-md border border-gray-300 w-full" type="date" />
+                  <input className="p-2 rounded-md border border-gray-300 w-full" type="date" name="user_birth_date" value={singUpData.user_birth_date} onChange={handleSignupInput} />
                 </div>
                 <div>
                   <h5 className="text-sm">Gender:</h5>
                   <div className="flex gap-6">
                     <div className="flex flex-row w-32 justify-between border border-gray-300 p-2 rounded-md">
                       <h3>Male</h3>
-                      <input type="radio" name="radio-2" className="radio checked:bg-blue-500" checked />
+                      <input type="radio" name="user_gender" className="radio checked:bg-blue-500" value="1" checked={singUpData.user_gender == "1"} onChange={handleSignupInput} />
                     </div>
                     <div className="flex flex-row w-32 justify-between border border-gray-300 p-2 rounded-md">
                       <h3>Female</h3>
-                      <input type="radio" name="radio-2" className="radio checked:bg-blue-500" checked />
+                      <input type="radio" name="user_gender" className="radio checked:bg-blue-500" value="2" checked={singUpData.user_gender == "2"} onChange={handleSignupInput} />
                     </div>
                     <div className="flex flex-row w-32 justify-between border border-gray-300 p-2 rounded-md">
                       <h3>Others</h3>
-                      <input type="radio" name="radio-2" className="radio checked:bg-blue-500" checked />
+                      <input type="radio" name="user_gender" className="radio checked:bg-blue-500" value="3" checked={singUpData.user_gender == "3"} onChange={handleSignupInput} />
                     </div>
                   </div>
                 </div>
@@ -105,7 +145,9 @@ export default function SignUp() {
                 </p>
                 <input type="submit" value="Sign Up" className="block bg-[#00A400] text-white px-16 py-2 rounded-md font-medium mx-auto" />
                 {/* if there is a button in form, it will close the modal */}
-                <button className="btn ml-auto block bg-red-600 text-white hover:bg-red-500">Close</button>
+                <button className="btn ml-auto block bg-red-600 text-white hover:bg-red-500" onClick={() => document.getElementById("sign_up_modal").close()}>
+                  Close
+                </button>
               </form>
             </div>
           </div>

@@ -21,27 +21,25 @@ class RegisteredUserController extends Controller {
         $request->validate([
             'user_first_name' => ['required', 'string', 'max:255'],
             'user_last_name' => ['required', 'string', 'max:255'],
-            'user_username' => ['required', 'string', 'max:255'],
+            'user_username' => ['required', 'string', 'max:255', 'unique:' . User::class],
             'user_email' => ['required', 'string', 'email', 'max:255', 'unique:' . User::class],
             'user_password' => ['required', 'confirmed', Rules\Password::defaults()],
-            'user_phone' => ['string', 'max:255'],
+            'user_phone' => ['string', 'max:255', 'unique:' . User::class],
             'user_profile_photo' => ['string', 'max:255'],
-            'user_birth_date' => ['required', 'date', 'date_format:d/m/Y'],
+            'user_birth_date' => ['required', 'date', 'date_format:Y-m-d'],
             'user_gender' => ['required', 'integer'],
-            'role_id' => ['required', 'integer'],
         ]);
 
         $user = User::create([
-            'user_first_name' => $request->fname,
-            'user_last_name' => $request->lname,
-            'user_username' => $request->username,
-            'user_email' => $request->email,
-            'user_password' => Hash::make($request->password),
-            'user_phone' => $request->phone,
-            'user_profile_photo' => $request->photo,
-            'user_birth_date' => $request->date,
-            'user_gender' => $request->gender,
-            'role_id' => $request->role
+            'user_first_name' => $request->user_first_name,
+            'user_last_name' => $request->user_last_name,
+            'user_username' => $request->user_username,
+            'user_email' => $request->user_email,
+            'user_password' => Hash::make($request->user_password),
+            'user_phone' => $request->user_phone,
+            'user_profile_photo' => $request->user_profile_photo,
+            'user_birth_date' => $request->user_birth_date,
+            'user_gender' => $request->user_gender,
         ]);
 
         event(new Registered($user));
