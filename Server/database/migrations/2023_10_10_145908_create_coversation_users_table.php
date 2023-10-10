@@ -11,8 +11,8 @@ return new class extends Migration {
     public function up(): void {
         Schema::create('coversation_users', function (Blueprint $table) {
             $table->id('conversation_user_id');
-            $table->foreignId('user_id')->constrained('users', 'user_id');
-            $table->foreignId('conversation_id')->constrained('conversation', 'conversation_id');
+            $table->integer('user_id');
+            $table->integer('conversation_id');
             $table->timestamps();
         });
     }

@@ -11,8 +11,8 @@ return new class extends Migration {
     public function up(): void {
         Schema::create('comment_likes', function (Blueprint $table) {
             $table->id('comment_like_id');
-            $table->foreignId('comment_id')->constrained('comments', 'comment_id');
-            $table->foreignId('user_id')->constrained('users', 'user_id');
+            $table->integer('comment_id');
+            $table->integer('user_id');
             $table->timestamps();
         });
     }
