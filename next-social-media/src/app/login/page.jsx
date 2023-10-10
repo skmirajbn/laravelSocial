@@ -46,8 +46,8 @@ export default function SignUp() {
     user_first_name: "",
     user_last_name: "",
     user_username: "",
-    user_email: "",
-    user_password: "",
+    email: "",
+    password: "",
     user_password_confirmation: "",
     user_phone: "",
     user_birth_date: "",
@@ -85,10 +85,10 @@ export default function SignUp() {
         </div>
         <div className="space-y-8">
           <form onSubmit={submitForm} className="flex flex-col gap-3 bg-white shadow-lg px-6 py-6 rounded-lg ">
-            <input className="w-96 py-3 px-4 border-2 border-gray-300 focus:border-blue-600  rounded-md" type="text" placeholder="Email Address or Phone Number" value={email} onChange={(e) => setEmail(e.target.value)} />
             <h3 className="text-red-600 italic text-sm">{errors?.email}</h3>
-            <input className="w-96 py-3 px-4 border-2 border-gray-300 focus:border-blue-600  rounded-md" type="text" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
+            <input className="w-96 py-3 px-4 border-2 border-gray-300 focus:border-blue-600  rounded-md" type="text" placeholder="Email Address or Phone Number" value={email} onChange={(e) => setEmail(e.target.value)} />
             <h3 className="text-red-600 italic text-sm">{errors?.password}</h3>
+            <input className="w-96 py-3 px-4 border-2 border-gray-300 focus:border-blue-600  rounded-md" type="text" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
             <button className="bg-gradient-to-r from-cyan-500  to-blue-500 text-white py-3 rounded-md font-medium text-xl">Log in</button>
             <h5 className="text-center text-blue-600 text-sm">Forgotten Password?</h5>
             <hr />
@@ -125,8 +125,8 @@ export default function SignUp() {
                   </div>
                   <div className="flex gap-6">
                     <div className="w-1/2">
-                      <h3 className="text-red-600 italic text-sm">{errors?.user_email}</h3>
-                      <input className="p-2 rounded-md border border-gray-300 w-full" type="text" placeholder="Email Address" name="user_email" value={singUpData.user_email} onChange={handleSignupInput} />
+                      <h3 className="text-red-600 italic text-sm">{errors?.email}</h3>
+                      <input className="p-2 rounded-md border border-gray-300 w-full" type="text" placeholder="Email Address" name="email" value={singUpData.email} onChange={handleSignupInput} />
                     </div>
                     <div className="w-1/2">
                       <h3 className="text-red-600 italic text-sm">{errors?.user_phone}</h3>
@@ -134,10 +134,10 @@ export default function SignUp() {
                     </div>
                   </div>
                   <div>
-                    <h3 className="text-red-600 italic text-sm">{errors?.user_password}</h3>
+                    <h3 className="text-red-600 italic text-sm">{errors?.password}</h3>
                     <div className="flex gap-6">
-                      <input className="p-2 rounded-md border border-gray-300 w-full" type="password" placeholder="New Password" name="user_password" value={singUpData.user_password} onChange={handleSignupInput} />
-                      <input className="p-2 rounded-md border border-gray-300 w-full" type="password" placeholder="Confirm Password" name="user_password_confirmation" value={singUpData.user_password_confirmation} onChange={handleSignupInput} />
+                      <input className="p-2 rounded-md border border-gray-300 w-full" type="password" placeholder="New Password" name="password" value={singUpData.password} onChange={handleSignupInput} />
+                      <input className="p-2 rounded-md border border-gray-300 w-full" type="password" placeholder="Confirm Password" name="password_confirmation" value={singUpData.password_confirmation} onChange={handleSignupInput} />
                     </div>
                   </div>
                   <div>

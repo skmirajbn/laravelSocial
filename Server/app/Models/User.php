@@ -25,8 +25,8 @@ class User extends Authenticatable {
         'user_profile_photo',
         'user_birth_date',
         'user_gender',
-        'user_email',
-        'user_password',
+        'email',
+        'password',
     ];
 
     /**
@@ -35,7 +35,7 @@ class User extends Authenticatable {
      * @var array<int, string>
      */
     protected $hidden = [
-        'user_password',
+        'password',
         'remember_token',
     ];
 
@@ -46,12 +46,12 @@ class User extends Authenticatable {
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
-        'user_password' => 'hashed',
+        'password' => 'hashed',
     ];
     public function getAuthPassword() {
-        return $this->user_password;
+        return $this->password;
     }
     public function getAuthIdentifierName() {
-        return 'user_email';
+        return 'email';
     }
 }
