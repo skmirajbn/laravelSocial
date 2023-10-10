@@ -78,8 +78,8 @@ export default function SignUp() {
     <section className="bg-gradient-to-r from-blue-600 to-emerald-400 h-screen flex items-center">
       <div className="container flex justify-center py-32 gap-16 items-center">
         <div>
-          <h2 className="text-6xl bg-gradient-to-r from-blue-200 via-cyan-300 to-gray-900 font-bold bg-clip-text text-transparent">facebook</h2>
-          <p className="text-2xl">
+          <h2 className="text-6xl bg-gradient-to-r from-white to-blue-100  font-bold bg-clip-text text-transparent w-fit">facebook</h2>
+          <p className="text-2xl bg-gradient-to-r from-white to-emerald-200 bg-clip-text text-transparent">
             Facebook helps you connect and share <br /> with the people in your life.
           </p>
         </div>
