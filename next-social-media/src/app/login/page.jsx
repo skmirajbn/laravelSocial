@@ -27,7 +27,10 @@ export default function SignUp() {
 
   const submitForm = async (event) => {
     event.preventDefault();
-
+    console.log({
+      email,
+      password,
+    });
     login({
       email,
       password,
@@ -106,14 +109,20 @@ export default function SignUp() {
               <p>It's quick and easy.</p>
               <div className="flex justify-center">
                 <form onSubmit={handleSignUp} className="space-y-4" method="dialog">
-                  <h3 className="text-red-600 italic text-sm">{errors?.user_first_name}</h3>
-                  <h3 className="text-red-600 italic text-sm">{errors?.user_last_name}</h3>
                   <div className="flex gap-6">
-                    <input className="p-2 rounded-md border border-gray-300 w-1/2" type="text" placeholder="First Name" name="user_first_name" value={singUpData.user_first_name} onChange={handleSignupInput} />
-                    <input className="p-2 rounded-md border border-gray-300 w-1/2" type="text" placeholder="Last Name" name="user_last_name" value={singUpData.user_last_name} onChange={handleSignupInput} />
+                    <div className="w-1/2">
+                      <h3 className="text-red-600 italic text-sm">{errors?.user_first_name}</h3>
+                      <input className="p-2 rounded-md border border-gray-300 w-full" type="text" placeholder="First Name" name="user_first_name" value={singUpData.user_first_name} onChange={handleSignupInput} />
+                    </div>
+                    <div className="w-1/2">
+                      <h3 className="text-red-600 italic text-sm">{errors?.user_last_name}</h3>
+                      <input className="p-2 rounded-md border border-gray-300 w-full" type="text" placeholder="Last Name" name="user_last_name" value={singUpData.user_last_name} onChange={handleSignupInput} />
+                    </div>
                   </div>
-                  {errors?.user_username && <h3 className="text-red-600 italic text-sm">{errors.user_username}</h3>}
-                  <input className="p-2 rounded-md border border-gray-300 w-full" type="text" placeholder="Username" name="user_username" value={singUpData.user_username} onChange={handleSignupInput} />
+                  <div>
+                    {errors?.user_username && <h3 className="text-red-600 italic text-sm">{errors.user_username}</h3>}
+                    <input className="p-2 rounded-md border border-gray-300 w-full" type="text" placeholder="Username" name="user_username" value={singUpData.user_username} onChange={handleSignupInput} />
+                  </div>
                   <div className="flex gap-6">
                     <div className="w-1/2">
                       <h3 className="text-red-600 italic text-sm">{errors?.user_email}</h3>
@@ -124,10 +133,12 @@ export default function SignUp() {
                       <input className="p-2 rounded-md border border-gray-300 w-full" type="text" placeholder="Phone Number" name="user_phone" value={singUpData.user_phone} onChange={handleSignupInput} />
                     </div>
                   </div>
-                  <h3 className="text-red-600 italic text-sm">{errors?.user_password}</h3>
-                  <div className="flex gap-6">
-                    <input className="p-2 rounded-md border border-gray-300 w-full" type="password" placeholder="New Password" name="user_password" value={singUpData.user_password} onChange={handleSignupInput} />
-                    <input className="p-2 rounded-md border border-gray-300 w-full" type="password" placeholder="Confirm Password" name="user_password_confirmation" value={singUpData.user_password_confirmation} onChange={handleSignupInput} />
+                  <div>
+                    <h3 className="text-red-600 italic text-sm">{errors?.user_password}</h3>
+                    <div className="flex gap-6">
+                      <input className="p-2 rounded-md border border-gray-300 w-full" type="password" placeholder="New Password" name="user_password" value={singUpData.user_password} onChange={handleSignupInput} />
+                      <input className="p-2 rounded-md border border-gray-300 w-full" type="password" placeholder="Confirm Password" name="user_password_confirmation" value={singUpData.user_password_confirmation} onChange={handleSignupInput} />
+                    </div>
                   </div>
                   <div>
                     <h5 className="text-sm">Date of Birth:</h5>

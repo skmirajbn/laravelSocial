@@ -48,4 +48,10 @@ class User extends Authenticatable {
         'email_verified_at' => 'datetime',
         'user_password' => 'hashed',
     ];
+    public function getAuthPassword() {
+        return $this->user_password;
+    }
+    public function getAuthIdentifierName() {
+        return 'user_email';
+    }
 }
