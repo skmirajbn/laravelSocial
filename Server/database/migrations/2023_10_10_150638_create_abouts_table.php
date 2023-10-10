@@ -10,7 +10,7 @@ return new class extends Migration {
      */
     public function up(): void {
         Schema::create('abouts', function (Blueprint $table) {
-            $table->integer('user_id');
+            $table->integer('user_id')->unique();
             $table->text('about_bio');
             $table->timestamps();
         });
