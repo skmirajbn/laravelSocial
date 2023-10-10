@@ -15,18 +15,10 @@ class AboutController extends Controller {
         $id = $user['user_id'];
         $about = About::where('user_id', $id)->first();
         if ($about) {
-            return response()->json([
-                'status' => 'success',
-                'data' => ['bio' => $about['about_bio']],
-                'message' => 'Bio Data Retrive Sucessfully',
-                'code' => 200
-            ]);
+            return response()->json(['bio' => $about['about_bio']]);
         } else {
             return response()->json([
-                'status' => 'error',
-                'data' => null,
                 'message' => 'Not Found',
-                'code' => 404
             ]);
         }
 

@@ -3,10 +3,14 @@
 import Header from "@/components/header";
 import Post from "@/components/post";
 import { useAuth } from "@/hooks/auth";
+import axios from "@/lib/axios";
+
+import useSWR from "swr";
 
 export default function Profile() {
-  const { user } = useAuth();
-  console.log(user);
+  const { user } = useAuth({ middleware: "auth" });
+  const { data: bioData } = useSWR("api/about/bio", () => axios.get("api/about/bio"));
+  console.log(bioData);
   return (
     <div>
       <Header />
@@ -35,7 +39,7 @@ export default function Profile() {
             <div className="shadow-lg shadow-gray-400 rounded-lg p-6 space-y-4">
               <h3 className="text-2xl font-bold">Intro</h3>
               <h4 className="text-lg font-bold">Bio</h4>
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. A corporis modi blanditiis numquam accusamus iure amet doloremque eligendi, reprehenderit consequuntur.</p>
+              {bioData && <p>{bioData?.data.bio}</p>}
             </div>
             <div className="shadow-lg shadow-gray-400 rounded-lg p-6 space-y-4">
               <h3 className="text-2xl font-bold">Photos</h3>
