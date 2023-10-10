@@ -1,8 +1,12 @@
 /* eslint-disable @next/next/no-img-element */
+"use client";
 import Header from "@/components/header";
 import Post from "@/components/post";
+import { useAuth } from "@/hooks/auth";
 
 export default function Profile() {
+  const { user } = useAuth();
+  console.log(user);
   return (
     <div>
       <Header />
@@ -11,7 +15,7 @@ export default function Profile() {
         <div className="flex gap-6 items-end -mt-20 px-10">
           <img className="h-44 w-44 object-cover rounded-full" src="img/profile.jpg" alt="" />
           <div>
-            <h2 className="text-4xl font-bold">Sheikh rownakul Islam Miraj</h2>
+            <h2 className="text-4xl font-bold">{user?.user_first_name + " " + user?.user_last_name}</h2>
             <h5>64 Friends</h5>
           </div>
         </div>

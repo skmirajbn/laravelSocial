@@ -2,17 +2,30 @@
 import { useAuth } from "@/hooks/auth";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useRef } from "react";
 import logo from "./../../public/img/logo.png";
 import profile from "./../../public/img/profile.jpg";
+import MessengerModal from "./utils/messengerModal";
+import NotificationModal from "./utils/notificationModal";
 
 export default function Header() {
   const { logout } = useAuth({ middleware: "auth" });
+  const router = useRouter();
+  const doLogOut = () => {
+    logout();
+    router.push("/login");
+  };
   const messageModal = useRef();
   const showToggle = () => {
     messageModal.current.classList.toggle("hidden");
     console.log("message clicked");
   };
+  const notificationModal = useRef();
+  const notificationToggle = () => {
+    notificationModal.current.classList.toggle("hidden");
+  };
+
   const profileDropDown = useRef();
   const toggleProfileDropdown = (e) => {
     profileDropDown.current.classList.toggle("hidden");
@@ -53,111 +66,13 @@ export default function Header() {
         <div class="bg-gray-200 w-10 h-10 flex justify-center items-center rounded-full relative">
           <i class="fa-brands fa-facebook-messenger" onClick={showToggle}></i>
           <div className="bg-red-600 h-5 w-5 rounded-full absolute flex justify-center items-center text-xs text-white font-medium -right-1 -top-1">15</div>
-
-          {/* Modal */}
-          <div ref={messageModal} className="absolute bg-white top-14 -right-32 px-2 w-80 py-2 shadow-lg shadow-gray-700 rounded-md hidden">
-            <i class="text-white text-5xl fa-solid fa-sort-up absolute -top-4 left-1/2 -translate-x-1/2"></i>
-            <div className="space-y-6 max-h-[83vh] overflow-auto px-3 py-3">
-              {/* Single Message */}
-              <div className="space-y-2">
-                <div className="flex gap-3 items-center">
-                  <img className="w-8 h-8 rounded-full object-cover" src="img/profile.jpg" alt="" />
-                  <h3 className="text-sm">Sheikh Rownakul Islam Miraj</h3>
-                  <i class="fa-solid fa-circle text-green-600 text-sm"></i>
-                </div>
-                <h5 className="text-xs">Hello How are you?</h5>
-                <hr />
-              </div>
-              {/* Single Message */}
-              <div className="space-y-2">
-                <div className="flex gap-3 items-center">
-                  <img className="w-8 h-8 rounded-full object-cover" src="img/profile.jpg" alt="" />
-                  <h3 className="text-sm">Sheikh Rownakul Islam Miraj</h3>
-                  <i class="fa-solid fa-circle text-green-600 text-sm"></i>
-                </div>
-                <h5 className="text-xs">Hello How are you?</h5>
-                <hr />
-              </div>
-              {/* Single Message */}
-              <div className="space-y-2">
-                <div className="flex gap-3 items-center">
-                  <img className="w-8 h-8 rounded-full object-cover" src="img/profile.jpg" alt="" />
-                  <h3 className="text-sm">Sheikh Rownakul Islam Miraj</h3>
-                  <i class="fa-solid fa-circle text-green-600 text-sm"></i>
-                </div>
-                <h5 className="text-xs">Hello How are you?</h5>
-                <hr />
-              </div>
-              {/* Single Message */}
-              <div className="space-y-2">
-                <div className="flex gap-3 items-center">
-                  <img className="w-8 h-8 rounded-full object-cover" src="img/profile.jpg" alt="" />
-                  <h3 className="text-sm">Sheikh Rownakul Islam Miraj</h3>
-                  <i class="fa-solid fa-circle text-green-600 text-sm"></i>
-                </div>
-                <h5 className="text-xs">Hello How are you?</h5>
-                <hr />
-              </div>
-              {/* Single Message */}
-              <div className="space-y-2">
-                <div className="flex gap-3 items-center">
-                  <img className="w-8 h-8 rounded-full object-cover" src="img/profile.jpg" alt="" />
-                  <h3 className="text-sm">Sheikh Rownakul Islam Miraj</h3>
-                  <i class="fa-solid fa-circle text-green-600 text-sm"></i>
-                </div>
-                <h5 className="text-xs">Hello How are you?</h5>
-                <hr />
-              </div>
-              {/* Single Message */}
-              <div className="space-y-2">
-                <div className="flex gap-3 items-center">
-                  <img className="w-8 h-8 rounded-full object-cover" src="img/profile.jpg" alt="" />
-                  <h3 className="text-sm">Sheikh Rownakul Islam Miraj</h3>
-                  <i class="fa-solid fa-circle text-green-600 text-sm"></i>
-                </div>
-                <h5 className="text-xs">Hello How are you?</h5>
-                <hr />
-              </div>
-              {/* Single Message */}
-              <div className="space-y-2">
-                <div className="flex gap-3 items-center">
-                  <img className="w-8 h-8 rounded-full object-cover" src="img/profile.jpg" alt="" />
-                  <h3 className="text-sm">Sheikh Rownakul Islam Miraj</h3>
-                  <i class="fa-solid fa-circle text-green-600 text-sm"></i>
-                </div>
-                <h5 className="text-xs">Hello How are you?</h5>
-                <hr />
-              </div>
-              {/* Single Message */}
-              <div className="space-y-2">
-                <div className="flex gap-3 items-center">
-                  <img className="w-8 h-8 rounded-full object-cover" src="img/profile.jpg" alt="" />
-                  <h3 className="text-sm">Sheikh Rownakul Islam Miraj</h3>
-                  <i class="fa-solid fa-circle text-green-600 text-sm"></i>
-                </div>
-                <h5 className="text-xs">Hello How are you?</h5>
-                <hr />
-              </div>
-              {/* Single Message */}
-              <div className="space-y-2">
-                <div className="flex gap-3 items-center">
-                  <img className="w-8 h-8 rounded-full object-cover" src="img/profile.jpg" alt="" />
-                  <h3 className="text-sm">Sheikh Rownakul Islam Miraj</h3>
-                  <i class="fa-solid fa-circle text-green-600 text-sm"></i>
-                </div>
-                <h5 className="text-xs">Hello How are you?</h5>
-                <hr />
-              </div>
-            </div>
-            <Link href="/messages" className="block text-sm text-blue-600 text-center py-2">
-              See All in Messenger
-            </Link>
-          </div>
+          <MessengerModal messageModal={messageModal} />
         </div>
-        <a href="#" class="bg-gray-200 w-10 h-10 flex justify-center items-center rounded-full relative">
-          <i class="fa-solid fa-bell "></i>
+        <div href="#" class="bg-gray-200 w-10 h-10 flex justify-center items-center rounded-full relative">
+          <i class="fa-solid fa-bell " onClick={notificationToggle}></i>
           <div className="bg-red-600 h-5 w-5 rounded-full absolute flex justify-center items-center text-xs text-white font-medium -right-1 -top-1">28</div>
-        </a>
+          <NotificationModal notificationModal={notificationModal} />
+        </div>
         <div className="flex items-center gap-2 relative" onClick={toggleProfileDropdown}>
           <Image class="w-12 h-12 rounded-full overflow-hidden object-cover" src={profile} alt="" />
           <i class="fa-solid fa-chevron-down text-sm"></i>
@@ -169,7 +84,7 @@ export default function Header() {
               </h3>
             </Link>
             <div className="bg-gray-400 h-px w-full" />
-            <h3 className="flex flex gap-2 items-center text-red-600" onClick={logout}>
+            <h3 className="flex gap-2 items-center text-red-600 cursor-pointer" onClick={doLogOut}>
               Logout <i class="fa-solid fa-right-from-bracket"></i>
             </h3>
           </div>
