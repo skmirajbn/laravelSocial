@@ -38,7 +38,7 @@ function ProfileIntro() {
       )}
       {bioData && !isEditing && (
         <p>
-          {bioData?.data.bio} <i class="fa-solid fa-pen text-green-700 pl-2" onClick={editPenClick}></i>
+          {bioData?.data.bio} <i class="fa-solid fa-pen text-blue-700 pl-2" onClick={editPenClick}></i>
         </p>
       )}
       {isEditing && (bioData?.data.bio || bioData?.data.bio == "") && (
