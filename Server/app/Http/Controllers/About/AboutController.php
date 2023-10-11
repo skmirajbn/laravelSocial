@@ -25,23 +25,28 @@ class AboutController extends Controller {
 
     }
     function put(Request $request) {
-        // $user = auth()->user();
-        // if ($request->expectsJson()) {
-        //     $request->input('name');
-        // }
-        echo "put request";
-        // if (!$user) {
-        //     return response()->json(['message' => 'Unauthorized', 401]);
-        // }
-        // $id = $user['user_id'];
-        // $about = About::where('user_id', $id)->first();
-        // if ($about) {
-        //     return response()->json(['bio' => $about['about_bio']]);
-        // } else {
-        //     return response()->json([
-        //         'bio' => '',
-        //     ]);
-        // }
+        $user = auth()->user();
+        $id = $user['user_id'];
+        if ($request->expectsJson()) {
+            $bio = $request->input('bio');
+            echo $bio;
+            return;
+        }
+        if (!$user) {
+            return response()->json(['message' => 'Unauthorized', 401]);
+        }
+
+        $about = About::where('user_id', $id)->first();
+        if ($about) {
+            $about->update(['about_bio' => 'new value']);
+            if ($about) {
+                return response()->json(['message' => 'bio updated sucessfully']);
+            } else {
+                return response()->json(['message' => 'bio update Failed']);
+            }
+        } else {
+            return response()->json(['message' => 'Not Found']);
+        }
 
     }
 }
