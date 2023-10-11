@@ -7,6 +7,7 @@ function ProfileIntro() {
   const { data: bioData, mutate } = useSWR("api/about/bio", () => axios.get("api/about/bio"));
   const { user } = useAuth({ middleware: "auth" });
   const [isEditing, setIsEditing] = useState(false);
+  const [isupdating, setIsUpdating] = useState(false);
 
   const update = (e) => {
     e.preventDefault();
@@ -15,7 +16,8 @@ function ProfileIntro() {
       ...bioData,
       data: { ...bioData.data, bio: updatedBio },
     };
-    console.log(mutatedData);
+    setIsUpdating(true);
+    axios.put("api/about/bio", { bio: updatedBio }).then((e) => setIsUpdating(false));
     // mutatedData = JSON.stringify(mutatedData);
     mutate(mutatedData);
     setIsEditing(false);
@@ -28,9 +30,10 @@ function ProfileIntro() {
     <div className="shadow-lg shadow-gray-400 rounded-lg p-6 space-y-4">
       <h3 className="text-2xl font-bold">Intro</h3>
       <h4 className="text-lg font-bold">Bio </h4>
+      {isupdating && <h5 className="text-sm italic text-green-600">Updating...</h5>}
       {bioData && !isEditing && (
         <p>
-          {bioData?.data.bio} <i class="fa-solid fa-pen" onClick={editPenClick}></i>
+          {bioData?.data.bio} <i class="fa-solid fa-pen text-green-700 pl-2" onClick={editPenClick}></i>
         </p>
       )}
       {isEditing && (bioData?.data.bio || bioData?.data.bio == "") && (
