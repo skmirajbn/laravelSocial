@@ -15,7 +15,6 @@ return new class extends Migration {
             $table->string('post_body');
             $table->string('post_image');
             $table->integer('user_id');
-            $table->integer('comment_id');
             $table->timestamps();
         });
     }

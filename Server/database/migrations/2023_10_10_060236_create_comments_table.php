@@ -13,7 +13,6 @@ return new class extends Migration {
             $table->id('comment_id');
             $table->integer('user_id');
             $table->string('comment_text');
-            $table->integer('comment_likes');
             $table->timestamps();
         });
     }
