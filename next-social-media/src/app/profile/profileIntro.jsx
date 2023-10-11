@@ -30,7 +30,12 @@ function ProfileIntro() {
     <div className="shadow-lg shadow-gray-400 rounded-lg p-6 space-y-4">
       <h3 className="text-2xl font-bold">Intro</h3>
       <h4 className="text-lg font-bold">Bio </h4>
-      {isupdating && <h5 className="text-sm italic text-green-600">Updating...</h5>}
+      {isupdating && (
+        <div className="flex items-center gap-3 text-green-600">
+          <h5 className="text-sm italic ">Updating</h5>
+          <span className="loading loading-dots loading-sm"></span>
+        </div>
+      )}
       {bioData && !isEditing && (
         <p>
           {bioData?.data.bio} <i class="fa-solid fa-pen text-green-700 pl-2" onClick={editPenClick}></i>
