@@ -10,10 +10,11 @@ import MessengerModal from "./utils/messengerModal";
 import NotificationModal from "./utils/notificationModal";
 
 export default function Header() {
-  const { logout } = useAuth({ middleware: "auth" });
+  const { logout, mutate } = useAuth({ middleware: "auth" });
   const router = useRouter();
   const doLogOut = () => {
     logout();
+    mutate(null, false);
     router.push("/login");
   };
   const messageModal = useRef();
