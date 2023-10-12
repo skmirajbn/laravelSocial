@@ -13,7 +13,6 @@ return new class extends Migration {
             $table->bigInteger('post_id');
             $table->string('post_title');
             $table->string('post_body');
-            $table->string('post_image');
             $table->integer('user_id');
             $table->timestamps();
         });
