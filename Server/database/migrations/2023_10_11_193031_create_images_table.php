@@ -11,8 +11,8 @@ return new class extends Migration {
     public function up(): void {
         Schema::create('images', function (Blueprint $table) {
             $table->id('image_id'); // Use 'id' to create an auto-incrementing primary key.
-            $table->unsignedBigInteger('post_id');
-            $table->string('image_name', 50);
+            $table->integer('post_id');
+            $table->string('image_path');
             $table->timestamps();
         });
     }

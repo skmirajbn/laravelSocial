@@ -3,10 +3,11 @@
 namespace App\Http\Controllers\Post;
 
 use App\Http\Controllers\Controller;
+use App\Models\Image;
 use App\Models\Post;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use Intervention\Image\ImageManagerStatic;
 
 class PostController extends Controller {
     function get() {
@@ -25,33 +26,50 @@ class PostController extends Controller {
             'user_id' => $userId,
         ];
         $post = Post::create($data);
+        $postId = $post->post_id;
 
-        if ($post) {
+        if (!$post) {
             return response()->json([
-                'message' => 'post created',
-                'data' => $data
-            ]);
-        } else {
-            return response()->json([
-                'message' => 'post creating Failed',
-                'data' => null
+                'message' => 'Post Creation Failed',
             ]);
         }
 
         // Handling Image Insertion
         if ($request->hasFile('images')) {
-            $images = $request->file('image');
+            $images = $request->file('images');
 
             foreach ($images as $image) {
-                $imageName = Str::uuid() . $image->getClientOriginalExtension();
+                $imageObject = ImageManagerStatic::make($image);
+                $imageObject->fit(640, 480);
+                // $imageObject->compress();
 
-                $filePath = Storage::disk('public')->storeAs('images', $image, $imageName);
+                $imageObject->save(storage_path('app/public/images/' . Str::uuid() . '.jpg'));
+                $generatedImageName = $imageObject->basename;
+                $generatedImageData = Image::create([
+                    'post_id' => $postId,
+                    'image_path' => 'storage/images/' . $generatedImageName
+                ]);
+
+                // $imagePath = $image->store('public/images');
+                // if ($imagePath) {
+                //     $insertImageData = Image::create([
+                //         'post_id' => $postId,
+                //         'image_path' => $imagePath
+                //     ]);
+
+                //     if (!$insertImageData) {
+                //         return response()->json([
+                //             'message' => 'image Upload Failed'
+                //         ]);
+                //     }
+                // }
             }
 
 
         }
-
-
+        return response()->json([
+            'message' => 'Post Created'
+        ]);
 
 
     }
