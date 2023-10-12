@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\About\AboutController;
+use App\Http\Controllers\Post\PostController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -21,3 +22,4 @@ Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
 
 Route::middleware(['auth'])->get('/about/bio', [AboutController::class, 'get']);
 Route::middleware(['auth'])->put('/about/bio', [AboutController::class, 'put']);
+Route::middleware(['auth'])->put('/posts/', [PostController::class, 'put']);
