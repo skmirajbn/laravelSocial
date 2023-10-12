@@ -25,7 +25,6 @@ function ProfileIntro() {
   const editPenClick = () => {
     setIsEditing(true);
   };
-  console.log(bioData);
   return (
     <div className="shadow-lg shadow-gray-400 rounded-lg p-6 space-y-4">
       <h3 className="text-2xl font-bold">Intro</h3>

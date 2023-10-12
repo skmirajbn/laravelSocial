@@ -1,4 +1,27 @@
+import { useRef, useState } from "react";
+import PostImage from "./_createPostComponents/postImage";
+
 export default function CreatePost() {
+  const photoInput = useRef();
+  const [imageSrcs, setImageSrcs] = useState([]);
+
+  const handlePhotoChange = (e) => {
+    setImageSrcs([]);
+    let updatedImageSrcs = [];
+    let files = Array.from(e.target.files);
+
+    files.forEach((file) => {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        let src = e.target.result;
+        updatedImageSrcs.push(src);
+      };
+      reader.readAsDataURL(file);
+    });
+    setImageSrcs(updatedImageSrcs);
+  };
+
+  console.log("createpost is rerendering");
   return (
     <div className="shadow-lg shadow-gray-400 rounded-lg">
       <div className="p-6 space-y-4">
@@ -8,42 +31,16 @@ export default function CreatePost() {
           <h3 className="bg-blue-600 h-fit px-4 py-2 text-xl font-semibold text-white rounded-lg">Post</h3>
         </div>
         <div className="flex gap-3">
-          {/* Single Image For post */}
-          <div className="relative w-fit">
-            <img className="w-20 max-h-28 rounded-md" src="img/profile.jpg" alt="" />
-            <div className="absolute bg-red-600 w-5 h-5 text-white flex items-center justify-center rounded-full text-xs top-px right-px">
-              <i class="fa-solid fa-x"></i>
-            </div>
-          </div>
-          {/* Single Image For post */}
-          <div className="relative w-fit">
-            <img className="w-20 max-h-28 rounded-md" src="img/profile.jpg" alt="" />
-            <div className="absolute bg-red-600 w-5 h-5 text-white flex items-center justify-center rounded-full text-xs top-px right-px">
-              <i class="fa-solid fa-x"></i>
-            </div>
-          </div>
-          {/* Single Image For post */}
-          <div className="relative w-fit">
-            <img className="w-20 max-h-28 rounded-md" src="img/profile.jpg" alt="" />
-            <div className="absolute bg-red-600 w-5 h-5 text-white flex items-center justify-center rounded-full text-xs top-px right-px">
-              <i class="fa-solid fa-x"></i>
-            </div>
-          </div>
-          {/* Single Image For post */}
-          <div className="relative w-fit">
-            <img className="w-20 max-h-28 rounded-md" src="img/profile.jpg" alt="" />
-            <div className="absolute bg-red-600 w-5 h-5 text-white flex items-center justify-center rounded-full text-xs top-px right-px">
-              <i class="fa-solid fa-x"></i>
-            </div>
-          </div>
+          {imageSrcs.map((src) => (
+            <PostImage src={src} />
+          ))}
         </div>
 
         <div className="flex gap-4 px-20">
           <label htmlFor="image">
             <i class="fa-solid fa-image text-2xl text-green-500"></i>
           </label>
-
-          <input id="image" type="file" name="image" hidden />
+          <input ref={photoInput} id="image" type="file" name="image" hidden multiple onChange={handlePhotoChange} />
           <i class="fa-solid fa-paperclip text-2xl text-blue-700"></i>
         </div>
       </div>
