@@ -8,8 +8,12 @@ use Illuminate\Http\Request;
 class PostController extends Controller {
     function get() {
     }
-    function put(Request $request) {
-        echo $request->input('post_body');
+    function post(Request $request) {
+        $user = auth()->user();
+        $postTitle = $request->post_title;
+        $postBody = $request->post_body;
+        $userId = $user['user_id'];
+
 
     }
 }

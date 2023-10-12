@@ -10,7 +10,7 @@ return new class extends Migration {
      */
     public function up(): void {
         Schema::create('posts', function (Blueprint $table) {
-            $table->bigInteger('post_id');
+            $table->string('post_id')->unique();
             $table->string('post_title');
             $table->string('post_body');
             $table->integer('user_id');
