@@ -42,12 +42,12 @@ class PostController extends Controller {
             foreach ($images as $image) {
                 $imageObject = ImageManagerStatic::make($image);
                 $imageObject->fit(640, 480);
-                $imageObject->encode('jpg', 90);
+                $imageObject->encode('jpg', 60);
                 $generatedImageName = Str::uuid() . '.jpg';
                 $imagePath = 'public/images/' . $generatedImageName;
+                // $imageObject->compress();
 
                 Storage::put($imagePath, $imageObject->stream());
-                // $imageObject->compress();
 
                 // $imageObject->save(storage_path('app/public/images/' . Str::uuid() . '.jpg'));
                 $generatedImageData = Image::create([
