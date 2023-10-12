@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Image;
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Intervention\Image\ImageManagerStatic;
 
@@ -41,28 +42,18 @@ class PostController extends Controller {
             foreach ($images as $image) {
                 $imageObject = ImageManagerStatic::make($image);
                 $imageObject->fit(640, 480);
+                $imageObject->encode('jpg', 90);
+                $generatedImageName = Str::uuid() . '.jpg';
+                $imagePath = 'public/images/' . $generatedImageName;
+
+                Storage::put($imagePath, $imageObject->stream());
                 // $imageObject->compress();
 
-                $imageObject->save(storage_path('app/public/images/' . Str::uuid() . '.jpg'));
-                $generatedImageName = $imageObject->basename;
+                // $imageObject->save(storage_path('app/public/images/' . Str::uuid() . '.jpg'));
                 $generatedImageData = Image::create([
                     'post_id' => $postId,
-                    'image_path' => 'storage/images/' . $generatedImageName
+                    'image_path' => 'storage/' . $imagePath
                 ]);
-
-                // $imagePath = $image->store('public/images');
-                // if ($imagePath) {
-                //     $insertImageData = Image::create([
-                //         'post_id' => $postId,
-                //         'image_path' => $imagePath
-                //     ]);
-
-                //     if (!$insertImageData) {
-                //         return response()->json([
-                //             'message' => 'image Upload Failed'
-                //         ]);
-                //     }
-                // }
             }
 
 
