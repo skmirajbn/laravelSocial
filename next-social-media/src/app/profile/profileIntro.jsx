@@ -41,6 +41,7 @@ function ProfileIntro() {
           {bioData?.data.bio} <i class="fa-solid fa-pen text-blue-700 pl-2" onClick={editPenClick}></i>
         </p>
       )}
+      {!bioData && <span className="loading loading-dots loading-md text-blue-600"></span>}
       {isEditing && (bioData?.data.bio || bioData?.data.bio == "") && (
         <form onSubmit={update}>
           <div className="flex flex-col gap-2">
