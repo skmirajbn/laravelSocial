@@ -54,4 +54,8 @@ class User extends Authenticatable {
     public function getAuthIdentifierName() {
         return 'email';
     }
+
+    public function posts() {
+        return $this->hasMany(Post::class, 'user_id');
+    }
 }

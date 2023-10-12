@@ -8,6 +8,7 @@ export default function CreatePost() {
   const [selectedFiles, setSelectedFiles] = useState([]);
   const [postTitle, setPostTitle] = useState("");
   const [postText, setPostText] = useState("");
+  const [isPosting, setIsPosting] = useState(false);
 
   const handlePhotoChange = async (e) => {
     setImageSrcs([]);
@@ -52,10 +53,16 @@ export default function CreatePost() {
     for (let i = 0; i < selectedFiles.length; i++) {
       formData.append(`images[]`, selectedFiles[i]);
     }
-    axios.post("api/posts", formData);
+    setIsPosting(true);
+    axios.post("api/posts", formData).then((res) => {
+      setIsPosting(false);
+      setImageSrcs([]);
+      setSelectedFiles([]);
+      setPostTitle("");
+      setPostText("");
+    });
   };
 
-  console.log(selectedFiles);
   return (
     <div className="shadow-lg shadow-gray-400 rounded-lg">
       <div className="p-6 space-y-4">
@@ -64,6 +71,11 @@ export default function CreatePost() {
           <div className="flex flex-col gap-2 w-full">
             <input className="input w-full border border-gray-300 p-3" type="text" placeholder="Post Title" value={postTitle} onChange={(e) => setPostTitle(e.target.value)} />
             <textarea type="text" rows="3" placeholder="Whats on Your Mind?" className="input w-full border border-gray-300 p-3 h-auto" value={postText} onChange={(e) => setPostText(e.target.value)}></textarea>
+            {isPosting && (
+              <h3 className="text-blue-600 font-bold text-lg flex gap-3">
+                Posting <span className="loading loading-bars loading-sm"></span>
+              </h3>
+            )}
           </div>
           <button className="bg-blue-600 h-fit px-4 py-2 text-xl font-semibold text-white rounded-lg" onClick={createPost}>
             Post

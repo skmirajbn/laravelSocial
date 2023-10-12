@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Post;
 use App\Http\Controllers\Controller;
 use App\Models\Image;
 use App\Models\Post;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -12,6 +13,18 @@ use Intervention\Image\ImageManagerStatic;
 
 class PostController extends Controller {
     function get() {
+        $users = auth()->user();
+        $userId = $users['user_id'];
+        $user = User::find($userId);
+
+        if (!$user) {
+            return response()->json([
+                'message' => 'User not Found'
+            ]);
+        }
+        $userPosts = $user->posts()->with('images')->get();
+        return response()->json($userPosts);
+
     }
     function post(Request $request) {
         $user = auth()->user();
@@ -52,7 +65,7 @@ class PostController extends Controller {
                 // $imageObject->save(storage_path('app/public/images/' . Str::uuid() . '.jpg'));
                 $generatedImageData = Image::create([
                     'post_id' => $postId,
-                    'image_path' => 'storage/' . $imagePath
+                    'image_path' => 'storage/images/' . $generatedImageName
                 ]);
             }
 

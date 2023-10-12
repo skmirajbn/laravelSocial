@@ -22,4 +22,5 @@ Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
 
 Route::middleware(['auth'])->get('/about/bio', [AboutController::class, 'get']);
 Route::middleware(['auth'])->put('/about/bio', [AboutController::class, 'put']);
-Route::middleware(['auth'])->post('/posts/', [PostController::class, 'post']);
+Route::middleware(['auth'])->post('/posts', [PostController::class, 'post']);
+Route::middleware(['auth'])->get('/posts', [PostController::class, 'get']);

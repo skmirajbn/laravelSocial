@@ -4,12 +4,17 @@ import Header from "@/components/header";
 import Post from "@/components/post";
 import { useAuth } from "@/hooks/auth";
 
+import axios from "@/lib/axios";
+import useSWR from "swr";
 import CreatePost from "./createPost";
 import Mypage from "./mypage";
 import ProfileLeftSidebar from "./profileLeftSidebar";
 
 export default function Profile() {
   const { user } = useAuth({ middleware: "auth" });
+  // const [posts, setPosts] = useState(null);
+  const { isLoading, data: dataPosts, mutate } = useSWR("api/posts", () => axios("api/posts"));
+  const posts = dataPosts?.data;
 
   return (
     <div>
@@ -40,10 +45,7 @@ export default function Profile() {
           {/* Profile Timeline */}
           <div className="w-2/3 space-y-8">
             <CreatePost />
-            <Post />
-            <Post />
-            <Post />
-            <Post />
+            {posts && posts.map((post) => <Post post={post} />)}
           </div>
         </div>
       </div>

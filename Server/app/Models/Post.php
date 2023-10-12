@@ -18,4 +18,10 @@ class Post extends Model {
         'post_body',
         'user_id',
     ];
+    // Post.php (Post model)
+    public function images() {
+        return $this->hasMany(Image::class, 'post_id');
+    }
+
+
 }
