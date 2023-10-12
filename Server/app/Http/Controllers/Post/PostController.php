@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Post;
 use App\Http\Controllers\Controller;
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class PostController extends Controller {
@@ -37,7 +38,18 @@ class PostController extends Controller {
             ]);
         }
 
+        // Handling Image Insertion
+        if ($request->hasFile('images')) {
+            $images = $request->file('image');
 
+            foreach ($images as $image) {
+                $imageName = Str::uuid() . $image->getClientOriginalExtension();
+
+                $filePath = Storage::disk('public')->storeAs('images', $image, $imageName);
+            }
+
+
+        }
 
 
 

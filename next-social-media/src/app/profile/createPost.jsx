@@ -1,4 +1,3 @@
-import axios from "@/lib/axios";
 import { useRef, useState } from "react";
 import PostImage from "./_createPostComponents/postImage";
 
@@ -50,9 +49,10 @@ export default function CreatePost() {
     formData.append("post_title", postTitle);
     formData.append("post_body", postText);
     for (let i = 0; i < selectedFiles.length; i++) {
-      formData.append(`image${i}`, selectedFiles[i]);
+      formData.append(`images`, selectedFiles[i]);
     }
-    axios.put("api/posts", formData);
+    // axios.put("api/posts", formData);
+    console.log(formData);
   };
 
   console.log(selectedFiles);
