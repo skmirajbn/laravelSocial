@@ -4,7 +4,9 @@ import Header from "@/components/header";
 import Post from "@/components/post";
 import { useAuth } from "@/hooks/auth";
 
+import PostLoading from "@/components/postLoading";
 import axios from "@/lib/axios";
+import { useState } from "react";
 import useSWR from "swr";
 import CreatePost from "./createPost";
 import Mypage from "./mypage";
@@ -12,9 +14,12 @@ import ProfileLeftSidebar from "./profileLeftSidebar";
 
 export default function Profile() {
   const { user } = useAuth({ middleware: "auth" });
+  const [postLoading, setPostLoading] = useState(true);
   // const [posts, setPosts] = useState(null);
   const { isLoading, data: dataPosts, mutate } = useSWR("api/posts", () => axios("api/posts"));
-  const posts = dataPosts?.data;
+  const posts = dataPosts?.data?.data;
+
+  console.log(posts);
 
   return (
     <div>
@@ -44,8 +49,13 @@ export default function Profile() {
           <ProfileLeftSidebar />
           {/* Profile Timeline */}
           <div className="w-2/3 space-y-8">
-            <CreatePost />
-            {posts && posts.map((post) => <Post post={post} />)}
+            <CreatePost data={dataPosts} mutate={mutate} />
+            {posts && posts?.map((post) => <Post post={post} />)}
+            {postLoading && (
+              <div>
+                <PostLoading />
+              </div>
+            )}
           </div>
         </div>
       </div>

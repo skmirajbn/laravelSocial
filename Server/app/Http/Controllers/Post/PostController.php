@@ -22,7 +22,8 @@ class PostController extends Controller {
                 'message' => 'User not Found'
             ]);
         }
-        $userPosts = $user->posts()->with('images')->get();
+        $perPage = 2;
+        $userPosts = $user->posts()->with('images')->orderBy('created_at', 'desc')->paginate($perPage);
         return response()->json($userPosts);
 
     }
@@ -71,8 +72,10 @@ class PostController extends Controller {
 
 
         }
+        $newPost = Post::with('images')->find($postId);
         return response()->json([
-            'message' => 'Post Created'
+            'message' => 'Post Created',
+            'data' => $newPost
         ]);
 
 

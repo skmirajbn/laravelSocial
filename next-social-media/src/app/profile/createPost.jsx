@@ -2,7 +2,7 @@ import axios from "@/lib/axios";
 import { useRef, useState } from "react";
 import PostImage from "./_createPostComponents/postImage";
 
-export default function CreatePost() {
+export default function CreatePost({ mutate, data }) {
   const photoInput = useRef();
   const [imageSrcs, setImageSrcs] = useState([]);
   const [selectedFiles, setSelectedFiles] = useState([]);
@@ -46,7 +46,7 @@ export default function CreatePost() {
     // });
   };
 
-  const createPost = () => {
+  const createPost = async () => {
     const formData = new FormData();
     formData.append("post_title", postTitle);
     formData.append("post_body", postText);
@@ -54,13 +54,16 @@ export default function CreatePost() {
       formData.append(`images[]`, selectedFiles[i]);
     }
     setIsPosting(true);
-    axios.post("api/posts", formData).then((res) => {
+    let newPost = await axios.post("api/posts", formData).then((res) => {
       setIsPosting(false);
       setImageSrcs([]);
       setSelectedFiles([]);
       setPostTitle("");
       setPostText("");
     });
+    console.log(newPost);
+    let mutatedData = { ...data.data, ...newPost?.data };
+    mutate(mutatedData);
   };
 
   return (
