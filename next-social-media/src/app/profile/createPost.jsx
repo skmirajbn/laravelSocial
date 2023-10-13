@@ -2,7 +2,7 @@ import axios from "@/lib/axios";
 import { useRef, useState } from "react";
 import PostImage from "./_createPostComponents/postImage";
 
-export default function CreatePost({ mutate, data }) {
+export default function CreatePost({ setPosts }) {
   const photoInput = useRef();
   const [imageSrcs, setImageSrcs] = useState([]);
   const [selectedFiles, setSelectedFiles] = useState([]);
@@ -62,8 +62,7 @@ export default function CreatePost({ mutate, data }) {
       setPostText("");
     });
     console.log(newPost);
-    let mutatedData = { ...data.data, ...newPost?.data };
-    mutate(mutatedData);
+    setPosts((prevPosts) => [...prevPosts, newPost?.data]);
   };
 
   return (
