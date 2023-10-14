@@ -29,8 +29,8 @@ class PostController extends Controller {
     }
     function post(Request $request) {
         $user = auth()->user();
-        $postTitle = $request->post_title;
-        $postBody = $request->post_body;
+        $postTitle = $request->post_title ?? '';
+        $postBody = $request->post_body ?? '';
         $userId = $user['user_id'];
         $postCode = Str::uuid();
 

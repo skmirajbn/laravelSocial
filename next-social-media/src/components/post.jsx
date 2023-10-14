@@ -1,13 +1,22 @@
+import { useAuth } from "@/hooks/auth";
+import axios from "@/lib/axios";
 import { useEffect, useState } from "react";
+import useSWR from "swr";
 
 export default function Post({ post }) {
+  const { data, isLoading, mutate, isValidating } = useSWR("profileImage", () => axios.get("api/profile-image"));
+  const { user } = useAuth({ middleware: "auth" });
   const [imageCount, setImageCount] = useState(1);
   useEffect(() => {
     let imageCount = post?.images?.length;
     setImageCount(imageCount);
   }, [post]);
   return (
-    <div className=" px-6 py-8 rounded-xl shadow-lg shadow-gray-400">
+    <div className=" px-6 py-8 rounded-xl shadow-lg shadow-gray-400 space-y-5">
+      <div className="flex items-center gap-3">
+        <img className="w-12 h-12 rounded-full object-cover" src={process.env.NEXT_PUBLIC_BACKEND_URL + "/" + data?.data?.image_path} alt="" />
+        <h3 className="text-xl  font-bold">{user.user_first_name + " " + user.user_last_name}</h3>
+      </div>
       <div className="space-y-2">
         <h3 className="text-2xl font-semibold">{post?.post_title}</h3>
         <h3 className="text-base">{post?.post_body}</h3>

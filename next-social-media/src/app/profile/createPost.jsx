@@ -38,12 +38,6 @@ export default function CreatePost({ setPosts }) {
     const updatedFiles = [...selectedFiles];
     updatedFiles.splice(index, 1);
     setSelectedFiles(updatedFiles);
-
-    // Update input elements with remaining Files
-    // photoInput.current.value = [];
-    // updatedFiles.forEach((file) => {
-    //   photoInput.current.files.push(file);
-    // });
   };
 
   const createPost = async () => {
