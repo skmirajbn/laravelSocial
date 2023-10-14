@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\About\AboutController;
 use App\Http\Controllers\Post\PostController;
+use App\Http\Controllers\Profile\ProfilePictureController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -19,8 +20,12 @@ use Illuminate\Support\Facades\Route;
 Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
     return $request->user();
 });
-
+// About Bio
 Route::middleware(['auth'])->get('/about/bio', [AboutController::class, 'get']);
 Route::middleware(['auth'])->put('/about/bio', [AboutController::class, 'put']);
+// Posts
 Route::middleware(['auth'])->post('/posts', [PostController::class, 'post']);
 Route::middleware(['auth'])->get('/posts', [PostController::class, 'get']);
+// Profile Picture
+Route::middleware(['auth'])->get('/profilePicture', [ProfilePictureController::class, 'get']);
+Route::middleware(['auth'])->post('/profilePicture', [ProfilePictureController::class, 'post']);
