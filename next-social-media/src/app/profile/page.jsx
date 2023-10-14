@@ -7,6 +7,7 @@ import { useAuth } from "@/hooks/auth";
 import PostLoading from "@/components/postLoading";
 import axios from "@/lib/axios";
 import { useEffect, useState } from "react";
+import CoverPhoto from "./coverPhoto";
 import CreatePost from "./createPost";
 import Mypage from "./mypage";
 import ProfileLeftSidebar from "./profileLeftSidebar";
@@ -56,7 +57,7 @@ export default function Profile() {
       <Mypage />
       <Header />
       <div className="container">
-        <img className="h-[30rem] w-full object-cover rounded-lg" src="img/cover.jpg" alt="" />
+        <CoverPhoto />
         <div className="flex gap-6 items-end -mt-20 px-10">
           <ProfilePicture />
           <div>

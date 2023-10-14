@@ -1,8 +1,10 @@
 import axios from "@/lib/axios";
 import { useRef, useState } from "react";
+import useSWR from "swr";
 import PostImage from "./_createPostComponents/postImage";
 
 export default function CreatePost({ setPosts }) {
+  const { data, isLoading, mutate, isValidating } = useSWR("profileImage", () => axios.get("api/profile-image"));
   const photoInput = useRef();
   const [imageSrcs, setImageSrcs] = useState([]);
   const [selectedFiles, setSelectedFiles] = useState([]);
@@ -62,7 +64,8 @@ export default function CreatePost({ setPosts }) {
     <div className="shadow-lg shadow-gray-400 rounded-lg">
       <div className="p-6 space-y-4">
         <div className="flex gap-6 items-center">
-          <img className="w-12 h-12 object-cover rounded-full" src="img/profile.jpg" alt="" />
+          {data && <img className="w-12 h-12 object-cover rounded-full" src={process.env.NEXT_PUBLIC_BACKEND_URL + "/" + data?.data?.image_path} alt="" />}
+          {!data && <img className="w-12 h-12 object-cover rounded-full" src="img/avatar.png" alt="" />}
           <div className="flex flex-col gap-2 w-full">
             <input className="input w-full border border-gray-300 p-3" type="text" placeholder="Post Title" value={postTitle} onChange={(e) => setPostTitle(e.target.value)} />
             <textarea type="text" rows="3" placeholder="Whats on Your Mind?" className="input w-full border border-gray-300 p-3 h-auto" value={postText} onChange={(e) => setPostText(e.target.value)}></textarea>

@@ -23,9 +23,13 @@ class PostController extends Controller {
             ]);
         }
         $perPage = 2;
-        $userPosts = $user->posts()->with('images')->orderBy('created_at', 'desc')->paginate($perPage);
-        return response()->json($userPosts);
+        $userPosts = $user->posts()->with('images', 'user')->orderBy('created_at', 'desc')->paginate($perPage);
 
+        $userImages = $user->profileImage()->where('status', 1)->first();
+        $userPosts->each(function ($post) use ($userImages) {
+            $post->user->profile_image = $userImages;
+        });
+        return response()->json($userPosts);
     }
     function post(Request $request) {
         $user = auth()->user();
