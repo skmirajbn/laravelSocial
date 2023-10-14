@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 export default function Post({ post }) {
   const [imageCount, setImageCount] = useState(1);
   useEffect(() => {
-    let imageCount = post.images.length;
+    let imageCount = post?.images?.length;
     setImageCount(imageCount);
   }, [post]);
   return (
