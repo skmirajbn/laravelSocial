@@ -10,6 +10,7 @@ import { useEffect, useState } from "react";
 import CreatePost from "./createPost";
 import Mypage from "./mypage";
 import ProfileLeftSidebar from "./profileLeftSidebar";
+import ProfilePicture from "./profilePicture";
 
 export default function Profile() {
   const { user } = useAuth({ middleware: "auth" });
@@ -57,7 +58,7 @@ export default function Profile() {
       <div className="container">
         <img className="h-[30rem] w-full object-cover rounded-lg" src="img/cover.jpg" alt="" />
         <div className="flex gap-6 items-end -mt-20 px-10">
-          <img className="h-44 w-44 object-cover rounded-full" src="img/profile.jpg" alt="" />
+          <ProfilePicture />
           <div>
             {user && <h2 className="text-4xl font-bold">{user?.user_first_name + " " + user?.user_last_name}</h2>}
             {!user && <span className="loading loading-dots loading-lg text-blue-600"></span>}
