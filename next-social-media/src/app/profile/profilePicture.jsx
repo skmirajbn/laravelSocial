@@ -18,7 +18,7 @@ export default function ProfilePicture() {
 
   return (
     <div className=" relative">
-      <div className="bg-white rounded-full p-1">
+      <div className="bg-gradient-to-t from-blue-500 to-emerald-400 rounded-full p-1">
         <img className="object-cover h-44 w-44 rounded-full" src={imageUrl} alt="" />
       </div>
       <span className="loading loading-ring  w-full h-full absolute top-0 text-white"></span>
