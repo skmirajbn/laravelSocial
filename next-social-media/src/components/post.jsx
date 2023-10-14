@@ -13,7 +13,7 @@ export default function Post({ post }) {
         <h3 className="text-base">{post?.post_body}</h3>
         <div className="flex">
           {/* One Image */}
-          {imageCount == 1 && <img className="rounded-lg w-full max-h-[600px] object-cover" src={process.env.NEXT_PUBLIC_BACKEND_URL + "/" + post?.images[0].image_path} alt="" />}
+          {imageCount == 1 && <img className="rounded-lg w-full max-h-[600px] object-cover" src={process.env.NEXT_PUBLIC_BACKEND_URL + "/" + post?.images[0]?.image_path} alt="" />}
           {/* Two Images */}
           <div className="flex gap-2">{imageCount == 2 && post.images.map((image) => <img className="rounded-lg w-1/2 max-h-[600px] object-cover" src={process.env.NEXT_PUBLIC_BACKEND_URL + "/" + image.image_path} alt="" />)}</div>
           {/* Three Images */}

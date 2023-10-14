@@ -14,58 +14,41 @@ import ProfileLeftSidebar from "./profileLeftSidebar";
 export default function Profile() {
   const { user } = useAuth({ middleware: "auth" });
   const [postLoading, setPostLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
   const [page, setPage] = useState(1);
   const [posts, setPosts] = useState([]);
 
-  // const fetcher = (url) => axios.get(url).then((res) => res.data);
-  // const {
-  //   data: dataPosts,
-  //   error,
-  //   mutate,
-  // } = useSWR(`api/posts?page=${page}`, fetcher, {
-  //   revalidateIfStale: false,
-  //   revalidateOnFocus: false,
-  //   revalidateOnReconnect: false,
-  //   onSuccess: (data) => {
-  //     setPosts((prevPosts) => [...prevPosts, ...data.data]);
-  //   },
-  // });
-  console.log("page is " + page);
-  const fetcher = (page) => {
-    axios.get(`api/posts?page=${page}`).then((res) => {
-      setPosts((prev) => {
-        if (prev == undefined) {
-          setPage((prevPage) => prevPage + 1);
-          console.log(page);
-          return [...res.data.data];
-        } else {
-          let localId = prev[prev.length - 1]?.post_id;
-          let serverId = res?.data?.data[res.data.data.length - 1]?.post_id;
-
-          if (serverId < localId) {
-            setPage((prevPage) => prevPage + 1);
-
-            return [...prev, ...res.data.data];
-          }
-        }
-      });
-    });
-  };
-
-  useEffect(() => {
-    fetcher(page);
-  }, []);
-
-  const handleScroll = (page) => {
-    const { scrollTop, clientHeight, scrollHeight } = document.documentElement;
-    if (scrollHeight - scrollTop === clientHeight) {
-      fetcher(page);
+  const fetcher = async () => {
+    setIsLoading(true);
+    let apiEndPoint = "api/posts?page=" + page;
+    console.log(apiEndPoint);
+    try {
+      const res = await axios.get(apiEndPoint);
+      setPosts((prevPost) => [...prevPost, ...res.data.data]);
+      setPage((prevPage) => prevPage + 1);
+    } catch (error) {
+      setError(error);
+    } finally {
+      setIsLoading(false);
     }
   };
+
   useEffect(() => {
-    window.addEventListener("scroll", () => handleScroll(page));
+    console.log("useEffect called");
+    fetcher();
+  }, []);
+
+  const handleScroll = () => {
+    if (window.innerHeight + document.documentElement.scrollTop !== document.documentElement.offsetHeight || isLoading) {
+      return;
+    }
+    fetcher();
+  };
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [page]);
+  }, [isLoading]);
 
   return (
     <div>

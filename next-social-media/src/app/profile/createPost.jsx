@@ -54,15 +54,14 @@ export default function CreatePost({ setPosts }) {
       formData.append(`images[]`, selectedFiles[i]);
     }
     setIsPosting(true);
-    let newPost = await axios.post("api/posts", formData).then((res) => {
-      setIsPosting(false);
-      setImageSrcs([]);
-      setSelectedFiles([]);
-      setPostTitle("");
-      setPostText("");
-    });
+    let newPost = await axios.post("api/posts", formData);
+    setIsPosting(false);
+    setImageSrcs([]);
+    setSelectedFiles([]);
+    setPostTitle("");
+    setPostText("");
     console.log(newPost);
-    setPosts((prevPosts) => [...prevPosts, newPost?.data]);
+    setPosts((prevPosts) => [newPost?.data.data, ...prevPosts]);
   };
 
   return (
