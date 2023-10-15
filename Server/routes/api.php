@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\About\AboutController;
+use App\Http\Controllers\Comment\CommentController;
 use App\Http\Controllers\Cover\CoverImageController;
 use App\Http\Controllers\Post\PostController;
 use App\Http\Controllers\Profile\ProfileImageController;
@@ -27,11 +28,12 @@ Route::middleware(['auth'])->put('/about/bio', [AboutController::class, 'put']);
 // Posts
 Route::middleware(['auth'])->post('/posts', [PostController::class, 'post']);
 Route::middleware(['auth'])->get('/posts', [PostController::class, 'get']);
+// Comment
+Route::middleware(['auth'])->post('/comment/{postId}', [CommentController::class, 'post']);
+
 // Profile Picture
 Route::middleware(['auth'])->get('/profile-image', [ProfileImageController::class, 'get']);
 Route::middleware(['auth'])->post('/profile-image', [ProfileImageController::class, 'post']);
 // Cover Photo
 Route::middleware(['auth'])->get('/cover-image', [CoverImageController::class, 'get']);
 Route::middleware(['auth'])->post('/cover-image', [CoverImageController::class, 'post']);
-// Comment
-Route::middleware(['auth'])->post('/comment', [CoverImageController::class, 'post']);
