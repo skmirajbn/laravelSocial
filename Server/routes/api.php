@@ -31,4 +31,5 @@ Route::middleware(['auth'])->get('/posts', [PostController::class, 'get']);
 Route::middleware(['auth'])->get('/profile-image', [ProfileImageController::class, 'get']);
 Route::middleware(['auth'])->post('/profile-image', [ProfileImageController::class, 'post']);
 // Cover Photo
+Route::middleware(['auth'])->get('/cover-image', [CoverImageController::class, 'get']);
 Route::middleware(['auth'])->post('/cover-image', [CoverImageController::class, 'post']);
