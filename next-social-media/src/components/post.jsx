@@ -10,7 +10,7 @@ export default function Post({ post }) {
     <div className=" px-6 py-8 rounded-xl shadow-lg shadow-gray-400 space-y-5">
       <div className="flex items-center gap-3">
         <img className="w-12 h-12 rounded-full object-cover" src={process.env.NEXT_PUBLIC_BACKEND_URL + "/" + post?.user.profile_image.image_path} alt="" />
-        <h3 className="text-xl  font-bold">{post.user.user_first_name + " " + post.user.user_last_name}</h3>
+        <h3 className="text-xl  font-bold">{post?.user?.user_first_name + " " + post?.user?.user_last_name}</h3>
       </div>
       <div className="space-y-2">
         <h3 className="text-2xl font-semibold">{post?.post_title}</h3>

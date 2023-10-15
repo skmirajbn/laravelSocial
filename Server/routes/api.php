@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\About\AboutController;
+use App\Http\Controllers\Cover\CoverImageController;
 use App\Http\Controllers\Post\PostController;
 use App\Http\Controllers\Profile\ProfileImageController;
 use Illuminate\Http\Request;
@@ -29,3 +30,5 @@ Route::middleware(['auth'])->get('/posts', [PostController::class, 'get']);
 // Profile Picture
 Route::middleware(['auth'])->get('/profile-image', [ProfileImageController::class, 'get']);
 Route::middleware(['auth'])->post('/profile-image', [ProfileImageController::class, 'post']);
+// Cover Photo
+Route::middleware(['auth'])->post('/cover-image', [CoverImageController::class, 'post']);
