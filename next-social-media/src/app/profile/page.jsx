@@ -10,6 +10,7 @@ import { useEffect, useState } from "react";
 import CoverPhoto from "./coverPhoto";
 import CreatePost from "./createPost";
 import Mypage from "./mypage";
+import ProfileDisplayName from "./profileDisplayName";
 import ProfileLeftSidebar from "./profileLeftSidebar";
 import ProfilePicture from "./profilePicture";
 
@@ -61,8 +62,7 @@ export default function Profile() {
         <div className="flex gap-6 items-end -mt-20 px-10">
           <ProfilePicture />
           <div>
-            {user && <h2 className="text-4xl font-bold">{user?.user_first_name + " " + user?.user_last_name}</h2>}
-            {!user && <span className="loading loading-dots loading-lg text-blue-600"></span>}
+            <ProfileDisplayName user={user} />
             <h5>64 Friends</h5>
           </div>
         </div>

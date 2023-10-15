@@ -24,7 +24,7 @@ class CoverImageController extends Controller {
         $coverImageFile = $request->file('coverImage');
 
         $coverImageObject = ImageManagerStatic::make($coverImageFile);
-        $coverImageObject->fit(640, 640);
+        $coverImageObject->fit(900, 480);
         $coverImageObject->encode('jpg', 60);
         $generatedImageName = Str::uuid() . '.jpg';
         $imagePath = 'public/profileImages/' . $generatedImageName;
