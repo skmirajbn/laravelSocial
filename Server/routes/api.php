@@ -33,3 +33,5 @@ Route::middleware(['auth'])->post('/profile-image', [ProfileImageController::cla
 // Cover Photo
 Route::middleware(['auth'])->get('/cover-image', [CoverImageController::class, 'get']);
 Route::middleware(['auth'])->post('/cover-image', [CoverImageController::class, 'post']);
+// Comment
+Route::middleware(['auth'])->post('/comment', [CoverImageController::class, 'post']);
