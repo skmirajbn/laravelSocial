@@ -32,7 +32,12 @@ class PostController extends Controller {
         });
         $userPosts->each(function ($post) {
             $postId = $post->post_id;
-            $postComments = Comment::where('post_id', $postId)->orderBy('created_at', 'desc')->get();
+            $postComments = Comment::where('post_id', $postId)->orderBy('created_at', 'asc')->get();
+
+            $postComments->each(function ($comment) {
+                $comment->user = User::find($comment->user_id);
+                $comment->user->profile_image = $comment->user->profileImage()->where('status', 1)->first();
+            });
             $post->comments = $postComments;
         });
         return response()->json($userPosts);
