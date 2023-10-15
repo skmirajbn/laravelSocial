@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Post;
 
 use App\Http\Controllers\Controller;
+use App\Models\Comment;
 use App\Models\Image;
 use App\Models\Post;
 use App\Models\User;
@@ -28,6 +29,11 @@ class PostController extends Controller {
         $userImages = $user->profileImage()->where('status', 1)->first();
         $userPosts->each(function ($post) use ($userImages) {
             $post->user->profile_image = $userImages;
+        });
+        $userPosts->each(function ($post) {
+            $postId = $post->post_id;
+            $postComments = Comment::where('post_id', $postId)->orderBy('created_at', 'desc')->get();
+            $post->comments = $postComments;
         });
         return response()->json($userPosts);
     }
