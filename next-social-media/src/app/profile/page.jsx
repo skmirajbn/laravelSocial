@@ -77,7 +77,7 @@ export default function Profile() {
           <a href="">Groups</a>
         </div>
         <div className="flex gap-6 py-8">
-          <ProfileLeftSidebar />
+          <ProfileLeftSidebar posts={posts} />
           {/* Profile Timeline */}
           <div className="w-2/3 space-y-8">
             <CreatePost setPosts={setPosts} />

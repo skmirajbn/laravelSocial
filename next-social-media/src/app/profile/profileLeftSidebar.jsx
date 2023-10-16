@@ -1,12 +1,12 @@
 import ProfileIntro from "./profileIntro";
 import TimelinePhotos from "./timelinePhotos";
 
-export default function ProfileLeftSidebar(props) {
+export default function ProfileLeftSidebar({ posts }) {
   return (
     <div className="w-1/3 ">
       <div className="space-y-8 sticky -top-60">
         <ProfileIntro />
-        <TimelinePhotos />
+        <TimelinePhotos posts={posts} />
 
         <div className="shadow-lg shadow-gray-400 rounded-lg p-6 space-y-4">
           <h3 className="text-2xl font-bold">Friends</h3>
