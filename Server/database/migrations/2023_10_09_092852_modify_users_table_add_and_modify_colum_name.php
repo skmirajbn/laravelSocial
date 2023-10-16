@@ -10,8 +10,8 @@ return new class extends Migration {
      */
     public function up(): void {
         Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('name');
-            $table->renameColumn('id', 'user_id');
+
+
             // Add new columns with the 'after' method
             $table->string('user_first_name')->after('email');
             $table->string('user_last_name')->after('user_first_name');
@@ -30,8 +30,6 @@ return new class extends Migration {
      */
     public function down(): void {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('name');
-            $table->renameColumn('user_id', 'id');
             $table->dropColumn([
                 'user_first_name',
                 'user_last_name',

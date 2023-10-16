@@ -88,6 +88,23 @@ class PostController extends Controller {
 
         }
         $newPost = Post::with('images')->find($postId);
+        // Adding Additional Information to the created Post
+        $postId = $newPost->post_id;
+        $postComments = Comment::where('post_id', $postId)->orderBy('created_at', 'asc')->get();
+
+        $postComments->each(function ($comment) {
+            $comment->user = User::find($comment->user_id);
+            $comment->user->profile_image = $comment->user->profileImage()->where('status', 1)->first();
+        });
+        $newPost->comments = $postComments;
+        $userId = $newPost->user_id;
+
+
+        $user = User::Where('user_id', $userId)->first();
+        $profileImage = $user->profileImage()->where('status', 1)->first();
+        $user->profile_image = $profileImage;
+        $newPost->user = $user;
+
         return response()->json([
             'message' => 'Post Created',
             'data' => $newPost
