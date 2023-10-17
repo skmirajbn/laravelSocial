@@ -1,4 +1,5 @@
 "use client";
+import AcceptFriendRequest from "@/components/acceptFriendRequest";
 import Header from "@/components/header";
 import SideMessages from "@/components/sideMessages";
 import Sidebar from "@/components/sidebar";
@@ -12,7 +13,7 @@ export default function FriendRequests() {
         <Sidebar user={user} />
         <div className=" w-2/4">
           {Array.from({ length: 100 }, () => undefined).map(() => (
-            <div></div>
+            <AcceptFriendRequest />
           ))}
         </div>
         <div className="w-1/4 bg-white flex flex-col items-end px-8 py-6 sticky top-20 h-full">
