@@ -33,12 +33,27 @@ class FriendRequestController extends Controller {
         ]);
 
     }
+    function accept(Request $request) {
+        $user = auth()->user();
+        $toUserId = $user['user_id'];
+        $fromUserId = $request->from_user_id;
+        FriendRequest::where('from_user_id', $fromUserId)->where('to_user_id', $toUserId)->update(['friend_request_status' => 1]);
+
+        $updatedFriendRequest = FriendRequest::where('from_user_id', $fromUserId)
+            ->where('to_user_id', $toUserId)
+            ->first();
+
+        return response()->json([
+            'message' => 'Friend Request Accepted Sucessfully',
+            'data' => $updatedFriendRequest
+        ]);
+    }
 
     function get() {
         $user = auth()->user();
         $userId = $user['user_id'];
 
-        $friendReqeusts = FriendRequest::where('to_user_id', $userId)->get();
+        $friendReqeusts = FriendRequest::where('to_user_id', $userId)->orderBy('friend_request_status', 'asc')->get();
         if (!$friendReqeusts) {
             return response()->json([
                 'message' => 'Not Found'

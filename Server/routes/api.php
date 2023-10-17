@@ -42,6 +42,7 @@ Route::middleware(['auth'])->post('/cover-image', [CoverImageController::class, 
 
 // Friend Requests
 Route::middleware(['auth'])->post('/friend-request', [FriendRequestController::class, 'post']);
+Route::middleware(['auth'])->post('/friend-request/accept', [FriendRequestController::class, 'accept']);
 Route::middleware(['auth'])->get('/friend-request', [FriendRequestController::class, 'get']);
 
 // Discover People
