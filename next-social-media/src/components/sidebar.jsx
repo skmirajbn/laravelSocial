@@ -7,7 +7,8 @@ export default function Sidebar({ user }) {
   return (
     <div class="w-1/4 px-4 py-3 space-y-3 sticky top-20 overflow-y-auto h-[90vh] ">
       <div class="flex items-center space-x-3 ">
-        <img class="w-10 h-10 rounded-full object-cover" src={process.env.NEXT_PUBLIC_BACKEND_URL + "/" + data?.data?.image_path} alt="" />
+        {!data?.data?.image_path && <img class="w-10 h-10 rounded-full object-cover" src="img/avatar.png" alt="" />}
+        {data?.data?.image_path && <img class="w-10 h-10 rounded-full object-cover" src={process.env.NEXT_PUBLIC_BACKEND_URL + "/" + data?.data?.image_path} alt="" />}
         {user && <h3>{user?.user_first_name + " " + user?.user_last_name}</h3>}
       </div>
       <div class="flex items-center space-x-3">

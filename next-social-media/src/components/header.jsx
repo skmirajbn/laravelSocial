@@ -77,7 +77,8 @@ export default function Header() {
           <NotificationModal notificationModal={notificationModal} />
         </div>
         <div className="flex items-center gap-2 relative" onClick={toggleProfileDropdown}>
-          <img class="w-12 h-12 rounded-full overflow-hidden object-cover" src={process.env.NEXT_PUBLIC_BACKEND_URL + "/" + profileImage?.data?.image_path} alt="" />
+          {!profileImage?.data?.image_path && <img class="w-12 h-12 rounded-full overflow-hidden object-cover" src="img/avatar.png" alt="" />}
+          {profileImage?.data?.image_path && <img class="w-12 h-12 rounded-full overflow-hidden object-cover" src={process.env.NEXT_PUBLIC_BACKEND_URL + "/" + profileImage?.data?.image_path} alt="" />}
           <i class="fa-solid fa-chevron-down text-sm"></i>
           {/* DropDown */}
           <div ref={profileDropDown} className="absolute bg-gray-200 rounded-lg py-3 px-8 -bottom-28 right-0 text-lg font-bold space-y-2 hidden">
