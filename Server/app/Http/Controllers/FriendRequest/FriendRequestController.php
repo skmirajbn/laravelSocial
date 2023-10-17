@@ -12,6 +12,9 @@ class FriendRequestController extends Controller {
         $fromUserId = $user['user_id'];
         $toUserId = $request->to_user_id;
 
+        if (FriendRequest::existsFriendRequest($fromUserId, $toUserId)) {
+            return response()->json(['message' => 'Friend request already exists.'], 400);
+        }
         $createdRequest = FriendRequest::create([
             'to_user_id' => $toUserId,
             'from_user_id' => $fromUserId,
