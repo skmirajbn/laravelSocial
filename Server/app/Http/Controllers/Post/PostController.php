@@ -4,8 +4,10 @@ namespace App\Http\Controllers\Post;
 
 use App\Http\Controllers\Controller;
 use App\Models\Comment;
+use App\Models\FriendRequest;
 use App\Models\Image;
 use App\Models\Post;
+use App\Models\ProfileImage;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -41,6 +43,33 @@ class PostController extends Controller {
             $post->comments = $postComments;
         });
         return response()->json($userPosts);
+    }
+    function homePosts() {
+        $user = auth()->user();
+        $userId = $user['user_id'];
+
+        // Retrieve the friend IDs, including the user's ID
+        $friendRequests = FriendRequest::where('friend_request_status', 1)
+            ->where(function ($query) use ($userId) {
+                $query->where('to_user_id', $userId)
+                    ->orWhere('from_user_id', $userId);
+            })->get();
+
+        $friendIds = $friendRequests->pluck('to_user_id')->merge($friendRequests->pluck('from_user_id'))->push($userId);
+
+        $friends = User::whereIn('user_id', $friendIds)->get();
+
+        // Retrieve the posts from the friend IDs
+        $friendPosts = Post::whereIn('user_id', $friendIds)->orderBy('created_at', 'desc')
+            ->with(['user', 'images', 'comments'])
+            ->paginate(2);
+
+        // Retrieve the active profile image for each user
+        $friendPosts->getCollection()->transform(function ($item) {
+            $item->user->profile_image = ProfileImage::where('user_id', $item->user->user_id)->where('status', 1)->first();
+            return $item;
+        });
+        return response()->json($friendPosts);
     }
     function post(Request $request) {
         $user = auth()->user();

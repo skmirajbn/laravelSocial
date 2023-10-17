@@ -71,4 +71,33 @@ class FriendRequestController extends Controller {
         return response()->json($friendReqeusts);
 
     }
+
+    function friends() {
+        $user = auth()->user();
+        $userId = $user['user_id'];
+
+        $friendsFromRequests = FriendRequest::where('friend_request_status', 1)->where(function ($query) use ($userId) {
+            $query->where('to_user_id', $userId)->orWhere('from_user_id', $userId);
+        })->get();
+
+        $friendIds = [];
+        foreach ($friendsFromRequests as $friendRequest) {
+            if ($friendRequest->to_user_id == $userId) {
+                $friendIds[] = $friendRequest->from_user_id;
+            } else {
+                $friendIds[] = $friendRequest->to_user_id;
+            }
+        }
+
+        $friends = User::whereIn('user_id', $friendIds)->get();
+
+        $friends->each(function ($friend) {
+            $id = $friend->user_id;
+            $profileImage = ProfileImage::where('user_id', $id)->where('status', 1)->first();
+            $friend->profile_image = $profileImage;
+
+        });
+
+        return response()->json($friends);
+    }
 }

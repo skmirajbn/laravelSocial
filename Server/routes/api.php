@@ -30,6 +30,7 @@ Route::middleware(['auth'])->put('/about/bio', [AboutController::class, 'put']);
 // Posts
 Route::middleware(['auth'])->post('/posts', [PostController::class, 'post']);
 Route::middleware(['auth'])->get('/posts', [PostController::class, 'get']);
+Route::middleware(['auth'])->get('/homeposts', [PostController::class, 'homePosts']);
 // Comment
 Route::middleware(['auth'])->post('/comment/{postId}', [CommentController::class, 'post']);
 
@@ -44,6 +45,7 @@ Route::middleware(['auth'])->post('/cover-image', [CoverImageController::class, 
 Route::middleware(['auth'])->post('/friend-request', [FriendRequestController::class, 'post']);
 Route::middleware(['auth'])->post('/friend-request/accept', [FriendRequestController::class, 'accept']);
 Route::middleware(['auth'])->get('/friend-request', [FriendRequestController::class, 'get']);
+Route::middleware(['auth'])->get('/all-friends', [FriendRequestController::class, 'friends']);
 
 // Discover People
 Route::middleware(['auth'])->get('/discover-people', [DiscoverPeopleController::class, 'get']);

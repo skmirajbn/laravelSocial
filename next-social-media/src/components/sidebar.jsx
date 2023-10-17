@@ -11,10 +11,12 @@ export default function Sidebar({ user }) {
         {data?.data?.image_path && <img class="w-10 h-10 rounded-full object-cover" src={process.env.NEXT_PUBLIC_BACKEND_URL + "/" + data?.data?.image_path} alt="" />}
         {user && <h3>{user?.user_first_name + " " + user?.user_last_name}</h3>}
       </div>
-      <div class="flex items-center space-x-3">
-        <img class="w-10 h-10 scale-75" src="img/friends.png" alt="" />
-        <h3>Friends</h3>
-      </div>
+      <Link className="block" href="/friends">
+        <div class="flex items-center space-x-3">
+          <img class="w-10 h-10 scale-75" src="img/friends.png" alt="" />
+          <h3>Friends</h3>
+        </div>
+      </Link>
       <div class="flex items-center space-x-3">
         <img class="w-10 h-10 rounded-full object-cover" src="img/groups.webp" alt="" />
         <h3>Groups</h3>
