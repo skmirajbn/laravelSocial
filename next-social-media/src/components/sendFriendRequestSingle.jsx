@@ -1,4 +1,4 @@
-export default function FriendRequestSingle() {
+export default function SendFriendRequestSingle() {
   return (
     <div className="flex gap-3 items-center p-3">
       <img className="w-12 h-12 object-cover rounded-full" src="img/profile.jpg" alt="" />

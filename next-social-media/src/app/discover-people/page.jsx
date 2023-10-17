@@ -1,6 +1,6 @@
 "use client";
-import FriendRequestSingle from "@/components/friendRequestSingle";
 import Header from "@/components/header";
+import SendFriendRequestSingle from "@/components/sendFriendRequestSingle";
 import SideMessages from "@/components/sideMessages";
 import Sidebar from "@/components/sidebar";
 import { useAuth } from "@/hooks/auth";
@@ -13,7 +13,7 @@ export default function DisCoverPeople() {
         <Sidebar user={user} />
         <div className=" w-2/4">
           {Array.from({ length: 100 }, () => undefined).map(() => (
-            <FriendRequestSingle />
+            <SendFriendRequestSingle />
           ))}
         </div>
         <div className="w-1/4 bg-white flex flex-col items-end px-8 py-6 sticky top-20 h-full">

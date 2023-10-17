@@ -18,10 +18,12 @@ export default function Sidebar({ user }) {
         <img class="w-10 h-10 rounded-full object-cover" src="img/groups.webp" alt="" />
         <h3>Groups</h3>
       </div>
-      <div class="flex items-center space-x-3">
-        <img class="w-10 h-10 rounded-full object-cover" src="img/friend-requests.png" alt="" />
-        <h3>Friend Requests</h3>
-      </div>
+      <Link className="block" href="/friend-requests">
+        <div class="flex items-center space-x-3">
+          <img class="w-10 h-10 rounded-full object-cover" src="img/friend-requests.png" alt="" />
+          <h3>Friend Requests</h3>
+        </div>
+      </Link>
       <Link href="/discover-people" className="block">
         <div class="flex items-center space-x-3">
           <img class="w-10 h-10 rounded-full object-cover" src="img/discover-people.png" alt="" />
