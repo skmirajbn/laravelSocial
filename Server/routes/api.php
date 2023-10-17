@@ -3,6 +3,7 @@
 use App\Http\Controllers\About\AboutController;
 use App\Http\Controllers\Comment\CommentController;
 use App\Http\Controllers\Cover\CoverImageController;
+use App\Http\Controllers\DiscoverPeople\DiscoverPeopleController;
 use App\Http\Controllers\FriendRequest\FriendRequestController;
 use App\Http\Controllers\Post\PostController;
 use App\Http\Controllers\Profile\ProfileImageController;
@@ -42,3 +43,6 @@ Route::middleware(['auth'])->post('/cover-image', [CoverImageController::class, 
 // Friend Requests
 Route::middleware(['auth'])->post('/friend-request', [FriendRequestController::class, 'post']);
 Route::middleware(['auth'])->get('/friend-request', [FriendRequestController::class, 'get']);
+
+// Discover People
+Route::middleware(['auth'])->get('/disocver-people', [DiscoverPeopleController::class, 'get']);
