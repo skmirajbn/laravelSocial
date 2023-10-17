@@ -20,7 +20,7 @@ class FriendRequestController extends Controller {
         $createdRequest = FriendRequest::create([
             'to_user_id' => $toUserId,
             'from_user_id' => $fromUserId,
-            'friend_request_status' => 1
+            'friend_request_status' => 0
         ]);
         if (!$createdRequest) {
             return response()->json([

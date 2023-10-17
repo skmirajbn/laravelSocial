@@ -45,4 +45,4 @@ Route::middleware(['auth'])->post('/friend-request', [FriendRequestController::c
 Route::middleware(['auth'])->get('/friend-request', [FriendRequestController::class, 'get']);
 
 // Discover People
-Route::middleware(['auth'])->get('/disocver-people', [DiscoverPeopleController::class, 'get']);
+Route::middleware(['auth'])->get('/discover-people', [DiscoverPeopleController::class, 'get']);
