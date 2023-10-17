@@ -10,11 +10,21 @@ class FriendRequestController extends Controller {
     function post(Request $request) {
         $user = auth()->user();
         $fromUserId = $user['user_id'];
-        $selfUserId = $request->self_user_id;
-        FriendRequest::create([
-            'self_user_id' => $selfUserId,
+        $toUserId = $request->to_user_id;
+
+        $createdRequest = FriendRequest::create([
+            'to_user_id' => $toUserId,
             'from_user_id' => $fromUserId,
             'friend_request_status' => 1
+        ]);
+        if (!$createdRequest) {
+            return response()->json([
+                'message' => 'Friend Request Failed',
+            ]);
+        }
+        return response()->json([
+            'message' => 'Frined Request sent Sucessfully',
+            'data' => $createdRequest
         ]);
 
     }

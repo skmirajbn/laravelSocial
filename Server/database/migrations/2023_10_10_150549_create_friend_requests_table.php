@@ -11,7 +11,8 @@ return new class extends Migration {
     public function up(): void {
         Schema::create('friend_requests', function (Blueprint $table) {
             $table->id('friend_request_id');
-            $table->integer('user_id');
+            $table->integer('to_user_id');
+            $table->integer('from_user_id');
             $table->integer('friend_request_status');
             $table->timestamps();
         });

@@ -11,7 +11,7 @@ class FriendRequest extends Model {
     protected $primaryKey = 'friend_request_id';
     protected $fillable = [
         'friend_request_id',
-        'self_user_id',
+        'to_user_id',
         'from_user_id',
         'friend_request_status',
     ];
