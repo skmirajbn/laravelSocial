@@ -4,6 +4,8 @@ namespace App\Http\Controllers\FriendRequest;
 
 use App\Http\Controllers\Controller;
 use App\Models\FriendRequest;
+use App\Models\ProfileImage;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class FriendRequestController extends Controller {
@@ -36,13 +38,22 @@ class FriendRequestController extends Controller {
         $user = auth()->user();
         $userId = $user['user_id'];
 
-        $friendReqeust = FriendRequest::where('to_user_id', $userId)->get();
-        if (!$friendReqeust) {
+        $friendReqeusts = FriendRequest::where('to_user_id', $userId)->get();
+        if (!$friendReqeusts) {
             return response()->json([
                 'message' => 'Not Found'
             ]);
         }
-        return response()->json($friendReqeust);
+        $friendReqeusts->each(function ($friendRequest) {
+            $fromUserId = $friendRequest->from_user_id;
+            $fromUser = User::find($fromUserId);
+            $profileImages = ProfileImage::where('user_id', $fromUserId);
+            $profileImage = $profileImages->where('status', 1)->first();
+
+            $fromUser->profile_image = $profileImage;
+            $friendRequest->from_user = $fromUser;
+        });
+        return response()->json($friendReqeusts);
 
     }
 }

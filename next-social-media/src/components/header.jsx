@@ -1,11 +1,12 @@
 "use client";
 import { useAuth } from "@/hooks/auth";
+import axios from "@/lib/axios";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useRef } from "react";
+import useSWR from "swr";
 import logo from "./../../public/img/logo.png";
-import profile from "./../../public/img/profile.jpg";
 import MessengerModal from "./utils/messengerModal";
 import NotificationModal from "./utils/notificationModal";
 
@@ -31,6 +32,7 @@ export default function Header() {
   const toggleProfileDropdown = (e) => {
     profileDropDown.current.classList.toggle("hidden");
   };
+  const { data: profileImage } = useSWR("profileImage", () => axios.get("api/profile-image"));
   return (
     <header class=" flex justify-between items-center bg-white text-black px-5 shadow-lg sticky top-0 z-10 h-20">
       <div class="flex space-x-4 w-1/4">
@@ -75,7 +77,7 @@ export default function Header() {
           <NotificationModal notificationModal={notificationModal} />
         </div>
         <div className="flex items-center gap-2 relative" onClick={toggleProfileDropdown}>
-          <Image class="w-12 h-12 rounded-full overflow-hidden object-cover" src={profile} alt="" />
+          <img class="w-12 h-12 rounded-full overflow-hidden object-cover" src={process.env.NEXT_PUBLIC_BACKEND_URL + "/" + profileImage?.data?.image_path} alt="" />
           <i class="fa-solid fa-chevron-down text-sm"></i>
           {/* DropDown */}
           <div ref={profileDropDown} className="absolute bg-gray-200 rounded-lg py-3 px-8 -bottom-28 right-0 text-lg font-bold space-y-2 hidden">
