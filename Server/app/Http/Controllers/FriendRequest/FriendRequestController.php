@@ -31,4 +31,18 @@ class FriendRequestController extends Controller {
         ]);
 
     }
+
+    function get() {
+        $user = auth()->user();
+        $userId = $user['user_id'];
+
+        $friendReqeust = FriendRequest::where('to_user_id', $userId)->get();
+        if (!$friendReqeust) {
+            return response()->json([
+                'message' => 'Not Found'
+            ]);
+        }
+        return response()->json($friendReqeust);
+
+    }
 }
