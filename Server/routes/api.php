@@ -3,7 +3,7 @@
 use App\Http\Controllers\About\AboutController;
 use App\Http\Controllers\Comment\CommentController;
 use App\Http\Controllers\Cover\CoverImageController;
-use App\Http\Controllers\Images\TimelinePhotosController;
+use App\Http\Controllers\FriendRequest\FriendRequestController;
 use App\Http\Controllers\Post\PostController;
 use App\Http\Controllers\Profile\ProfileImageController;
 use Illuminate\Http\Request;
@@ -39,5 +39,5 @@ Route::middleware(['auth'])->post('/profile-image', [ProfileImageController::cla
 Route::middleware(['auth'])->get('/cover-image', [CoverImageController::class, 'get']);
 Route::middleware(['auth'])->post('/cover-image', [CoverImageController::class, 'post']);
 
-// Timeline photos
-Route::middleware(['auth'])->get('/timeline-photos', [TimelinePhotosController::class, 'get']);
+// Friend Requests
+Route::middleware(['auth'])->post('/friend-request', [FriendRequestController::class, 'post']);
