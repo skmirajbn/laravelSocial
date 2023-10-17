@@ -64,6 +64,17 @@ class PostController extends Controller {
             ->with(['user', 'images', 'comments.user'])
             ->paginate(2);
 
+        $friendPosts->each(function ($post) {
+            $comments = $post->comments;
+            $comments->each(function ($comment) {
+                $userId = $comment->user_id;
+                $user = $comment->user;
+                $user->profile_image = ProfileImage::where('user_id', $userId)->where('status', 1)->first();
+                $comment->user = $user;
+            });
+        });
+
+
         // Retrieve the active profile image for each user
         $friendPosts->getCollection()->transform(function ($item) {
             $item->user->profile_image = ProfileImage::where('user_id', $item->user->user_id)->where('status', 1)->first();

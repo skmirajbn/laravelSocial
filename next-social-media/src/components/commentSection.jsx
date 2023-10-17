@@ -44,7 +44,7 @@ export default function CommentSection({ post }) {
         comments.map((comment) => (
           <div>
             <div className="flex gap-3">
-              <img className="w-10 h-10 rounded-full object-cover" src={process.env.NEXT_PUBLIC_BACKEND_URL + "/" + comment.user.profile_image.image_path} alt="" />
+              <img className="w-10 h-10 rounded-full object-cover" src={process.env.NEXT_PUBLIC_BACKEND_URL + "/" + comment?.user?.profile_image?.image_path} alt="" />
               <div>
                 <h3 className="font-bold">{comment.user.user_first_name + " " + comment.user.user_last_name}</h3>
                 <div className="flex items-center gap-3">
