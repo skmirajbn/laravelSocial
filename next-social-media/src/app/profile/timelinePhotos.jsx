@@ -1,10 +1,25 @@
+import { useEffect, useState } from "react";
+
 export default function TimelinePhotos({ posts }) {
-  console.log(posts);
+  const [photos, setPhotos] = useState([]);
+  useEffect(() => {
+    let dataPhotos = [];
+    posts.forEach((post) => {
+      let images = post.images;
+      images.forEach((image) => {
+        dataPhotos.push(image);
+      });
+    });
+    setPhotos(dataPhotos);
+  }, [posts]);
+  console.log(photos);
   return (
     <div className="shadow-lg shadow-gray-400 rounded-lg p-6 space-y-4 ">
       <h3 className="text-2xl font-bold">Photos</h3>
       <div className="grid grid-cols-3 gap-4">
-        <img className="rounded-md h-24 w-24 object-cover mx-auto" src="img/profile.jpg" alt="" />
+        {photos.slice(0, 12).map((photo) => (
+          <img className="rounded-md h-24 w-24 object-cover mx-auto" src={process.env.NEXT_PUBLIC_BACKEND_URL + "/" + photo.image_path} alt="" />
+        ))}
       </div>
     </div>
   );
