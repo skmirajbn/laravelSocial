@@ -61,4 +61,7 @@ class User extends Authenticatable {
     public function profileImage() {
         return $this->hasMany(ProfileImage::class, 'user_id', 'user_id');
     }
+    public function activeProfileImage() {
+        return $this->hasOne(ProfileImage::class, 'user_id', 'user_id')->where('status', 1);
+    }
 }

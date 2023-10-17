@@ -61,7 +61,7 @@ class PostController extends Controller {
 
         // Retrieve the posts from the friend IDs
         $friendPosts = Post::whereIn('user_id', $friendIds)->orderBy('created_at', 'desc')
-            ->with(['user', 'images', 'comments'])
+            ->with(['user', 'images', 'comments.user'])
             ->paginate(2);
 
         // Retrieve the active profile image for each user

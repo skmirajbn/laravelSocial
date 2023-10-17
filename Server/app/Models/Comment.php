@@ -18,4 +18,8 @@ class Comment extends Model {
         'post_id',
         'status',
     ];
+
+    function user() {
+        return $this->belongsTo(User::class, 'user_id', 'user_id');
+    }
 }
