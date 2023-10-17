@@ -9,6 +9,7 @@ import axios from "@/lib/axios";
 import { useEffect, useState } from "react";
 import CoverPhoto from "./coverPhoto";
 import CreatePost from "./createPost";
+import Friends from "./friends";
 import Mypage from "./mypage";
 import ProfileDisplayName from "./profileDisplayName";
 import ProfileLeftSidebar from "./profileLeftSidebar";
@@ -63,7 +64,7 @@ export default function Profile() {
           <ProfilePicture />
           <div>
             <ProfileDisplayName user={user} />
-            <h5>64 Friends</h5>
+            <Friends />
           </div>
         </div>
         <hr className="mt-3" />

@@ -38,7 +38,6 @@ export default function CommentSection({ post }) {
   let comments = post?.comments;
   return (
     <div className="flex flex-col gap-4">
-      postId is {post.post_id}
       {/* Comment */}
       {comments &&
         comments.map((comment) => (
@@ -50,7 +49,7 @@ export default function CommentSection({ post }) {
                 <div className="flex items-center gap-3">
                   <div>
                     <h3>{comment.comment_text}</h3>
-                    <h5 className="text-blue-600 text-sm">32 Like</h5>
+                    <h5 className="text-blue-600 text-sm">0 Like</h5>
                   </div>
                 </div>
               </div>

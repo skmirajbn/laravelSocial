@@ -25,7 +25,7 @@ class PostController extends Controller {
                 'message' => 'User not Found'
             ]);
         }
-        $perPage = 2;
+        $perPage = 3;
         $userPosts = $user->posts()->with('images', 'user')->orderBy('created_at', 'desc')->paginate($perPage);
 
         $userImages = $user->profileImage()->where('status', 1)->first();
@@ -62,7 +62,7 @@ class PostController extends Controller {
         // Retrieve the posts from the friend IDs
         $friendPosts = Post::whereIn('user_id', $friendIds)->orderBy('created_at', 'desc')
             ->with(['user', 'images', 'comments.user'])
-            ->paginate(2);
+            ->paginate(3);
 
         $friendPosts->each(function ($post) {
             $comments = $post->comments;
