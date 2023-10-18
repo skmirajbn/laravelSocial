@@ -44,6 +44,33 @@ class PostController extends Controller {
         });
         return response()->json($userPosts);
     }
+    function userPosts($username) {
+        $user = User::where('user_username', $username)->first();
+
+        if (!$user) {
+            return response()->json([
+                'message' => 'User not Found'
+            ]);
+        }
+        $perPage = 3;
+        $userPosts = $user->posts()->with('images', 'user')->orderBy('created_at', 'desc')->paginate($perPage);
+
+        $userImages = $user->profileImage()->where('status', 1)->first();
+        $userPosts->each(function ($post) use ($userImages) {
+            $post->user->profile_image = $userImages;
+        });
+        $userPosts->each(function ($post) {
+            $postId = $post->post_id;
+            $postComments = Comment::where('post_id', $postId)->orderBy('created_at', 'asc')->get();
+
+            $postComments->each(function ($comment) {
+                $comment->user = User::find($comment->user_id);
+                $comment->user->profile_image = $comment->user->profileImage()->where('status', 1)->first();
+            });
+            $post->comments = $postComments;
+        });
+        return response()->json($userPosts);
+    }
     function homePosts() {
         $user = auth()->user();
         $userId = $user['user_id'];

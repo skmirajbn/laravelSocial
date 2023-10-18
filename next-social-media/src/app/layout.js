@@ -1,4 +1,5 @@
 import { Inter } from "next/font/google";
+import "./../../public/fontawesome/css/all.min.css";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -15,7 +16,7 @@ export default function RootLayout({ children }) {
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Document</title>
-        <link rel="stylesheet" href="fontawesome/css/all.min.css" />
+        {/* <link rel="stylesheet" href="fontawesome/css/all.min.css" /> */}
       </head>
       <body>{children}</body>
     </html>
