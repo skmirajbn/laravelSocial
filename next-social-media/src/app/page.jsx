@@ -47,6 +47,13 @@ export default function Home() {
 
   console.log(posts);
 
+  // useEffect(() => {
+  //   Echo.channel("message").listen("Message", (e) => {
+  //     console.log(e);
+  //     console.log("got websocket response");
+  //   });
+  // }, []);
+
   return (
     <div>
       <Header />
