@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import axios from "@/lib/axios";
 import { useRef, useState } from "react";
 import useSWR from "swr";

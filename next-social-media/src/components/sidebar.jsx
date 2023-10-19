@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import axios from "@/lib/axios";
 import Link from "next/link";
 import useSWR from "swr";

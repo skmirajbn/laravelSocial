@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import { useEffect, useState } from "react";
 
 export default function TimelinePhotos({ posts }) {
@@ -18,7 +19,7 @@ export default function TimelinePhotos({ posts }) {
       <h3 className="text-2xl font-bold">Photos</h3>
       <div className="grid grid-cols-3 gap-4">
         {photos.slice(0, 12).map((photo) => (
-          <img className="rounded-md h-24 w-24 object-cover mx-auto" src={process.env.NEXT_PUBLIC_BACKEND_URL + "/" + photo.image_path} alt="" />
+          <img key={photo.image_id} className="rounded-md h-24 w-24 object-cover mx-auto" src={process.env.NEXT_PUBLIC_BACKEND_URL + "/" + photo.image_path} alt="" />
         ))}
       </div>
     </div>

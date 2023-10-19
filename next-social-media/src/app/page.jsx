@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 import Header from "@/components/header";
 import Post from "@/components/post";
@@ -47,19 +48,12 @@ export default function Home() {
 
   console.log(posts);
 
-  // useEffect(() => {
-  //   Echo.channel("message").listen("Message", (e) => {
-  //     console.log(e);
-  //     console.log("got websocket response");
-  //   });
-  // }, []);
-
   return (
     <div>
       <Header />
       <section class="flex mt-2 bg-[#F0F2F5] gap-10 relative">
         <Sidebar user={user} />
-        <div className=" w-2/4">{posts && posts.map((post) => <Post post={post} />)}</div>
+        <div className=" w-2/4">{posts && posts.map((post) => <Post key={post.post_id} post={post} />)}</div>
         <div className="w-1/4 bg-white flex flex-col items-end px-8 py-6 sticky top-20 h-full">
           <SideMessages />
         </div>

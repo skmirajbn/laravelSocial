@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 export default function SingleMessageSidebar() {
   return (
     <div className="flex gap-3 items-center">

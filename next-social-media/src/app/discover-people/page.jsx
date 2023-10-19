@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
 import Header from "@/components/header";
 import SideMessages from "@/components/sideMessages";
@@ -34,12 +35,12 @@ export default function DisCoverPeople() {
   return (
     <div>
       <Header />
-      <section class="flex mt-2 bg-[#F0F2F5] gap-10 relative">
+      <section class="flex mt-2 bg-[#080b0f] gap-10 relative">
         <Sidebar user={user} />
         <div className=" w-2/4">
           {peoples &&
             peoples?.data.map((people) => (
-              <div className="flex gap-3 items-center p-3">
+              <div key={people.user_id} className="flex gap-3 items-center p-3">
                 <img className="w-12 h-12 object-cover rounded-full" src={process.env.NEXT_PUBLIC_BACKEND_URL + "/" + people.profile_image.image_path} alt="" />
                 <h3 className="font-medium text-lg">{people.user_first_name + " " + people.user_last_name}</h3>
                 {!people.is_friend_request_sent && (

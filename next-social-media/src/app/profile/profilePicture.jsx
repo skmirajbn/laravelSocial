@@ -1,3 +1,5 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable @next/next/no-img-element */
 import axios from "@/lib/axios";
 import { useEffect, useState } from "react";
 import useSWR from "swr";

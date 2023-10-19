@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 export default function PostImage({ src, removeImage }) {
   return (
     <div className="relative w-fit">

@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import axios from "@/lib/axios";
 import useSWR from "swr";
 
@@ -8,7 +9,7 @@ export default function ProfileFriends() {
       <h3 className="text-2xl font-bold">Friends</h3>
       <div className="grid grid-cols-3 gap-4">
         {friends?.data.map((friend) => (
-          <div className="flex flex-col justify-center items-center">
+          <div key={friend.user_id} className="flex flex-col justify-center items-center">
             <img className="rounded-md h-24 w-24 object-cover" src={process.env.NEXT_PUBLIC_BACKEND_URL + "/" + friend?.profile_image?.image_path} alt="" />
             <h3 className="text-xs font-bold text-center">{friend.user_first_name + " " + friend.user_last_name}</h3>
           </div>

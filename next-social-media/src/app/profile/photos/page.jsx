@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @next/next/no-img-element */
 "use client";
 import { useAuth } from "@/hooks/auth";
@@ -62,7 +63,7 @@ export default function Profile() {
     <div className="flex gap-6 py-8">
       <div className=" rounded-lg w-full px-10 py-4 space-y-4">
         <h3 className="text-lg font-medium">Timeline Photos</h3>
-        <div className="grid grid-cols-4 gap-3">{photos && photos.map((photo) => <img className="rounded-lg" src={process.env.NEXT_PUBLIC_BACKEND_URL + "/" + photo.image_path} alt="" />)}</div>
+        <div className="grid grid-cols-4 gap-3">{photos && photos.map((photo) => <img key={photo.image_id} className="rounded-lg" src={process.env.NEXT_PUBLIC_BACKEND_URL + "/" + photo.image_path} alt="" />)}</div>
       </div>
     </div>
   );

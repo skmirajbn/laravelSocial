@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @next/next/no-img-element */
 "use client";
 import Post from "@/components/post";
@@ -54,7 +55,7 @@ export default function Profile() {
       {/* Profile Timeline */}
       <div className="w-2/3 space-y-8">
         <CreatePost setPosts={setPosts} />
-        {posts && posts?.map((post) => <Post post={post} />)}
+        {posts && posts?.map((post) => <Post key={post.post_id} post={post} />)}
         {postLoading && (
           <div>
             <PostLoading />

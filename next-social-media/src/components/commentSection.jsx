@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import { useAuth } from "@/hooks/auth";
 import axios from "@/lib/axios";
 import { useState } from "react";
@@ -41,7 +42,7 @@ export default function CommentSection({ post }) {
       {/* Comment */}
       {comments &&
         comments.map((comment) => (
-          <div>
+          <div key={comment.comment_id}>
             <div className="flex gap-3">
               <img className="w-10 h-10 rounded-full object-cover" src={process.env.NEXT_PUBLIC_BACKEND_URL + "/" + comment?.user?.profile_image?.image_path} alt="" />
               <div>

@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
 import Header from "@/components/header";
 import SideMessages from "@/components/sideMessages";
@@ -36,7 +37,7 @@ export default function FriendRequests() {
         <Sidebar user={user} />
         <div className=" w-2/4">
           {friendReqeusts?.data?.map((friendReqeust) => (
-            <div className="flex gap-3 items-center p-3">
+            <div key={friendReqeust.friend_request_id} className="flex gap-3 items-center p-3">
               <img className="w-12 h-12 object-cover rounded-full" src={process.env.NEXT_PUBLIC_BACKEND_URL + "/" + friendReqeust?.from_user?.profile_image?.image_path} alt="" />
               <h3 className="font-medium text-lg">{friendReqeust?.from_user?.user_first_name + " " + friendReqeust?.from_user?.user_last_name}</h3>
               {!friendReqeust.friend_request_status == 1 && (
