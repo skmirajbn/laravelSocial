@@ -1,20 +1,18 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
 import Header from "@/components/header";
-import Post from "@/components/post";
 import { useAuth } from "@/hooks/auth";
 
-import PostLoading from "@/components/postLoading";
 import axios from "@/lib/axios";
+import Link from "next/link";
 import { useEffect, useState } from "react";
-import CoverPhoto from "../coverPhoto";
-import CreatePost from "../createPost";
-import Friends from "../friends";
-import ProfileDisplayName from "../profileDisplayName";
-import ProfileLeftSidebar from "../profileLeftSidebar";
-import ProfilePicture from "../profilePicture";
+import CoverPhoto from "./coverPhoto";
+import Friends from "./friends";
+import Mypage from "./mypage";
+import ProfileDisplayName from "./profileDisplayName";
+import ProfilePicture from "./profilePicture";
 
-export default function ProfileUsername({ params }) {
+export default function ProfileLayout({ children }) {
   const { user } = useAuth({ middleware: "auth" });
   const [postLoading, setPostLoading] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
@@ -24,7 +22,7 @@ export default function ProfileUsername({ params }) {
 
   const fetcher = async () => {
     setIsLoading(true);
-    let apiEndPoint = `api/posts/${params.username}?page=` + page;
+    let apiEndPoint = "api/posts?page=" + page;
     console.log(apiEndPoint);
     try {
       const res = await axios.get(apiEndPoint);
@@ -55,7 +53,7 @@ export default function ProfileUsername({ params }) {
 
   return (
     <div>
-      <h3>Username is {params.username}</h3>
+      <Mypage />
       <Header />
       <div className="container">
         <CoverPhoto />
@@ -68,27 +66,15 @@ export default function ProfileUsername({ params }) {
         </div>
         <hr className="mt-3" />
         <div className="flex px-16 py-2 gap-4 text-xl font-medium text-gray-700 border-b border-t border-gray-400">
-          <a className="text-blue-600" href="">
+          <Link className="text-blue-600" href="/profile">
             Posts
-          </a>
+          </Link>
           <a href="">About</a>
           <a href="">Friends</a>
-          <a href="">Photos</a>
+          <Link href="/profile/photos">Photos</Link>
           <a href="">Groups</a>
         </div>
-        <div className="flex gap-6 py-8">
-          <ProfileLeftSidebar posts={posts} />
-          {/* Profile Timeline */}
-          <div className="w-2/3 space-y-8">
-            <CreatePost setPosts={setPosts} />
-            {posts && posts?.map((post) => <Post post={post} />)}
-            {postLoading && (
-              <div>
-                <PostLoading />
-              </div>
-            )}
-          </div>
-        </div>
+        {children}
       </div>
     </div>
   );
