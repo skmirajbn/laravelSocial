@@ -35,7 +35,7 @@ export default function DisCoverPeople() {
   return (
     <div>
       <Header />
-      <section class="flex mt-2 bg-[#080b0f] gap-10 relative">
+      <section class="flex mt-2  gap-10 relative">
         <Sidebar user={user} />
         <div className=" w-2/4">
           {peoples &&
