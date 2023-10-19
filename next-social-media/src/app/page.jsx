@@ -6,13 +6,13 @@ import Post from "@/components/post";
 import SideMessages from "@/components/sideMessages";
 import Sidebar from "@/components/sidebar";
 import { useAuth } from "@/hooks/auth";
+import UseEcho from "@/hooks/echo";
 import axios from "@/lib/axios";
-import Echo from "laravel-echo";
-import Pusher from "pusher-js";
 
 import { useEffect, useState } from "react";
 // window.pusher = Pusher;
 export default function Home() {
+  const echo = UseEcho;
   const { user } = useAuth({ middleware: "auth" });
 
   const [error, setError] = useState(null);
@@ -52,28 +52,18 @@ export default function Home() {
   }, [isLoading]);
 
   useEffect(() => {
-    window.Pusher = Pusher;
-    // const pusher = new Pusher("local", {
-    //   wsHost: "localhost",
-    //   wsPort: 6001,
-    //   cluster: "mt1",
+    // const echo = new Echo({
+    //   broadcaster: "pusher",
+    //   key: "mydsfgdskey",
+
+    //   client: new Pusher("mydsfgdskey", {
+    //     wsHost: "localhost",
+    //     wsPort: 6001,
+    //     cluster: "mt1",
+    //     disableStats: true,
+    //     forceTLS: false,
+    //   }),
     // });
-    const echo = new Echo({
-      // wsHost: "localhost",
-      // wsPort: 6001,
-      broadcaster: "pusher",
-      key: "mydsfgdskey",
-      // disableStats: true,
-      // encrypted: false,
-      // cluster: "mt1",
-      client: new Pusher("mydsfgdskey", {
-        wsHost: "localhost",
-        wsPort: 6001,
-        cluster: "mt1",
-        disableStats: true,
-        forceTLS: false,
-      }),
-    });
 
     echo
       .channel("message")
