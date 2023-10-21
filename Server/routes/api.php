@@ -5,6 +5,7 @@ use App\Http\Controllers\Comment\CommentController;
 use App\Http\Controllers\Cover\CoverImageController;
 use App\Http\Controllers\DiscoverPeople\DiscoverPeopleController;
 use App\Http\Controllers\FriendRequest\FriendRequestController;
+use App\Http\Controllers\Friends\SearchFriendController;
 use App\Http\Controllers\Post\PostController;
 use App\Http\Controllers\Profile\ProfileImageController;
 use Illuminate\Http\Request;
@@ -51,7 +52,5 @@ Route::middleware(['auth'])->get('/all-friends', [FriendRequestController::class
 // Discover People
 Route::middleware(['auth'])->get('/discover-people', [DiscoverPeopleController::class, 'get']);
 
-
-Route::middleware(['guest'])->get('/test',function (){
-    echo "hello";
-});
+// Search Friends
+Route::middleware(['auth'])->get('/search-friends/{keywords}', [SearchFriendController::class, 'search']);
