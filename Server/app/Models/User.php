@@ -64,4 +64,39 @@ class User extends Authenticatable {
     public function activeProfileImage() {
         return $this->hasOne(ProfileImage::class, 'user_id', 'user_id')->where('status', 1);
     }
+
+    // public function friends() {
+    //     $userId = auth()->user()->user_id;
+    //     return $this->belongsToMany(User::class, 'friend_requests', 'to_user_id', 'from_user_id')
+    //         ->wherePivot('friend_request_status', '=', 1)
+    //         ->orWhere(function ($query) use ($userId) {
+    //             $query->where('from_user_id', $userId)
+    //                 ->where('friend_requests.friend_request_status', '=', 1);
+    //         });
+    // }
+    public static function getFriends($user_id) {
+        $friendsTo = User::find($user_id)
+            ->belongsToMany(User::class, 'friend_requests', 'to_user_id', 'from_user_id')
+            ->wherePivot('friend_request_status', '=', 1)
+            ->with('activeProfileImage')
+            ->get();
+
+        $friendsFrom = User::find($user_id)
+            ->belongsToMany(User::class, 'friend_requests', 'from_user_id', 'to_user_id')
+            ->wherePivot('friend_request_status', '=', 1)
+            ->with('activeProfileImage')
+            ->get();
+
+        $mergedFriends = $friendsTo->merge($friendsFrom);
+
+        $mergedFriends = $mergedFriends->filter(function ($friend) use ($user_id) {
+            return $friend->user_id != $user_id;
+        });
+
+        return $mergedFriends;
+    }
+
+
+
+
 }

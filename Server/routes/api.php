@@ -53,4 +53,5 @@ Route::middleware(['auth'])->get('/all-friends', [FriendRequestController::class
 Route::middleware(['auth'])->get('/discover-people', [DiscoverPeopleController::class, 'get']);
 
 // Search Friends
+Route::middleware(['auth'])->get('/search-friends', [SearchFriendController::class, 'all']);
 Route::middleware(['auth'])->get('/search-friends/{keywords}', [SearchFriendController::class, 'search']);
