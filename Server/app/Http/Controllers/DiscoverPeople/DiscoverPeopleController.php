@@ -11,7 +11,22 @@ class DiscoverPeopleController extends Controller {
     function get() {
         $user = auth()->user();
         $userId = $user['user_id'];
-        $discoveredPeople = User::where('user_id', '!=', $userId)->get();
+
+        // Excluding already Friends
+        $friendRequests = FriendRequest::where('friend_request_status', 1)
+            ->where(function ($query) use ($userId) {
+                $query->where('to_user_id', $userId)
+                    ->orWhere('from_user_id', $userId);
+            })->get();
+
+        $friendIds = $friendRequests->pluck('to_user_id')->merge($friendRequests->pluck('from_user_id'));
+
+        // dd($friendIds);
+
+
+        $discoveredPeople = User::where('user_id', '!=', $userId)->whereNotIn('user_id', $friendIds)->get();
+
+
 
         $discoveredPeople->each(function ($people) use ($userId) {
             $id = $people->user_id;
