@@ -13,6 +13,7 @@ return new class extends Migration {
             $table->id('conversation_id');
             $table->string('conversation_title');
             $table->string('conversation_image')->nullable();
+            $table->string('conversation_type')->nullable();
             $table->timestamps();
         });
     }

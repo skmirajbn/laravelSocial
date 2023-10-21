@@ -13,6 +13,7 @@ return new class extends Migration {
             $table->id('conversation_user_id');
             $table->integer('user_id');
             $table->integer('conversation_id');
+            $table->string('conversation_user_role');
             $table->timestamps();
         });
     }
