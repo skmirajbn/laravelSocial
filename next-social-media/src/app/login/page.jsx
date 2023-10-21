@@ -18,6 +18,7 @@ export default function SignUp() {
   const [shouldRemember, setShouldRemember] = useState(false);
   const [errors, setErrors] = useState([]);
   const [status, setStatus] = useState(null);
+  const [isLoading, setIsloading] = useState(false);
 
   useEffect(() => {
     if (pathname.includes("reset") && errors.length === 0) {
@@ -28,18 +29,20 @@ export default function SignUp() {
   });
 
   const submitForm = async (event) => {
+    setIsloading(true);
     event.preventDefault();
     console.log({
       email,
       password,
     });
-    login({
+    await login({
       email,
       password,
       remember: shouldRemember,
       setErrors,
       setStatus,
     });
+    setIsloading(false);
   };
 
   // For Register or Signup user
@@ -56,14 +59,16 @@ export default function SignUp() {
     user_gender: 1,
   });
 
-  const handleSignUp = (e) => {
+  const handleSignUp = async (e) => {
+    setIsloading(true);
     e.preventDefault();
     const registerData = {
       ...singUpData,
       setErrors,
     };
     console.log(registerData);
-    register(registerData);
+    await register(registerData);
+    setIsloading(false);
   };
 
   const handleSignupInput = (e) => {
@@ -91,7 +96,7 @@ export default function SignUp() {
             <input className="w-96 py-3 px-4 border-2 border-gray-300 focus:border-blue-600  rounded-md" type="text" placeholder="Email Address or Phone Number" value={email} onChange={(e) => setEmail(e.target.value)} />
             <h3 className="text-red-600 italic text-sm">{errors?.password}</h3>
             <input className="w-96 py-3 px-4 border-2 border-gray-300 focus:border-blue-600  rounded-md" type="text" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
-            <button className="bg-gradient-to-r from-cyan-500  to-blue-500 text-white py-3 rounded-md font-medium text-xl">Log in</button>
+            <button className="bg-gradient-to-r from-cyan-500  to-blue-500 text-white py-3 rounded-md font-medium text-xl flex justify-center items-center">Log in {isLoading && <span className="loading loading-infinity loading-md ml-2 mt-1"></span>}</button>
             <h5 className="text-center text-blue-600 text-sm">Forgotten Password?</h5>
             <hr />
             <h2 className="bg-gradient-to-r from-blue-400 to-emerald-400 text-white inline-block w-fit px-6 py-3 rounded-md mx-auto font-medium cursor-pointer" onClick={() => document.getElementById("sign_up_modal").showModal()}>
@@ -170,7 +175,9 @@ export default function SignUp() {
                     <br />
                     By clicking Sign Up, you agree to our Terms, <span className="text-blue-600">Privacy Policy</span> and <span className="text-blue-600">Cookies Policy</span>. You may receive SMS notifications from us and can opt out at any time.
                   </p>
-                  <input type="submit" value="Sign Up" className="cursor-pointer block bg-gradient-to-r from-blue-400 to-emerald-400 text-white px-16 py-2 rounded-md font-medium mx-auto" />
+                  <button type="submit" className="cursor-pointer bg-gradient-to-r from-blue-400 to-emerald-400 text-white px-16 py-2 rounded-md font-medium mx-auto flex items-center">
+                    Sign Up {isLoading && <span className="loading loading-infinity loading-md ml-2"></span>}
+                  </button>
                   {/* if there is a button in form, it will close the modal */}
                   <div className="p-3 cursor-pointer rounded-lg ml-auto w-fit  block bg-gradient-to-r from-red-400 to-red-600 text-white hover:bg-red-500" onClick={() => document.getElementById("sign_up_modal").close()}>
                     Close
