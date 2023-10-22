@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\About\AboutController;
 use App\Http\Controllers\Comment\CommentController;
+use App\Http\Controllers\Conversation\ConversationController;
 use App\Http\Controllers\Cover\CoverImageController;
 use App\Http\Controllers\DiscoverPeople\DiscoverPeopleController;
 use App\Http\Controllers\FriendRequest\FriendRequestController;
@@ -55,3 +56,6 @@ Route::middleware(['auth'])->get('/discover-people', [DiscoverPeopleController::
 // Search Friends
 Route::middleware(['auth'])->get('/search-friends', [SearchFriendController::class, 'all']);
 Route::middleware(['auth'])->get('/search-friends/{keywords}', [SearchFriendController::class, 'search']);
+
+// Conversation
+Route::middleware(['auth'])->post('/conversation/create', [ConversationController::class, 'create']);

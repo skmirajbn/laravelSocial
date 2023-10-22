@@ -9,7 +9,7 @@ return new class extends Migration {
      * Run the migrations.
      */
     public function up(): void {
-        Schema::create('conversation', function (Blueprint $table) {
+        Schema::create('conversations', function (Blueprint $table) {
             $table->id('conversation_id');
             $table->string('conversation_title');
             $table->string('conversation_image')->nullable();
@@ -22,6 +22,6 @@ return new class extends Migration {
      * Reverse the migrations.
      */
     public function down(): void {
-        Schema::dropIfExists('conversation');
+        Schema::dropIfExists('conversations');
     }
 };
