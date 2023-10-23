@@ -9,7 +9,7 @@ return new class extends Migration {
      * Run the migrations.
      */
     public function up(): void {
-        Schema::create('coversation_users', function (Blueprint $table) {
+        Schema::create('conversation_users', function (Blueprint $table) {
             $table->id('conversation_user_id');
             $table->integer('user_id');
             $table->integer('conversation_id');
