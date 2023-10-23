@@ -23,27 +23,23 @@ class ConversationController extends Controller {
 
         $conversations = Conversation::with('users')->where('conversation_type', 'individual')->get();
         if ($conversations) {
-            $matchedUser = 0;
+
             $selectedConversation = null;
             foreach ($conversations as $conversation) {
                 $users = $conversation->users->toArray();
-                // dd($conversation->users->toArray());
+                $matchedUser = 0;
                 foreach ($users as $user) {
-                    // dd($user['user_id']);
                     if ($user["user_id"] == $user1 || $user["user_id"] == $user2) {
                         $matchedUser++;
                     }
                 }
                 if ($matchedUser == 2) {
                     $selectedConversation = $conversation;
+                    return response()->json([
+                        'success' => 'Existing',
+                        'data' => $selectedConversation,
+                    ]);
                 }
-            }
-
-            if ($matchedUser == 2) {
-                return response()->json([
-                    'success' => true,
-                    'data' => $selectedConversation,
-                ]);
             }
         }
 
@@ -67,12 +63,12 @@ class ConversationController extends Controller {
 
         $conversationId = $newConversation->conversation_id;
         $updateConversation = Conversation::where('conversation_id', $conversationId)->with('users')->first();
-        // dd($updateConversation->toJson(JSON_PRETTY_PRINT));
+
 
 
 
         return response()->json([
-            'success' => true,
+            'success' => "New",
             'data' => $updateConversation->toArray(),
         ]);
     }
