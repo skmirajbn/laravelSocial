@@ -1,8 +1,16 @@
+"use client";
 /* eslint-disable @next/next/no-img-element */
+import { useAuth } from "@/hooks/auth";
+import axios from "@/lib/axios";
+import useSWR from "swr";
+
 export default function MessageOptions() {
+  const { user } = useAuth();
+  const { data } = useSWR("profileImage", () => axios.get("/profile-image"));
+
   return (
     <div className="w-1/4 py-4 space-y-4">
-      <img className="h-32 w-32 object-cover rounded-full mx-auto" src="img/profile.jpg" alt="" />
+      <img className="h-32 w-32 object-cover rounded-full mx-auto" src="/img/profile.jpg" alt="" />
       <h3 className="text-2xl text-center font-bold">Mr. Mokhles Uddin</h3>
       <h5 className="text-center">
         <i class="fa-solid fa-circle text-green-600"></i> Online

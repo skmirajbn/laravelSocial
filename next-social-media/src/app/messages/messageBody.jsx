@@ -14,7 +14,7 @@ export default function MessageBody() {
       <div className="h-24 py-4">
         <div className="flex items-center gap-4 justify-between">
           <div className="flex items-center gap-4">
-            <img className="h-14 w-14 object-cover rounded-full" src="img/profile.jpg" alt="" />
+            <img className="h-14 w-14 object-cover rounded-full" src="/img/profile.jpg" alt="" />
             <h3 className="text-xl font-bold">Mr. Mokhles Uddin</h3>
           </div>
           <div className="flex gap-4 text-blue-600">
