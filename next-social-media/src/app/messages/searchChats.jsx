@@ -10,7 +10,9 @@ export default function SearchChats() {
     searchSuggestion.current.classList.remove("hidden");
   };
   const handleOnBlur = () => {
-    searchSuggestion.current.classList.add("hidden");
+    setTimeout(() => {
+      searchSuggestion.current.classList.add("hidden");
+    }, 100);
   };
   let timeOutId;
   const handleSearch = async (e) => {
@@ -23,6 +25,13 @@ export default function SearchChats() {
       setResultUsers(res.data);
       setIsSearching(false);
     }, 500);
+  };
+
+  const createConversation = async (user_2_id) => {
+    const formData = new FormData();
+    formData.append("user_2_id", user_2_id);
+    let res = await axios.post("api/conversation/create", formData);
+    console.log(res.data);
   };
   console.log(resultUsers);
   return (
@@ -48,7 +57,7 @@ export default function SearchChats() {
           <div className="bg-gray-200 rounded-lg h-fit py-3 px-4  space-y-2">
             {resultUsers &&
               resultUsers.map((user) => (
-                <div className="flex items-center gap-3 py-3 px-8 hover:bg-gray-300 rounded-lg">
+                <div className="flex items-center gap-3 py-3 px-8 hover:bg-gray-300 rounded-lg" onClick={() => createConversation(user.user_id)}>
                   <img className="w-9 h-9 object-cover rounded-full" src={process.env.NEXT_PUBLIC_BACKEND_URL + "/" + user.active_profile_image.image_path} alt="" />
                   {user && <h3>{user.user_first_name + " " + user.user_last_name}</h3>}
                 </div>

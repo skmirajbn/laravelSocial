@@ -15,4 +15,5 @@ class Conversation extends Model {
     function conversationUsers() {
         return $this->hasMany(ConversationUser::class, "conversation_id", "conversation_id");
     }
+
 }

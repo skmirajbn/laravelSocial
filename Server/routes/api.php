@@ -59,3 +59,4 @@ Route::middleware(['auth'])->get('/search-friends/{keywords}', [SearchFriendCont
 
 // Conversation
 Route::middleware(['auth'])->post('/conversation/create', [ConversationController::class, 'create']);
+Route::middleware(['auth'])->post('/conversation/all', [ConversationController::class, 'all']);

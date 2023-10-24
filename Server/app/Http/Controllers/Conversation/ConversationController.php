@@ -16,7 +16,7 @@ class ConversationController extends Controller {
         $user1FriendsIds = User::getFriends($user1)->pluck('user_id')->toArray();
         if (!in_array($user2, $user1FriendsIds)) {
             return response()->json([
-                'success' => false,
+                'conversation' => false,
                 'message' => 'Can not create conversation without beign friend',
             ]);
         }
@@ -36,7 +36,7 @@ class ConversationController extends Controller {
                 if ($matchedUser == 2) {
                     $selectedConversation = $conversation;
                     return response()->json([
-                        'success' => 'Existing',
+                        'conversation' => 'Existing',
                         'data' => $selectedConversation,
                     ]);
                 }
@@ -68,12 +68,22 @@ class ConversationController extends Controller {
 
 
         return response()->json([
-            'success' => "New",
+            'conversation' => "New",
             'data' => $updateConversation->toArray(),
         ]);
     }
-    function get(Request $request) {
-        echo "Hello";
+    function all(Request $request) {
+
+        $userId = auth()->user()->user_id;
+        $myConversations = ConversationUser::where('user_id', $userId)->with('conversation.conversationUsers')->get();
+        // $myConversations = $myConversations->map(function ($conversation_user) {
+        //     return $conversation_user->conversation;
+        // });
+        return response()->json([
+            'message' => 'All the conversations',
+            'data' => $myConversations->toArray(),
+        ]);
+
     }
     function update(Request $request) {
         echo "Hello";
