@@ -63,14 +63,15 @@ export default function CreateGroupModal() {
     reader.readAsDataURL(file);
   };
 
-  const createGroup = () => {
+  const createGroup = async () => {
     let formData = new FormData();
     groupList.forEach((user) => {
       formData.append("user_id[]", user.user_id);
     });
     formData.append("group_title", groupTitle);
     formData.append("group_image_file", groupImageFile);
-    console.dir(formData);
+    let res = await axios.post("api/conversation/group/create", formData);
+    console.log("group Created");
   };
 
   return (

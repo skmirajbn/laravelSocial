@@ -8,6 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class ConversationUser extends Model {
     use HasFactory;
     protected $primaryKey = 'conversation_user_id';
+
+    protected $fillable = [
+        'user_id',
+        'conversation_id',
+        'conversation_user_role'
+    ];
     function user() {
         return $this->hasOne(User::class, "user_id", "user_id");
     }

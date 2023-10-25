@@ -7,6 +7,9 @@ use App\Models\Conversation;
 use App\Models\ConversationUser;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
+use Intervention\Image\ImageManagerStatic;
 
 class ConversationController extends Controller {
     function create(Request $request) {
@@ -87,7 +90,51 @@ class ConversationController extends Controller {
     }
 
     function groupCreate(Request $request) {
-        dd($request->user_id);
+        $myUserId = auth()->user()->user_id;
+        $userIds = $request->user_id;
+        array_push($userIds, $myUserId);
+        $conversationTitle = $request->group_title ?? '';
+        $conversationType = 'group';
+        $conversationImage = '';
+        if ($request->hasFile('group_image_file')) {
+            $image = $request->file('group_image_file');
+
+            $imageObject = ImageManagerStatic::make($image);
+            $imageObject->fit(640, 480);
+            $imageObject->encode('jpg', 60);
+            $generatedImageName = Str::uuid() . '.jpg';
+            $imagePath = 'public/groupImages/' . $generatedImageName;
+            // $imageObject->compress();
+
+            Storage::put($imagePath, $imageObject->stream());
+            $conversationImage = 'storage/groupImages/' . $generatedImageName;
+        }
+
+        $newConversation = Conversation::create([
+            'conversation_title' => $conversationTitle,
+            'conversation_image' => $conversationImage,
+            'conversation_type' => $conversationType,
+        ]);
+
+        if ($newConversation) {
+            $conversationId = $newConversation->conversation_id;
+            foreach ($userIds as $userId) {
+                if ($userId == $myUserId) {
+                    $userRole = 'creator';
+                } else {
+                    $userRole = 'participant';
+                }
+                ConversationUser::create([
+                    'user_id' => $userId,
+                    'conversation_id' => $conversationId,
+                    'conversation_user_role' => $userRole,
+                ]);
+            }
+        }
+        return response()->json([
+            'message' => 'group Created',
+            'data' => $newConversation->toArray()
+        ]);
     }
     function update(Request $request) {
         echo "Hello";

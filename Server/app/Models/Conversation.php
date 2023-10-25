@@ -8,6 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class Conversation extends Model {
     use HasFactory;
     protected $primaryKey = 'conversation_id';
+
+    protected $fillable = [
+        'conversation_title',
+        'conversation_image',
+        'conversation_type',
+    ];
     function users() {
         return $this->belongsToMany(User::class, "conversation_users", "conversation_id", "user_id")
             ->withPivot('conversation_user_role');

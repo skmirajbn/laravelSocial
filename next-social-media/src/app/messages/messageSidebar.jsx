@@ -28,18 +28,33 @@ export default function MessageSidebar() {
         {conversations?.map(({ conversation }) => {
           const userIndex = calculateUserIndex(conversation, userId);
           const conversationUserProfileImage = process.env.NEXT_PUBLIC_BACKEND_URL + "/" + conversation.conversation_users[userIndex].user.active_profile_image.image_path;
-          return (
-            <Link className="block" href={"/messages/" + conversation.conversation_users[userIndex].user.user_username} key={conversation.conversation_id}>
-              <div className="flex gap-3 items-center">
-                <img className="h-10 w-10 object-cover rounded-full" src={conversationUserProfileImage} alt="" />
-                <div>
-                  <h3>{conversation.conversation_users[userIndex].user.user_first_name + " " + conversation.conversation_users[userIndex].user.user_last_name}</h3>
-                  <p>Last Message will be here</p>
+          if (conversation?.conversation_type == "individual") {
+            return (
+              <Link className="block" href={"/messages/" + conversation.conversation_users[userIndex].user.user_username} key={conversation.conversation_id}>
+                <div className="flex gap-3 items-center">
+                  <img className="h-10 w-10 object-cover rounded-full" src={conversationUserProfileImage} alt="" />
+                  <div>
+                    <h3>{conversation.conversation_users[userIndex].user.user_first_name + " " + conversation.conversation_users[userIndex].user.user_last_name}</h3>
+                    <p>Last Message will be here</p>
+                  </div>
+                  <i class="fa-solid fa-comment text-blue-600"></i>
                 </div>
-                <i class="fa-solid fa-comment text-blue-600"></i>
-              </div>
-            </Link>
-          );
+              </Link>
+            );
+          } else {
+            return (
+              <Link className="block bg-emerald-300" href={"/messages/" + conversation.conversation_users[userIndex].user.user_username} key={conversation.conversation_id}>
+                <div className="flex gap-3 items-center">
+                  <img className="h-10 w-10 object-cover rounded-full" src={process.env.NEXT_PUBLIC_BACKEND_URL + "/" + conversation.conversation_image} alt="" />
+                  <div>
+                    <h3>{conversation.conversation_title}</h3>
+                    <p>Last Message will be here</p>
+                  </div>
+                  <i class="fa-solid fa-comment text-blue-600"></i>
+                </div>
+              </Link>
+            );
+          }
         })}
       </div>
     </div>
