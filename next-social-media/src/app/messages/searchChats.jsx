@@ -1,18 +1,21 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
 import axios from "@/lib/axios";
+import { useRouter } from "next/navigation";
 import { useRef, useState } from "react";
 
-export default function SearchChats() {
+export default function SearchChats({ mutate }) {
   const searchSuggestion = useRef();
   const [resultUsers, setResultUsers] = useState();
   const [isSearching, setIsSearching] = useState(false);
+  const router = useRouter();
   const handleOnFocus = () => {
     searchSuggestion.current.classList.remove("hidden");
   };
   const handleOnBlur = () => {
     setTimeout(() => {
       searchSuggestion.current.classList.add("hidden");
-    }, 100);
+    }, 200);
   };
   let timeOutId;
   const handleSearch = async (e) => {
@@ -31,7 +34,13 @@ export default function SearchChats() {
     const formData = new FormData();
     formData.append("user_2_id", user_2_id);
     let res = await axios.post("api/conversation/create", formData);
-    console.log(res.data);
+    mutate();
+
+    // Calculating User Index;
+
+    let userIndex = res.data.data.users[0].user_id === user_2_id ? 0 : 1;
+    console.log(res.data.data.users[0].user_id === user_2_id ? 0 : 1);
+    router.push("/messages/" + res.data.data.users[userIndex].user_username);
   };
   console.log(resultUsers);
   return (
@@ -57,7 +66,7 @@ export default function SearchChats() {
           <div className="bg-gray-200 rounded-lg h-fit py-3 px-4  space-y-2">
             {resultUsers &&
               resultUsers.map((user) => (
-                <div className="flex items-center gap-3 py-3 px-8 hover:bg-gray-300 rounded-lg" onClick={() => createConversation(user.user_id)}>
+                <div key={user.user_name} className="flex items-center gap-3 py-3 px-8 hover:bg-gray-300 rounded-lg" onClick={() => createConversation(user.user_id)}>
                   <img className="w-9 h-9 object-cover rounded-full" src={process.env.NEXT_PUBLIC_BACKEND_URL + "/" + user.active_profile_image.image_path} alt="" />
                   {user && <h3>{user.user_first_name + " " + user.user_last_name}</h3>}
                 </div>

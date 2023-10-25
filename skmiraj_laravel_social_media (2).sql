@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 19, 2023 at 08:38 AM
+-- Generation Time: Oct 24, 2023 at 06:47 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -39,6 +39,7 @@ CREATE TABLE `abouts` (
 --
 
 INSERT INTO `abouts` (`user_id`, `about_bio`, `created_at`, `updated_at`) VALUES
+(1, 'Nice', '2023-10-19 09:02:11', '2023-10-19 09:02:11'),
 (2, 'My Name is Khaleda', '2023-10-18 23:02:48', '2023-10-18 23:02:48'),
 (3, 'My name is Alamin', '2023-10-18 23:06:49', '2023-10-18 23:06:49');
 
@@ -57,6 +58,13 @@ CREATE TABLE `comments` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `comments`
+--
+
+INSERT INTO `comments` (`comment_id`, `user_id`, `comment_text`, `post_id`, `created_at`, `updated_at`) VALUES
+(1, 1, 'iuoi', 9, '2023-10-19 09:02:52', '2023-10-19 09:02:52');
+
 -- --------------------------------------------------------
 
 --
@@ -74,30 +82,53 @@ CREATE TABLE `comment_likes` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `conversation`
+-- Table structure for table `conversations`
 --
 
-CREATE TABLE `conversation` (
+CREATE TABLE `conversations` (
   `conversation_id` bigint(20) UNSIGNED NOT NULL,
   `conversation_title` varchar(255) NOT NULL,
   `conversation_image` varchar(255) DEFAULT NULL,
+  `conversation_type` varchar(20) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `conversations`
+--
+
+INSERT INTO `conversations` (`conversation_id`, `conversation_title`, `conversation_image`, `conversation_type`, `created_at`, `updated_at`) VALUES
+(19, '', '', 'individual', '2023-10-24 08:17:07', '2023-10-24 08:17:07'),
+(20, '', '', 'individual', '2023-10-24 08:19:16', '2023-10-24 08:19:16'),
+(21, '', '', 'individual', '2023-10-24 08:30:43', '2023-10-24 08:30:43');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `coversation_users`
+-- Table structure for table `conversation_users`
 --
 
-CREATE TABLE `coversation_users` (
+CREATE TABLE `conversation_users` (
   `conversation_user_id` bigint(20) UNSIGNED NOT NULL,
   `user_id` int(11) NOT NULL,
   `conversation_id` int(11) NOT NULL,
+  `conversation_user_role` varchar(20) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `conversation_users`
+--
+
+INSERT INTO `conversation_users` (`conversation_user_id`, `user_id`, `conversation_id`, `conversation_user_role`, `created_at`, `updated_at`) VALUES
+(31, 1, 19, 'creator', '2023-10-24 08:17:07', '2023-10-24 08:17:07'),
+(32, 6, 19, 'participant', '2023-10-24 08:17:07', '2023-10-24 08:17:07'),
+(33, 1, 20, 'creator', '2023-10-24 08:19:16', '2023-10-24 08:19:16'),
+(34, 4, 20, 'participant', '2023-10-24 08:19:16', '2023-10-24 08:19:16'),
+(35, 1, 21, 'creator', '2023-10-24 08:30:43', '2023-10-24 08:30:43'),
+(36, 2, 21, 'participant', '2023-10-24 08:30:43', '2023-10-24 08:30:43');
 
 -- --------------------------------------------------------
 
@@ -177,7 +208,11 @@ CREATE TABLE `friend_requests` (
 
 INSERT INTO `friend_requests` (`friend_request_id`, `to_user_id`, `from_user_id`, `friend_request_status`, `created_at`, `updated_at`) VALUES
 (1, 1, 2, 1, '2023-10-18 23:04:36', '2023-10-18 23:05:03'),
-(2, 1, 4, 0, '2023-10-19 00:31:55', '2023-10-19 00:31:55');
+(2, 1, 4, 1, '2023-10-19 00:31:55', '2023-10-19 09:00:39'),
+(3, 3, 1, 0, '2023-10-21 04:38:35', '2023-10-21 04:38:35'),
+(4, 7, 1, 0, '2023-10-21 06:00:55', '2023-10-21 06:00:55'),
+(5, 6, 1, 1, '2023-10-21 06:00:56', '2023-10-21 09:47:25'),
+(6, 5, 1, 0, '2023-10-21 06:00:57', '2023-10-21 06:00:57');
 
 -- --------------------------------------------------------
 
@@ -520,15 +555,15 @@ ALTER TABLE `comment_likes`
   ADD PRIMARY KEY (`comment_like_id`);
 
 --
--- Indexes for table `conversation`
+-- Indexes for table `conversations`
 --
-ALTER TABLE `conversation`
+ALTER TABLE `conversations`
   ADD PRIMARY KEY (`conversation_id`);
 
 --
--- Indexes for table `coversation_users`
+-- Indexes for table `conversation_users`
 --
-ALTER TABLE `coversation_users`
+ALTER TABLE `conversation_users`
   ADD PRIMARY KEY (`conversation_user_id`);
 
 --
@@ -645,7 +680,7 @@ ALTER TABLE `websockets_statistics_entries`
 -- AUTO_INCREMENT for table `comments`
 --
 ALTER TABLE `comments`
-  MODIFY `comment_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `comment_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `comment_likes`
@@ -654,16 +689,16 @@ ALTER TABLE `comment_likes`
   MODIFY `comment_like_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `conversation`
+-- AUTO_INCREMENT for table `conversations`
 --
-ALTER TABLE `conversation`
-  MODIFY `conversation_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+ALTER TABLE `conversations`
+  MODIFY `conversation_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
--- AUTO_INCREMENT for table `coversation_users`
+-- AUTO_INCREMENT for table `conversation_users`
 --
-ALTER TABLE `coversation_users`
-  MODIFY `conversation_user_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+ALTER TABLE `conversation_users`
+  MODIFY `conversation_user_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- AUTO_INCREMENT for table `cover_images`
@@ -687,7 +722,7 @@ ALTER TABLE `friends`
 -- AUTO_INCREMENT for table `friend_requests`
 --
 ALTER TABLE `friend_requests`
-  MODIFY `friend_request_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `friend_request_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `images`

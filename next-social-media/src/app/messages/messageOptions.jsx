@@ -4,14 +4,14 @@ import { useAuth } from "@/hooks/auth";
 import axios from "@/lib/axios";
 import useSWR from "swr";
 
-export default function MessageOptions() {
+export default function MessageOptions({ conversationuser }) {
   const { user } = useAuth();
   const { data } = useSWR("profileImage", () => axios.get("/profile-image"));
 
   return (
-    <div className="w-1/4 py-4 space-y-4">
-      <img className="h-32 w-32 object-cover rounded-full mx-auto" src="/img/profile.jpg" alt="" />
-      <h3 className="text-2xl text-center font-bold">Mr. Mokhles Uddin</h3>
+    <div className="w-1/3 py-4 space-y-4">
+      <img className="h-32 w-32 object-cover rounded-full mx-auto" src={process.env.NEXT_PUBLIC_BACKEND_URL + "/" + conversationuser?.active_profile_image?.image_path} alt="" />
+      {conversationuser && <h3 className="text-2xl text-center font-bold">{conversationuser?.user_first_name + " " + conversationuser?.user_last_name}</h3>}
       <h5 className="text-center">
         <i class="fa-solid fa-circle text-green-600"></i> Online
       </h5>
