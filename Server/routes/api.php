@@ -7,6 +7,7 @@ use App\Http\Controllers\Cover\CoverImageController;
 use App\Http\Controllers\DiscoverPeople\DiscoverPeopleController;
 use App\Http\Controllers\FriendRequest\FriendRequestController;
 use App\Http\Controllers\Friends\SearchFriendController;
+use App\Http\Controllers\Message\MessageController;
 use App\Http\Controllers\Post\PostController;
 use App\Http\Controllers\Profile\ProfileImageController;
 use Illuminate\Http\Request;
@@ -60,3 +61,4 @@ Route::middleware(['auth'])->get('/search-friends/{keywords}', [SearchFriendCont
 // Conversation
 Route::middleware(['auth'])->post('/conversation/create', [ConversationController::class, 'create']);
 Route::middleware(['auth'])->get('/conversation/all', [ConversationController::class, 'all']);
+Route::middleware(['auth'])->post('/message/send', [MessageController::class, 'send']);

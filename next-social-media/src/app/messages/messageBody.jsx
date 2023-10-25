@@ -1,6 +1,8 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
+import axios from "@/lib/axios";
 import { useEffect, useRef, useState } from "react";
+import useSWR from "swr";
 import MessageReceiver from "./messageReceiver";
 import MessageSender from "./messageSender";
 
@@ -8,12 +10,17 @@ export default function MessageBody({ conversationuser, conversationID }) {
   const messageDiv = useRef();
   const [message, setMessage] = useState();
 
-  const sendMessage = (e) => {
+  const {} = useSWR();
+
+  const sendMessage = async (e) => {
     if (e.key === "Enter") {
       // Api call for sending Message
       let formData = new FormData();
       formData.append("conversation_id", conversationID);
       formData.append("message_text", message);
+      let res = axios.post("api/message/send", formData);
+      setMessage("");
+      console.log(res);
     }
   };
 
