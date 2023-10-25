@@ -85,10 +85,15 @@ class ConversationController extends Controller {
         ]);
 
     }
+
+    function groupCreate(Request $request) {
+        dd($request->user_id);
+    }
     function update(Request $request) {
         echo "Hello";
     }
     function delete(Request $request) {
         echo "Hello";
     }
+
 }

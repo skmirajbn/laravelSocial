@@ -60,6 +60,7 @@ Route::middleware(['auth'])->get('/search-friends/{keywords}', [SearchFriendCont
 
 // Conversation
 Route::middleware(['auth'])->post('/conversation/create', [ConversationController::class, 'create']);
+Route::middleware(['auth'])->post('/conversation/group/create', [ConversationController::class, 'groupCreate']);
 Route::middleware(['auth'])->get('/conversation/all', [ConversationController::class, 'all']);
 Route::middleware(['auth'])->post('/message/send', [MessageController::class, 'send']);
 Route::middleware(['auth'])->get('/message/get/{conversation_id}', [MessageController::class, 'get']);
