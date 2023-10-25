@@ -3,6 +3,7 @@
 import axios from "@/lib/axios";
 import { useRouter } from "next/navigation";
 import { useRef, useState } from "react";
+import CreateGroupModal from "./createGroupModal";
 
 export default function SearchChats({ mutate }) {
   const searchSuggestion = useRef();
@@ -51,7 +52,7 @@ export default function SearchChats({ mutate }) {
           <div className="bg-gray-300 h-10 w-10 flex justify-center items-center rounded-full">
             <i class="fa-solid fa-ellipsis text-xl"></i>
           </div>
-          <div className="bg-gray-300 h-10 w-10 flex justify-center items-center rounded-full">
+          <div className="bg-gradient-to-r from-emerald-200 to-emerald-400 h-10 w-10 flex justify-center items-center rounded-full cursor-pointer" onClick={() => document.getElementById("createGroupModal").showModal()}>
             <i class="fa-solid fa-pen-to-square text-xl"></i>
           </div>
         </div>
@@ -75,6 +76,7 @@ export default function SearchChats({ mutate }) {
         )}
       </div>
       <h3 className="text-xl font-bold">Inbox</h3>
+      <CreateGroupModal />
     </div>
   );
 }

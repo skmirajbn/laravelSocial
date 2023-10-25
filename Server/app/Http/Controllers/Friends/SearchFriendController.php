@@ -22,14 +22,14 @@ class SearchFriendController extends Controller {
         });
 
         // Re-index the array to maintain the original order
-        $resultUsers = array_values($filteredFriends->all());
+        $resultUsers = array_values($filteredFriends->take(3)->all());
 
         return response()->json($resultUsers);
     }
     function all() {
         $user = auth()->user();
         $userId = $user->user_id;
-        $friends = User::getFriends($userId)->take(10);
+        $friends = User::getFriends($userId)->take(3);
         return response()->json($friends);
     }
 

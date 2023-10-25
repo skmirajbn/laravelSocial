@@ -34,7 +34,7 @@ export default function MessageSidebar() {
                 <img className="h-10 w-10 object-cover rounded-full" src={conversationUserProfileImage} alt="" />
                 <div>
                   <h3>{conversation.conversation_users[userIndex].user.user_first_name + " " + conversation.conversation_users[userIndex].user.user_last_name}</h3>
-                  <p>Hello How are you?</p>
+                  <p>Last Message will be here</p>
                 </div>
                 <i class="fa-solid fa-comment text-blue-600"></i>
               </div>

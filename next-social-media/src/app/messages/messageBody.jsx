@@ -49,7 +49,7 @@ export default function MessageBody({ conversationuser, conversationID }) {
         <div className="w-full h-px bg-gray-200 mt-2"></div>
       </div>
       {/* Messages */}
-      <div ref={messageDiv} className="overflow-y-auto py-4 px-3" style={{ height: "calc(100% - 10rem)" }}>
+      <div ref={messageDiv} className="overflow-y-auto py-4 px-3 rounded-lg bg-gradient-to-r from-emerald-50 to-blue-50" style={{ height: "calc(100% - 10rem)" }}>
         <div className="flex flex-col gap-3 justify-end min-h-full">
           {messages?.data?.map((message) => {
             if (message?.user_id === user.user_id) {
