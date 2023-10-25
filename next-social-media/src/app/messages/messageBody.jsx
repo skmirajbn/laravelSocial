@@ -1,5 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
+import { useAuth } from "@/hooks/auth";
 import axios from "@/lib/axios";
 import { useEffect, useRef, useState } from "react";
 import useSWR from "swr";
@@ -9,9 +10,10 @@ import MessageSender from "./messageSender";
 export default function MessageBody({ conversationuser, conversationID }) {
   const messageDiv = useRef();
   const [message, setMessage] = useState();
+  const { user } = useAuth();
 
-  const {} = useSWR();
-
+  const { data: messages, mutate } = useSWR("conversationMessage", () => axios.get(`api/message/get/${conversationID}`));
+  console.log(messages);
   const sendMessage = async (e) => {
     if (e.key === "Enter") {
       // Api call for sending Message
@@ -20,10 +22,13 @@ export default function MessageBody({ conversationuser, conversationID }) {
       formData.append("message_text", message);
       let res = axios.post("api/message/send", formData);
       setMessage("");
+      mutate();
       console.log(res);
     }
   };
-
+  useEffect(() => {
+    mutate();
+  }, [conversationID]);
   useEffect(() => {
     messageDiv.current.scrollTop = messageDiv.current.scrollHeight;
   }, []);
@@ -46,8 +51,13 @@ export default function MessageBody({ conversationuser, conversationID }) {
       {/* Messages */}
       <div ref={messageDiv} className="overflow-y-auto py-4 px-3" style={{ height: "calc(100% - 10rem)" }}>
         <div className="flex flex-col gap-3 justify-end min-h-full">
-          <MessageSender message="Hello, Dear How are You?" />
-          <MessageReceiver message="Dhong bad dao !" />
+          {messages?.data?.map((message) => {
+            if (message?.user_id === user.user_id) {
+              return <MessageSender key={message.message_id} message={message?.message_text} user={message?.user} />;
+            } else {
+              return <MessageReceiver key={message.message_id} message={message?.message_text} user={message?.user} />;
+            }
+          })}
         </div>
       </div>
       {/* Messging Writing */}

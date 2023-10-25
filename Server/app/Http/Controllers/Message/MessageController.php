@@ -26,4 +26,9 @@ class MessageController extends Controller {
         }
 
     }
+    function get($conversation_id) {
+        $conversation = Message::where('conversation_id', $conversation_id)->with('user.activeProfileImage')->get();
+        return response()->json($conversation);
+
+    }
 }
