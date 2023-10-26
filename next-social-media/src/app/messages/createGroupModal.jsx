@@ -81,7 +81,7 @@ export default function CreateGroupModal() {
     setGroupTitle("");
     setGroupImageFile(null);
     groupPhoto.current.src = "/img/group.png";
-    router.push(`/messages/group/${newConversationId}`);
+    router.replace(`/messages/group/${newConversationId}`);
   };
 
   return (

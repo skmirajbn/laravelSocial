@@ -40,7 +40,8 @@ export default function GroupMessageBody({ conversationGroup, conversationID }) 
       <div className="h-24 py-4">
         <div className="flex items-center gap-4 justify-between">
           <div className="flex items-center gap-4">
-            <img className="h-14 w-14 object-cover rounded-full" src={process.env.NEXT_PUBLIC_BACKEND_URL + "/" + conversationGroup?.conversation?.conversation_image} alt="" />
+            {conversationGroup?.conversation?.conversation_image && <img className="h-14 w-14 object-cover rounded-full" src={process.env.NEXT_PUBLIC_BACKEND_URL + "/" + conversationGroup?.conversation?.conversation_image} alt="" />}
+            {!conversationGroup?.conversation?.conversation_image && <img className="h-14 w-14 object-cover rounded-full" src="/img/group.png" alt="" />}
             {conversationGroup && <h3 className="text-xl font-bold">{conversationGroup?.conversation?.conversation_title}</h3>}
           </div>
           <div className="flex gap-4 text-blue-600">

@@ -10,7 +10,8 @@ export default function GroupMessageOptions({ conversationGroup }) {
   console.log(conversationGroup?.conversation?.conversation_users);
   return (
     <div className="w-1/3 py-4 space-y-4">
-      <img className="h-32 w-32 object-cover rounded-full mx-auto" src={process.env.NEXT_PUBLIC_BACKEND_URL + "/" + conversationGroup?.conversation?.conversation_image} alt="" />
+      {conversationGroup?.conversation?.conversation_image && <img className="h-32 w-32 object-cover rounded-full mx-auto" src={process.env.NEXT_PUBLIC_BACKEND_URL + "/" + conversationGroup?.conversation?.conversation_image} alt="" />}
+      {!conversationGroup?.conversation?.conversation_image && <img className="h-32 w-32 object-cover rounded-full mx-auto" src="/img/group.png" alt="" />}
       {conversationGroup && <h3 className="text-2xl text-center font-bold">{conversationGroup?.conversation?.conversation_title}</h3>}
       <h5 className="text-center">
         <i class="fa-solid fa-circle text-green-600"></i> Online
