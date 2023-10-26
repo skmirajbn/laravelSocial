@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 24, 2023 at 06:47 PM
+-- Generation Time: Oct 25, 2023 at 08:23 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -99,9 +99,9 @@ CREATE TABLE `conversations` (
 --
 
 INSERT INTO `conversations` (`conversation_id`, `conversation_title`, `conversation_image`, `conversation_type`, `created_at`, `updated_at`) VALUES
-(19, '', '', 'individual', '2023-10-24 08:17:07', '2023-10-24 08:17:07'),
-(20, '', '', 'individual', '2023-10-24 08:19:16', '2023-10-24 08:19:16'),
-(21, '', '', 'individual', '2023-10-24 08:30:43', '2023-10-24 08:30:43');
+(26, '', '', 'individual', '2023-10-25 11:46:54', '2023-10-25 11:46:54'),
+(27, '', '', 'individual', '2023-10-25 11:47:06', '2023-10-25 11:47:06'),
+(28, 'Our Group', 'storage/groupImages/d985b40b-4cf9-480a-8cd1-0ee0b6b5f234.jpg', 'group', '2023-10-25 11:50:58', '2023-10-25 11:50:58');
 
 -- --------------------------------------------------------
 
@@ -123,12 +123,14 @@ CREATE TABLE `conversation_users` (
 --
 
 INSERT INTO `conversation_users` (`conversation_user_id`, `user_id`, `conversation_id`, `conversation_user_role`, `created_at`, `updated_at`) VALUES
-(31, 1, 19, 'creator', '2023-10-24 08:17:07', '2023-10-24 08:17:07'),
-(32, 6, 19, 'participant', '2023-10-24 08:17:07', '2023-10-24 08:17:07'),
-(33, 1, 20, 'creator', '2023-10-24 08:19:16', '2023-10-24 08:19:16'),
-(34, 4, 20, 'participant', '2023-10-24 08:19:16', '2023-10-24 08:19:16'),
-(35, 1, 21, 'creator', '2023-10-24 08:30:43', '2023-10-24 08:30:43'),
-(36, 2, 21, 'participant', '2023-10-24 08:30:43', '2023-10-24 08:30:43');
+(45, 1, 26, 'creator', '2023-10-25 11:46:54', '2023-10-25 11:46:54'),
+(46, 2, 26, 'participant', '2023-10-25 11:46:54', '2023-10-25 11:46:54'),
+(47, 1, 27, 'creator', '2023-10-25 11:47:06', '2023-10-25 11:47:06'),
+(48, 6, 27, 'participant', '2023-10-25 11:47:06', '2023-10-25 11:47:06'),
+(49, 2, 28, 'participant', '2023-10-25 11:50:58', '2023-10-25 11:50:58'),
+(50, 6, 28, 'participant', '2023-10-25 11:50:58', '2023-10-25 11:50:58'),
+(51, 4, 28, 'participant', '2023-10-25 11:50:58', '2023-10-25 11:50:58'),
+(52, 1, 28, 'creator', '2023-10-25 11:50:58', '2023-10-25 11:50:58');
 
 -- --------------------------------------------------------
 
@@ -287,6 +289,14 @@ CREATE TABLE `messages` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `messages`
+--
+
+INSERT INTO `messages` (`message_id`, `message_text`, `user_id`, `conversation_id`, `created_at`, `updated_at`) VALUES
+(12, 'Apu valo asen?', 1, 26, '2023-10-25 11:47:00', '2023-10-25 11:47:00'),
+(13, 'vai kemon asen?', 1, 27, '2023-10-25 11:47:10', '2023-10-25 11:47:10');
 
 -- --------------------------------------------------------
 
@@ -692,13 +702,13 @@ ALTER TABLE `comment_likes`
 -- AUTO_INCREMENT for table `conversations`
 --
 ALTER TABLE `conversations`
-  MODIFY `conversation_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `conversation_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT for table `conversation_users`
 --
 ALTER TABLE `conversation_users`
-  MODIFY `conversation_user_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+  MODIFY `conversation_user_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
 
 --
 -- AUTO_INCREMENT for table `cover_images`
@@ -734,7 +744,7 @@ ALTER TABLE `images`
 -- AUTO_INCREMENT for table `messages`
 --
 ALTER TABLE `messages`
-  MODIFY `message_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `message_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `migrations`

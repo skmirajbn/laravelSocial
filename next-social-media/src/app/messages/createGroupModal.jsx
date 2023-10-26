@@ -127,7 +127,7 @@ export default function CreateGroupModal() {
           </div>
         </div>
         <div className="flex gap-3 items-center justify-end w-full mt-3">
-          {groupList.length > 2 && (
+          {groupList.length > 1 && (
             <button className="btn bg-gradient-to-r from-emerald-400 to-blue-400 text-white" onClick={createGroup}>
               Create Group
             </button>
