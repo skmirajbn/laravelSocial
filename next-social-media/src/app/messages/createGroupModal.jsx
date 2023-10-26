@@ -77,6 +77,10 @@ export default function CreateGroupModal() {
     setIsCreatingGroup(false);
     document.getElementById("createGroupModal").close();
     setResultUsers([]);
+    setGroupList([]);
+    setGroupTitle("");
+    setGroupImageFile(null);
+    groupPhoto.current.src = "/img/group.png";
     router.push(`/messages/group/${newConversationId}`);
   };
 
@@ -135,7 +139,7 @@ export default function CreateGroupModal() {
 
         <div className="flex gap-3 items-center justify-end w-full mt-3">
           {isCreatingGroup && <span className="loading loading-spinner loading-md text-emerald-500"></span>}
-          {groupList.length > 1 && (
+          {groupList.length > 1 && !isCreatingGroup && (
             <button className="btn bg-gradient-to-r from-emerald-400 to-blue-400 text-white" onClick={createGroup}>
               Create Group
             </button>

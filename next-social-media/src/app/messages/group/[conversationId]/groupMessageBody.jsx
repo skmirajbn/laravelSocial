@@ -28,6 +28,7 @@ export default function GroupMessageBody({ conversationGroup, conversationID }) 
   };
   useEffect(() => {
     mutate([]);
+    mutate();
   }, [conversationID]);
   useEffect(() => {
     messageDiv.current.scrollTop = messageDiv.current.scrollHeight;
