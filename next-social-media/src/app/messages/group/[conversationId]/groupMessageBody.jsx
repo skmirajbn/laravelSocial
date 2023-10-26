@@ -7,7 +7,7 @@ import useSWR from "swr";
 import MessageReceiver from "../../messageReceiver";
 import MessageSender from "../../messageSender";
 
-export default function MessageBody({ conversationuser, conversationID }) {
+export default function GroupMessageBody({ conversationGroup, conversationID }) {
   const messageDiv = useRef();
   const [message, setMessage] = useState();
   const { user } = useAuth();
@@ -32,13 +32,14 @@ export default function MessageBody({ conversationuser, conversationID }) {
   useEffect(() => {
     messageDiv.current.scrollTop = messageDiv.current.scrollHeight;
   }, []);
+  console.log(conversationGroup);
   return (
     <div className="w-2/3 px-4" style={{ height: "calc(100vh - 5rem)" }}>
       <div className="h-24 py-4">
         <div className="flex items-center gap-4 justify-between">
           <div className="flex items-center gap-4">
-            <img className="h-14 w-14 object-cover rounded-full" src={process.env.NEXT_PUBLIC_BACKEND_URL + "/" + conversationuser?.active_profile_image?.image_path} alt="" />
-            {conversationuser && <h3 className="text-xl font-bold">{conversationuser?.user_first_name + " " + conversationuser.user_last_name}</h3>}
+            <img className="h-14 w-14 object-cover rounded-full" src={process.env.NEXT_PUBLIC_BACKEND_URL + "/" + conversationGroup?.conversation?.conversation_image} alt="" />
+            {conversationGroup && <h3 className="text-xl font-bold">{conversationGroup?.conversation?.conversation_title}</h3>}
           </div>
           <div className="flex gap-4 text-blue-600">
             <i class="fa-solid fa-phone text-xl"></i>

@@ -1,18 +1,25 @@
-import MessageBody from "../../messageBody";
+"use client";
+import { useEffect, useState } from "react";
+import useSWR from "swr";
+import GroupMessageBody from "./groupMessageBody";
+import GroupMessageOptions from "./groupMessageOptions";
 
 export default function GroupConversations({ params }) {
   const { data: conversation, isLoading, mutate } = useSWR("conversations", () => axios.get("api/conversation/all"));
-  const [conversationuser, setConversationUser] = useState();
+  const [conversationGroup, setConversationGroup] = useState();
   const [conversationID, setConversationId] = useState();
   useEffect(() => {
-    console.log(conversation?.data?.data);
+    setConversationId(params.conversationId);
     conversation?.data?.data?.forEach((con) => {
-      con.conversation.conversation_users.forEach((user) => {
-        user.user.user_username == params.username ? setConversationUser(user.user) : null;
-        user.user.user_username == params.username ? setConversationId(user.conversation_id) : null;
-      });
+      if (con.conversation_id == params.conversationId) {
+        setConversationGroup(con);
+      }
     });
   });
-  console.dir(params.username);
-  return <MessageBody />;
+  return (
+    <div className="flex w-3/4 px-4">
+      <GroupMessageBody conversationID={conversationID} conversationGroup={conversationGroup} />
+      <GroupMessageOptions conversationID={conversationID} conversationGroup={conversationGroup} />
+    </div>
+  );
 }
