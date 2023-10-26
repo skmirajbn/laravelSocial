@@ -22,4 +22,8 @@ class Conversation extends Model {
         return $this->hasMany(ConversationUser::class, "conversation_id", "conversation_id");
     }
 
+    function lastMessage() {
+        return $this->hasOne(Message::class, "conversation_id", "conversation_id")->orderBy("created_at", "desc");
+    }
+
 }

@@ -78,7 +78,7 @@ class ConversationController extends Controller {
     function all(Request $request) {
 
         $userId = auth()->user()->user_id;
-        $myConversations = ConversationUser::where('user_id', $userId)->with('conversation.conversationUsers.user.activeProfileImage')->get();
+        $myConversations = ConversationUser::where('user_id', $userId)->with('conversation.lastMessage.user.activeProfileImage', 'conversation.conversationUsers.user.activeProfileImage')->get();
         // $myConversations = $myConversations->map(function ($conversation_user) {
         //     return $conversation_user->conversation;
         // });

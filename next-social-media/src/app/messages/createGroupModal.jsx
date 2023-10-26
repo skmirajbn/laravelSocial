@@ -7,6 +7,7 @@ export default function CreateGroupModal() {
   const searchSuggestion = useRef();
   const [resultUsers, setResultUsers] = useState();
   const [isSearching, setIsSearching] = useState(false);
+  const [isCreatingGroup, setIsCreatingGroup] = useState(false);
   const [groupList, setGroupList] = useState([]);
   const [groupTitle, setGroupTitle] = useState([]);
   const [groupImageFile, setGroupImageFile] = useState([]);
@@ -64,6 +65,7 @@ export default function CreateGroupModal() {
   };
 
   const createGroup = async () => {
+    setIsCreatingGroup(true);
     let formData = new FormData();
     groupList.forEach((user) => {
       formData.append("user_id[]", user.user_id);
@@ -71,7 +73,11 @@ export default function CreateGroupModal() {
     formData.append("group_title", groupTitle);
     formData.append("group_image_file", groupImageFile);
     let res = await axios.post("api/conversation/group/create", formData);
-    console.log("group Created");
+    let newConversationId = res.data.data.conversation_id;
+    setIsCreatingGroup(false);
+    document.getElementById("createGroupModal").close();
+    setResultUsers([]);
+    router.push(`/messages/group/${newConversationId}`);
   };
 
   return (
@@ -126,7 +132,9 @@ export default function CreateGroupModal() {
             )}
           </div>
         </div>
+
         <div className="flex gap-3 items-center justify-end w-full mt-3">
+          {isCreatingGroup && <span className="loading loading-spinner loading-md text-emerald-500"></span>}
           {groupList.length > 1 && (
             <button className="btn bg-gradient-to-r from-emerald-400 to-blue-400 text-white" onClick={createGroup}>
               Create Group

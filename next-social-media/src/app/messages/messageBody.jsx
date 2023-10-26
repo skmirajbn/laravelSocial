@@ -32,6 +32,7 @@ export default function MessageBody({ conversationuser, conversationID }) {
   useEffect(() => {
     messageDiv.current.scrollTop = messageDiv.current.scrollHeight;
   }, []);
+  console.log(conversationuser);
   return (
     <div className="w-2/3 px-4" style={{ height: "calc(100vh - 5rem)" }}>
       <div className="h-24 py-4">
