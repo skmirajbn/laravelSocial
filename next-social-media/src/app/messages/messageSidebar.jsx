@@ -43,7 +43,7 @@ export default function MessageSidebar() {
             );
           } else {
             return (
-              <Link className="block bg-emerald-300" href={"/messages/" + conversation.conversation_users[userIndex].user.user_username} key={conversation.conversation_id}>
+              <Link className="block bg-emerald-300" href={"/messages/group/" + conversation.conversation_id} key={conversation.conversation_id}>
                 <div className="flex gap-3 items-center">
                   <img className="h-10 w-10 object-cover rounded-full" src={process.env.NEXT_PUBLIC_BACKEND_URL + "/" + conversation.conversation_image} alt="" />
                   <div>

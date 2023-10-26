@@ -1,15 +1,10 @@
-"use client";
-import { useEffect, useState } from "react";
-import useSWR from "swr";
-import MessageBody from "../messageBody";
-import MessageOptions from "../messageOptions";
+import MessageBody from "../../messageBody";
 
-export default function Message({ params }) {
+export default function GroupConversations({ params }) {
   const { data: conversation, isLoading, mutate } = useSWR("conversations", () => axios.get("api/conversation/all"));
   const [conversationuser, setConversationUser] = useState();
   const [conversationID, setConversationId] = useState();
   useEffect(() => {
-    setConversationId(params.conversationId);
     console.log(conversation?.data?.data);
     conversation?.data?.data?.forEach((con) => {
       con.conversation.conversation_users.forEach((user) => {
@@ -19,10 +14,5 @@ export default function Message({ params }) {
     });
   });
   console.dir(params.username);
-  return (
-    <div className="flex w-3/4 px-4">
-      <MessageBody conversationuser={conversationuser} conversationID={conversationID} />
-      <MessageOptions conversationuser={conversationuser} conversationID={conversationID} />
-    </div>
-  );
+  return <MessageBody />;
 }
