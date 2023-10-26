@@ -28,7 +28,7 @@ export default function MessageBody({ conversationuser, conversationID }) {
   };
   useEffect(() => {
     mutate([]);
-  }, [conversationID]);
+  }, [conversationID, mutate]);
   useEffect(() => {
     messageDiv.current.scrollTop = messageDiv.current.scrollHeight;
   }, []);
