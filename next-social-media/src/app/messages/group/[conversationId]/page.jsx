@@ -15,7 +15,7 @@ export default function GroupConversations({ params }) {
         setConversationGroup(con);
       }
     });
-  });
+  }, [params, conversation]);
   return (
     <div className="flex w-3/4 px-4">
       <GroupMessageBody conversationID={conversationID} conversationGroup={conversationGroup} />
