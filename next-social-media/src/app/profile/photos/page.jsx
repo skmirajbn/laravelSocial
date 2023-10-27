@@ -11,6 +11,14 @@ export default function Photos() {
   return (
     <div className="flex flex-col gap-6 py-8">
       <div className=" rounded-lg w-full px-10 py-4 space-y-4">
+        <h3 className="text-2xl font-bold">Timeline Photos</h3>
+        <div className="grid grid-cols-4 gap-3">
+          {photos?.timeline_photos?.reverse().map((photo) => (
+            <img key={photo.user_id} className="rounded-lg" src={process.env.NEXT_PUBLIC_BACKEND_URL + "/" + photo.image_path} alt="" />
+          ))}
+        </div>
+      </div>
+      <div className=" rounded-lg w-full px-10 py-4 space-y-4">
         <h3 className="text-2xl font-bold">Profile Photos</h3>
         <div className="grid grid-cols-4 gap-3">
           {photos?.profile_photos?.reverse().map((photo) => (
@@ -19,9 +27,9 @@ export default function Photos() {
         </div>
       </div>
       <div className=" rounded-lg w-full px-10 py-4 space-y-4">
-        <h3 className="text-2xl font-bold">Timeline Photos</h3>
+        <h3 className="text-2xl font-bold">Cover Images</h3>
         <div className="grid grid-cols-4 gap-3">
-          {photos?.timeline_photos?.reverse().map((photo) => (
+          {photos?.cover_images?.reverse().map((photo) => (
             <img key={photo.user_id} className="rounded-lg" src={process.env.NEXT_PUBLIC_BACKEND_URL + "/" + photo.image_path} alt="" />
           ))}
         </div>

@@ -11,12 +11,12 @@ class TimelinePhotosController extends Controller {
     function getAllPhotos() {
         $userId = auth()->user()->user_id;
         $profilePhotos = ProfileImage::where("user_id", $userId)->get();
-
-        $timeLinePhotos = User::find($userId)->with('images')->first()->images;
-
+        $timeLinePhotos = User::where('user_id', $userId)->with('images')->first()->images;
+        $coverImages = User::where('user_id', $userId)->with('coverImages')->first()->coverImages;
         return response()->json([
             'profile_photos' => $profilePhotos,
             'timeline_photos' => $timeLinePhotos,
+            'cover_images' => $coverImages,
         ]);
 
     }

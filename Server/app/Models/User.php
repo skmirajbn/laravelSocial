@@ -57,6 +57,12 @@ class User extends Authenticatable {
     public function images() {
         return $this->hasManyThrough(Image::class, Post::class, 'user_id', 'post_id', 'user_id');
     }
+    public function coverImages() {
+        return $this->hasMany(CoverImage::class, 'user_id', 'user_id');
+    }
+    public function activeCoverImage() {
+        return $this->hasOne(CoverImage::class, 'user_id', 'user_id')->where('status', 1);
+    }
     public function posts() {
         return $this->hasMany(Post::class, 'user_id');
     }

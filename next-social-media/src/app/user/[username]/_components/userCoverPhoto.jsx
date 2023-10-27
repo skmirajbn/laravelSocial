@@ -3,7 +3,7 @@ import useSWR from "swr";
 
 /* eslint-disable @next/next/no-img-element */
 export default function UserCoverPhoto() {
-  const {} = useSWR("coverImage", () => axios.get(""));
+  const { data } = useSWR("/api/profile/khaleda", () => axios.get("api/profile/khaleda"));
   return (
     <div className="relative">
       <img className="h-[30rem] w-full object-cover rounded-lg" src="/img/profile.jpg" alt="" />

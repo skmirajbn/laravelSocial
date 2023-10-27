@@ -14,8 +14,17 @@ class UserProfileController extends Controller {
         $usernamesId = User::where('user_username', $username)->pluck('user_id')->first();
         $isFriend = $friendIds->contains($usernamesId);
         if ($isFriend) {
-            $userInformation = User::where('user_id', $usernamesId)->with(['posts.comments.user.activeProfileImage', 'activeProfileImage', 'images', 'profileImage'])->first();
-            dd($userInformation->toArray());
+            $userInformation = User::where('user_id', $usernamesId)->with(['posts.comments.user.activeProfileImage', 'activeProfileImage', 'images', 'profileImage', 'coverImages', 'activeCoverImage'])->first();
+            return response()->json([
+                'message' => 'Here All the user information',
+                'data' => $userInformation
+            ]);
+        } else {
+            return response()->json([
+                'message' => 'You are not friends with this user',
+                'data' => null
+            ]);
+
         }
     }
 }
