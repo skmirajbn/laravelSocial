@@ -8,7 +8,6 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import CoverPhoto from "./coverPhoto";
 import Friends from "./friends";
-import Mypage from "./mypage";
 import ProfileDisplayName from "./profileDisplayName";
 import ProfilePicture from "./profilePicture";
 
@@ -52,7 +51,6 @@ export default function ProfileLayout({ children }) {
 
   return (
     <div>
-      <Mypage />
       <Header />
       <div className="container">
         <CoverPhoto />
