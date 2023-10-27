@@ -1,14 +1,15 @@
 import axios from "@/lib/axios";
+import { useParams } from "next/navigation";
 import useSWR from "swr";
 
 /* eslint-disable @next/next/no-img-element */
 export default function UserCoverPhoto() {
-  const { data } = useSWR("/api/profile/khaleda", () => axios.get("api/profile/khaleda"));
+  const params = useParams();
+  const { data: { data: { data: { active_cover_image: coverImage } = {} } = {} } = {} } = useSWR("/api/profile/khaleda", () => axios.get(`api/profile/${params.username}`));
   return (
     <div className="relative">
-      <img className="h-[30rem] w-full object-cover rounded-lg" src="/img/profile.jpg" alt="" />
-
-      {/* <div className="h-[30rem] w-full object-cover rounded-lg bg-gradient-to-r from-green-300 via-blue-500 to-purple-600 animate-pulse" src="/img/profile.jpg" alt=""></div> */}
+      {coverImage && <img className="h-[30rem] w-full object-cover rounded-lg" src={process.env.NEXT_PUBLIC_BACKEND_URL + "/" + coverImage.image_path} alt="" />}
+      {!coverImage && <img className="h-[30rem] w-full object-cover rounded-lg" src="/img/cover.jpg" alt="" />}
     </div>
   );
 }
