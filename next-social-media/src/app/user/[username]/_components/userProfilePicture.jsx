@@ -8,7 +8,7 @@ export default function UserProfilePicture() {
   return (
     <div className=" relative">
       <div className="bg-gradient-to-t from-blue-500 to-emerald-400 rounded-full p-1">
-        <img className="object-cover h-44 w-44 rounded-full" src={process.env.NEXT_PUBLIC_BACKEND_URL + "/" + profileImage.image_path} alt="" />
+        <img className="object-cover h-44 w-44 rounded-full" src={process.env.NEXT_PUBLIC_BACKEND_URL + "/" + profileImage?.image_path} alt="" />
       </div>
     </div>
   );

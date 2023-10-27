@@ -1,10 +1,20 @@
 "use client";
 import Header from "@/components/header";
+import { useAuth } from "@/hooks/auth";
+import axios from "@/lib/axios";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import useSWR from "swr";
 import UserCoverPhoto from "./_components/userCoverPhoto";
 import UserProfilePicture from "./_components/userProfilePicture";
 
 export default function UserProfileLayout({ children }) {
+  const { user } = useAuth();
+  const router = useRouter();
+  const { data: userInformation } = useSWR("/api/profile/khaleda", () => axios.get(`api/profile/${params.username}`));
+  if (userInformation?.data?.data == null && userInformation != undefined) {
+    window.location.href = "/profile";
+  }
   return (
     <div>
       <Header />

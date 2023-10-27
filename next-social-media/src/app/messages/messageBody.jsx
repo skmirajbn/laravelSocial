@@ -2,6 +2,7 @@
 "use client";
 import { useAuth } from "@/hooks/auth";
 import axios from "@/lib/axios";
+import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import useSWR from "swr";
 import MessageReceiver from "./messageReceiver";
@@ -37,7 +38,11 @@ export default function MessageBody({ conversationuser, conversationID }) {
         <div className="flex items-center gap-4 justify-between">
           <div className="flex items-center gap-4">
             {conversationuser && <img className="h-14 w-14 object-cover rounded-full" src={process.env.NEXT_PUBLIC_BACKEND_URL + "/" + conversationuser?.active_profile_image?.image_path} alt="" />}
-            {conversationuser && <h3 className="text-xl font-bold">{conversationuser?.user_first_name + " " + conversationuser.user_last_name}</h3>}
+            {conversationuser && (
+              <Link href={`/user/${conversationuser?.user_username}`}>
+                <h3 className="text-xl font-bold">{conversationuser?.user_first_name + " " + conversationuser.user_last_name}</h3>
+              </Link>
+            )}
           </div>
           <div className="flex gap-4 text-blue-600">
             <i class="fa-solid fa-phone text-xl"></i>

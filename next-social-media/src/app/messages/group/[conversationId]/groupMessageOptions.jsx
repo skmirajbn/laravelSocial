@@ -2,6 +2,7 @@
 /* eslint-disable @next/next/no-img-element */
 import { useAuth } from "@/hooks/auth";
 import axios from "@/lib/axios";
+import Link from "next/link";
 import useSWR from "swr";
 
 export default function GroupMessageOptions({ conversationGroup }) {
@@ -33,8 +34,12 @@ export default function GroupMessageOptions({ conversationGroup }) {
           {conversationGroup &&
             conversationGroup?.conversation?.conversation_users?.map((cUser) => (
               <div className="flex items-center gap-3" key={cUser.user.user_id}>
-                <img className="w-12 h-12 rounded-full" src={process.env.NEXT_PUBLIC_BACKEND_URL + "/" + cUser.user.active_profile_image.image_path} alt="" />
-                <h5 className="text-lg font-bold">{cUser.user.user_first_name}</h5>
+                <Link href={`/user/${cUser.user.user_username}`}>
+                  <img className="w-12 h-12 rounded-full" src={process.env.NEXT_PUBLIC_BACKEND_URL + "/" + cUser.user.active_profile_image.image_path} alt="" />
+                </Link>
+                <Link href={`/user/${cUser.user.user_username}`}>
+                  <h5 className="text-lg font-bold">{cUser.user.user_first_name}</h5>
+                </Link>
                 <h5 className="text-sm text-gray-400">{cUser.conversation_user_role}</h5>
               </div>
             ))}
