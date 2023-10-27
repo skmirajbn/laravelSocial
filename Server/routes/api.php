@@ -11,6 +11,7 @@ use App\Http\Controllers\Images\TimelinePhotosController;
 use App\Http\Controllers\Message\MessageController;
 use App\Http\Controllers\Post\PostController;
 use App\Http\Controllers\Profile\ProfileImageController;
+use App\Http\Controllers\UserProfile\UserProfileController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -68,3 +69,6 @@ Route::middleware(['auth'])->post('/conversation/group/create', [ConversationCon
 Route::middleware(['auth'])->get('/conversation/all', [ConversationController::class, 'all']);
 Route::middleware(['auth'])->post('/message/send', [MessageController::class, 'send']);
 Route::middleware(['auth'])->get('/message/get/{conversation_id}', [MessageController::class, 'get']);
+
+//User's All Profile Information
+Route::middleware(['auth'])->get('/profile/{username}', [UserProfileController::class, 'get']);
