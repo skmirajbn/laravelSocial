@@ -6,7 +6,7 @@ import { useAuth } from "@/hooks/auth";
 import axios from "@/lib/axios";
 import { useEffect, useState } from "react";
 
-export default function Profile() {
+export default function Photos() {
   const { user } = useAuth({ middleware: "auth" });
   const [postLoading, setPostLoading] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
