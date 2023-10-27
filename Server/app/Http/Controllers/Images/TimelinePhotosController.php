@@ -7,6 +7,10 @@ use App\Models\Image;
 use App\Models\User;
 
 class TimelinePhotosController extends Controller {
+    function getAllPhotos() {
+        $userId = auth()->user()->user_id;
+        echo $userId;
+    }
     function get() {
         $user = auth()->user();
         $userId = $user['user_id'];

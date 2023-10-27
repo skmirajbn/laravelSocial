@@ -7,6 +7,7 @@ use App\Http\Controllers\Cover\CoverImageController;
 use App\Http\Controllers\DiscoverPeople\DiscoverPeopleController;
 use App\Http\Controllers\FriendRequest\FriendRequestController;
 use App\Http\Controllers\Friends\SearchFriendController;
+use App\Http\Controllers\Images\TimelinePhotosController;
 use App\Http\Controllers\Message\MessageController;
 use App\Http\Controllers\Post\PostController;
 use App\Http\Controllers\Profile\ProfileImageController;
@@ -44,6 +45,9 @@ Route::middleware(['auth'])->post('/profile-image', [ProfileImageController::cla
 // Cover Photo
 Route::middleware(['auth'])->get('/cover-image', [CoverImageController::class, 'get']);
 Route::middleware(['auth'])->post('/cover-image', [CoverImageController::class, 'post']);
+
+// All users Photos
+Route::middleware(['auth'])->get('/cover-image', [TimelinePhotosController::class, 'getAllPhotos']);
 
 // Friend Requests
 Route::middleware(['auth'])->post('/friend-request', [FriendRequestController::class, 'post']);
