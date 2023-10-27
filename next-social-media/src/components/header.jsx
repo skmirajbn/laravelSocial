@@ -22,7 +22,6 @@ export default function Header() {
   const messageModal = useRef();
   const showToggle = () => {
     messageModal.current.classList.toggle("hidden");
-    console.log("message clicked");
   };
   const notificationModal = useRef();
   const notificationToggle = () => {

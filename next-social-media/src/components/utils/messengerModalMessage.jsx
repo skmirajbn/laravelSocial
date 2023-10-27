@@ -22,7 +22,7 @@ export default function MessengerModalMessage() {
 
     return conversation.conversation_users.length - 1;
   };
-  console.log(params);
+
   return (
     <div className="overflow-y-auto space-y-6" style={{ height: "calc(100% - 11rem)" }}>
       {conversations?.map(({ conversation }) => {

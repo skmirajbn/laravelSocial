@@ -22,6 +22,6 @@ const echo = new Echo({
   client: pusher,
   // broadcaster: "socket.io",
 });
-console.log({ echo });
+
 window.echo = echo;
 export default echo;

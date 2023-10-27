@@ -23,7 +23,7 @@ export default function Home() {
   const fetcher = async () => {
     setIsLoading(true);
     let apiEndPoint = "api/homeposts?page=" + page;
-    console.log(apiEndPoint);
+
     try {
       const res = await axios.get(apiEndPoint);
       setPosts((prevPost) => [...prevPost, ...res.data.data]);
@@ -36,7 +36,6 @@ export default function Home() {
   };
 
   useEffect(() => {
-    console.log("useEffect called");
     fetcher();
   }, []);
 
@@ -67,12 +66,8 @@ export default function Home() {
 
     echo
       .channel("message")
-      .subscribed(() => {
-        console.log("You are subscribed");
-      })
-      .listen("Message", (data) => {
-        console.log(data);
-      });
+      .subscribed(() => {})
+      .listen("Message", (data) => {});
   }, []);
 
   return (
