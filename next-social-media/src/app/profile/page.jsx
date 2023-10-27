@@ -21,7 +21,7 @@ export default function Profile() {
   const fetcher = async () => {
     setIsLoading(true);
     let apiEndPoint = "api/posts?page=" + page;
-    console.log(apiEndPoint);
+
     try {
       const res = await axios.get(apiEndPoint);
       setPosts((prevPost) => [...prevPost, ...res.data.data]);
@@ -34,7 +34,6 @@ export default function Profile() {
   };
 
   useEffect(() => {
-    console.log("useEffect called");
     fetcher();
   }, []);
 

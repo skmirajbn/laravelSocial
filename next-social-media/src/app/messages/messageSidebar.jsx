@@ -23,7 +23,7 @@ export default function MessageSidebar() {
 
     return conversation.conversation_users.length - 1;
   };
-  console.log(params);
+
   return (
     <div className="w-1/4 px-6 space-y-3" style={{ height: "calc(100vh - 5rem)" }}>
       <SearchChats mutate={mutate} />

@@ -9,7 +9,6 @@ export default function Message({ params }) {
   const [conversationuser, setConversationUser] = useState();
   const [conversationID, setConversationId] = useState();
   useEffect(() => {
-    console.log(conversation?.data?.data);
     conversation?.data?.data?.forEach((con) => {
       if (con.conversation.conversation_type === "individual") {
         con.conversation.conversation_users.forEach((user) => {

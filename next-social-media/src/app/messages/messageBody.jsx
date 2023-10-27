@@ -13,7 +13,7 @@ export default function MessageBody({ conversationuser, conversationID }) {
   const { user } = useAuth();
 
   const { data: messages, mutate } = useSWR("conversationMessage", () => axios.get(`api/message/get/${conversationID}`));
-  console.log(messages);
+
   const sendMessage = async (e) => {
     if (e.key === "Enter") {
       // Api call for sending Message
@@ -23,7 +23,6 @@ export default function MessageBody({ conversationuser, conversationID }) {
       let res = axios.post("api/message/send", formData);
       setMessage("");
       mutate();
-      console.log(res);
     }
   };
   useEffect(() => {

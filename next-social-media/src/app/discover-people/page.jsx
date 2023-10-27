@@ -29,7 +29,7 @@ export default function DisCoverPeople() {
       return person;
     });
     // Update the data in the SWR cache
-    console.log(updatedPeoples);
+
     mutate(updatedPeoples);
   };
   return (

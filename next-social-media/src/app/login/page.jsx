@@ -66,7 +66,7 @@ export default function SignUp() {
       ...singUpData,
       setErrors,
     };
-    console.log(registerData);
+
     await register(registerData);
     setIsloading(false);
   };

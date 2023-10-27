@@ -57,7 +57,7 @@ export default function CreatePost({ setPosts }) {
     setSelectedFiles([]);
     setPostTitle("");
     setPostText("");
-    console.log(newPost);
+
     setPosts((prevPosts) => [newPost?.data.data, ...prevPosts]);
   };
 

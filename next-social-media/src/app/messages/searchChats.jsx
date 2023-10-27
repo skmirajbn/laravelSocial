@@ -40,10 +40,10 @@ export default function SearchChats({ mutate }) {
     // Calculating User Index;
 
     let userIndex = res.data.data.users[0].user_id === user_2_id ? 0 : 1;
-    console.log(res.data.data.users[0].user_id === user_2_id ? 0 : 1);
+
     router.push("/messages/" + res.data.data.users[userIndex].user_username);
   };
-  console.log(resultUsers);
+
   return (
     <div className="h-40 space-y-3 overflow-hidden">
       <div className=" bg-white  flex justify-between items-center h-16">
