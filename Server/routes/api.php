@@ -72,3 +72,4 @@ Route::middleware(['auth'])->get('/message/get/{conversation_id}', [MessageContr
 
 //User's All Profile Information
 Route::middleware(['auth'])->get('/profile/{username}', [UserProfileController::class, 'get']);
+

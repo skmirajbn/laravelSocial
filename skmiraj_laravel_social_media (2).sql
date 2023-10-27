@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 25, 2023 at 08:23 PM
+-- Generation Time: Oct 27, 2023 at 09:18 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -39,7 +39,7 @@ CREATE TABLE `abouts` (
 --
 
 INSERT INTO `abouts` (`user_id`, `about_bio`, `created_at`, `updated_at`) VALUES
-(1, 'Nice', '2023-10-19 09:02:11', '2023-10-19 09:02:11'),
+(1, 'This is my Bio', '2023-10-19 09:02:11', '2023-10-26 09:43:36'),
 (2, 'My Name is Khaleda', '2023-10-18 23:02:48', '2023-10-18 23:02:48'),
 (3, 'My name is Alamin', '2023-10-18 23:06:49', '2023-10-18 23:06:49');
 
@@ -63,7 +63,9 @@ CREATE TABLE `comments` (
 --
 
 INSERT INTO `comments` (`comment_id`, `user_id`, `comment_text`, `post_id`, `created_at`, `updated_at`) VALUES
-(1, 1, 'iuoi', 9, '2023-10-19 09:02:52', '2023-10-19 09:02:52');
+(1, 1, 'iuoi', 9, '2023-10-19 09:02:52', '2023-10-19 09:02:52'),
+(2, 1, 'Nice', 3, '2023-10-26 22:35:51', '2023-10-26 22:35:51'),
+(3, 1, 'nice photo sis', 6, '2023-10-27 12:14:16', '2023-10-27 12:14:16');
 
 -- --------------------------------------------------------
 
@@ -101,7 +103,16 @@ CREATE TABLE `conversations` (
 INSERT INTO `conversations` (`conversation_id`, `conversation_title`, `conversation_image`, `conversation_type`, `created_at`, `updated_at`) VALUES
 (26, '', '', 'individual', '2023-10-25 11:46:54', '2023-10-25 11:46:54'),
 (27, '', '', 'individual', '2023-10-25 11:47:06', '2023-10-25 11:47:06'),
-(28, 'Our Group', 'storage/groupImages/d985b40b-4cf9-480a-8cd1-0ee0b6b5f234.jpg', 'group', '2023-10-25 11:50:58', '2023-10-25 11:50:58');
+(28, 'Our Group', 'storage/groupImages/d985b40b-4cf9-480a-8cd1-0ee0b6b5f234.jpg', 'group', '2023-10-25 11:50:58', '2023-10-25 11:50:58'),
+(29, 'Family Group', 'storage/groupImages/dd802869-7fe1-4926-b74e-456ad96b7dc1.jpg', 'group', '2023-10-26 04:09:30', '2023-10-26 04:09:30'),
+(30, 'Test Group', '', 'group', '2023-10-26 05:05:37', '2023-10-26 05:05:37'),
+(31, 'Another Conversation', 'storage/groupImages/b2f45010-c910-4675-9b86-e255e89aa9d1.jpg', 'group', '2023-10-26 05:19:10', '2023-10-26 05:19:10'),
+(32, 'Next Conversation', 'storage/groupImages/3f31aa63-06b4-45eb-b7c9-6799ccf361a3.jpg', 'group', '2023-10-26 05:26:36', '2023-10-26 05:26:36'),
+(33, 'Project Group', 'storage/groupImages/07c8ac49-7edf-4341-b8a6-25f292954b71.jpg', 'group', '2023-10-26 09:13:10', '2023-10-26 09:13:10'),
+(34, 'Study Group', 'storage/groupImages/30a372e4-972e-4171-87e6-58d752cf5865.jpg', 'group', '2023-10-26 09:16:47', '2023-10-26 09:16:47'),
+(35, 'Time Square Group', 'storage/groupImages/a2017c5b-254c-4134-969b-cf72a86210d9.jpg', 'group', '2023-10-26 09:22:32', '2023-10-26 09:22:32'),
+(36, 'Ludu Group', '', 'group', '2023-10-26 09:39:24', '2023-10-26 09:39:24'),
+(37, 'New Group', 'storage/groupImages/99ff7331-db70-44f1-88c6-492820b19118.jpg', 'group', '2023-10-26 09:49:01', '2023-10-26 09:49:01');
 
 -- --------------------------------------------------------
 
@@ -130,7 +141,34 @@ INSERT INTO `conversation_users` (`conversation_user_id`, `user_id`, `conversati
 (49, 2, 28, 'participant', '2023-10-25 11:50:58', '2023-10-25 11:50:58'),
 (50, 6, 28, 'participant', '2023-10-25 11:50:58', '2023-10-25 11:50:58'),
 (51, 4, 28, 'participant', '2023-10-25 11:50:58', '2023-10-25 11:50:58'),
-(52, 1, 28, 'creator', '2023-10-25 11:50:58', '2023-10-25 11:50:58');
+(52, 1, 28, 'creator', '2023-10-25 11:50:58', '2023-10-25 11:50:58'),
+(53, 2, 29, 'participant', '2023-10-26 04:09:30', '2023-10-26 04:09:30'),
+(54, 6, 29, 'participant', '2023-10-26 04:09:30', '2023-10-26 04:09:30'),
+(55, 1, 29, 'creator', '2023-10-26 04:09:30', '2023-10-26 04:09:30'),
+(56, 6, 30, 'participant', '2023-10-26 05:05:37', '2023-10-26 05:05:37'),
+(57, 4, 30, 'participant', '2023-10-26 05:05:37', '2023-10-26 05:05:37'),
+(58, 1, 30, 'creator', '2023-10-26 05:05:37', '2023-10-26 05:05:37'),
+(59, 2, 31, 'participant', '2023-10-26 05:19:10', '2023-10-26 05:19:10'),
+(60, 4, 31, 'participant', '2023-10-26 05:19:10', '2023-10-26 05:19:10'),
+(61, 1, 31, 'creator', '2023-10-26 05:19:10', '2023-10-26 05:19:10'),
+(62, 2, 32, 'participant', '2023-10-26 05:26:36', '2023-10-26 05:26:36'),
+(63, 4, 32, 'participant', '2023-10-26 05:26:36', '2023-10-26 05:26:36'),
+(64, 1, 32, 'creator', '2023-10-26 05:26:36', '2023-10-26 05:26:36'),
+(65, 4, 33, 'participant', '2023-10-26 09:13:10', '2023-10-26 09:13:10'),
+(66, 6, 33, 'participant', '2023-10-26 09:13:10', '2023-10-26 09:13:10'),
+(67, 1, 33, 'creator', '2023-10-26 09:13:10', '2023-10-26 09:13:10'),
+(68, 4, 34, 'participant', '2023-10-26 09:16:47', '2023-10-26 09:16:47'),
+(69, 6, 34, 'participant', '2023-10-26 09:16:47', '2023-10-26 09:16:47'),
+(70, 1, 34, 'creator', '2023-10-26 09:16:47', '2023-10-26 09:16:47'),
+(71, 6, 35, 'participant', '2023-10-26 09:22:32', '2023-10-26 09:22:32'),
+(72, 4, 35, 'participant', '2023-10-26 09:22:32', '2023-10-26 09:22:32'),
+(73, 1, 35, 'creator', '2023-10-26 09:22:32', '2023-10-26 09:22:32'),
+(74, 6, 36, 'participant', '2023-10-26 09:39:24', '2023-10-26 09:39:24'),
+(75, 2, 36, 'participant', '2023-10-26 09:39:24', '2023-10-26 09:39:24'),
+(76, 1, 36, 'creator', '2023-10-26 09:39:24', '2023-10-26 09:39:24'),
+(77, 2, 37, 'participant', '2023-10-26 09:49:01', '2023-10-26 09:49:01'),
+(78, 6, 37, 'participant', '2023-10-26 09:49:01', '2023-10-26 09:49:01'),
+(79, 1, 37, 'creator', '2023-10-26 09:49:01', '2023-10-26 09:49:01');
 
 -- --------------------------------------------------------
 
@@ -152,11 +190,12 @@ CREATE TABLE `cover_images` (
 --
 
 INSERT INTO `cover_images` (`cover_image_id`, `user_id`, `image_path`, `status`, `created_at`, `updated_at`) VALUES
-(1, 1, 'storage/profileImages/c94cb12b-db79-45b6-af1d-efb79df669f1.jpg', 1, '2023-10-18 22:58:48', '2023-10-18 22:58:48'),
+(1, 1, 'storage/profileImages/c94cb12b-db79-45b6-af1d-efb79df669f1.jpg', 0, '2023-10-18 22:58:48', '2023-10-27 12:31:54'),
 (2, 2, 'storage/profileImages/b9781086-bb4b-4e32-bc6d-0bde9eb077f9.jpg', 1, '2023-10-18 23:02:38', '2023-10-18 23:02:38'),
 (3, 3, 'storage/profileImages/5cf76756-5db2-4d9e-8038-036dbfd2c029.jpg', 1, '2023-10-18 23:06:40', '2023-10-18 23:06:40'),
 (4, 4, 'storage/profileImages/4d53f064-482c-493f-bca2-a7dabb609b39.jpg', 1, '2023-10-19 00:28:00', '2023-10-19 00:28:00'),
-(5, 5, 'storage/profileImages/776249cc-97e8-4722-8148-d5ea95a9211d.jpg', 1, '2023-10-19 00:33:39', '2023-10-19 00:33:39');
+(5, 5, 'storage/profileImages/776249cc-97e8-4722-8148-d5ea95a9211d.jpg', 1, '2023-10-19 00:33:39', '2023-10-19 00:33:39'),
+(6, 1, 'storage/profileImages/751e39f7-98f3-4b5e-926f-962cf7c27327.jpg', 1, '2023-10-27 12:31:55', '2023-10-27 12:31:55');
 
 -- --------------------------------------------------------
 
@@ -296,7 +335,26 @@ CREATE TABLE `messages` (
 
 INSERT INTO `messages` (`message_id`, `message_text`, `user_id`, `conversation_id`, `created_at`, `updated_at`) VALUES
 (12, 'Apu valo asen?', 1, 26, '2023-10-25 11:47:00', '2023-10-25 11:47:00'),
-(13, 'vai kemon asen?', 1, 27, '2023-10-25 11:47:10', '2023-10-25 11:47:10');
+(13, 'vai kemon asen?', 1, 27, '2023-10-25 11:47:10', '2023-10-25 11:47:10'),
+(14, 'jkl', 1, 28, '2023-10-26 02:47:10', '2023-10-26 02:47:10'),
+(15, 'amio valo asi', 1, 26, '2023-10-26 04:06:16', '2023-10-26 04:06:16'),
+(16, 'This is a great group bro.', 2, 28, '2023-10-26 04:07:14', '2023-10-26 04:07:14'),
+(17, 'Check on group ami apnake message disi miraj vai', 2, 26, '2023-10-26 04:07:35', '2023-10-26 04:07:35'),
+(18, 'Here I messaged', 2, 28, '2023-10-26 04:07:45', '2023-10-26 04:07:45'),
+(19, 'valo asi', 6, 27, '2023-10-26 04:08:10', '2023-10-26 04:08:10'),
+(20, 'group e message dicci', 6, 27, '2023-10-26 04:08:14', '2023-10-26 04:08:14'),
+(21, 'Group e sobai message dicci', 6, 28, '2023-10-26 04:08:23', '2023-10-26 04:08:23'),
+(22, 'Nice everyone', 1, 28, '2023-10-26 04:08:57', '2023-10-26 04:08:57'),
+(23, 'Hello everyone', 1, 29, '2023-10-26 04:09:48', '2023-10-26 04:09:48'),
+(24, 'Hello', 6, 29, '2023-10-26 04:10:19', '2023-10-26 04:10:19'),
+(25, 'Hello', 1, 30, '2023-10-26 05:14:16', '2023-10-26 05:14:16'),
+(26, 'Akabaka chiku', 1, 30, '2023-10-26 05:15:22', '2023-10-26 05:15:22'),
+(27, 'Very nice', 1, 32, '2023-10-26 05:26:51', '2023-10-26 05:26:51'),
+(28, 'Very Nice Group', 1, 33, '2023-10-26 09:13:26', '2023-10-26 09:13:26'),
+(29, 'Very Good', 1, 34, '2023-10-26 09:21:57', '2023-10-26 09:21:57'),
+(30, 'Hello dear', 1, 36, '2023-10-26 09:42:50', '2023-10-26 09:42:50'),
+(31, 'Hello everyone', 1, 35, '2023-10-26 09:46:04', '2023-10-26 09:46:04'),
+(32, 'Apu kemon asen?', 1, 26, '2023-10-26 09:47:13', '2023-10-26 09:47:13');
 
 -- --------------------------------------------------------
 
@@ -468,13 +526,14 @@ CREATE TABLE `profile_images` (
 --
 
 INSERT INTO `profile_images` (`profile_image_id`, `user_id`, `image_path`, `status`, `created_at`, `updated_at`) VALUES
-(1, 1, 'storage/profileImages/789a7b08-024b-4f52-aa25-644065cdc216.jpg', 1, '2023-10-18 22:58:36', '2023-10-18 22:58:36'),
+(1, 1, 'storage/profileImages/789a7b08-024b-4f52-aa25-644065cdc216.jpg', 0, '2023-10-18 22:58:36', '2023-10-26 22:47:17'),
 (2, 2, 'storage/profileImages/ed0b2756-803c-4746-8018-41f7091f3d18.jpg', 1, '2023-10-18 23:02:21', '2023-10-18 23:02:21'),
 (3, 3, 'storage/profileImages/adc865a3-f0f8-4714-a0b8-ca1cc419da8c.jpg', 1, '2023-10-18 23:06:34', '2023-10-18 23:06:34'),
 (4, 4, 'storage/profileImages/78f7f25a-7eeb-4166-bbbb-8ffc9d3a25b2.jpg', 1, '2023-10-19 00:27:50', '2023-10-19 00:27:50'),
 (5, 5, 'storage/profileImages/449d9867-b289-4402-8f09-68969cc2eed6.jpg', 1, '2023-10-19 00:33:30', '2023-10-19 00:33:30'),
 (6, 6, 'storage/profileImages/105f96bd-60f6-4374-954c-8308ea75f92f.jpg', 1, '2023-10-19 00:36:37', '2023-10-19 00:36:37'),
-(7, 7, 'storage/profileImages/0d4a9a12-9abd-4e66-8868-c0b4caa12236.jpg', 1, '2023-10-19 00:37:44', '2023-10-19 00:37:44');
+(7, 7, 'storage/profileImages/0d4a9a12-9abd-4e66-8868-c0b4caa12236.jpg', 1, '2023-10-19 00:37:44', '2023-10-19 00:37:44'),
+(8, 1, 'storage/profileImages/0ab4e252-64bf-4ec6-903c-991fd65640b4.jpg', 1, '2023-10-26 22:47:17', '2023-10-26 22:47:17');
 
 -- --------------------------------------------------------
 
@@ -690,7 +749,7 @@ ALTER TABLE `websockets_statistics_entries`
 -- AUTO_INCREMENT for table `comments`
 --
 ALTER TABLE `comments`
-  MODIFY `comment_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `comment_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `comment_likes`
@@ -702,19 +761,19 @@ ALTER TABLE `comment_likes`
 -- AUTO_INCREMENT for table `conversations`
 --
 ALTER TABLE `conversations`
-  MODIFY `conversation_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `conversation_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
 -- AUTO_INCREMENT for table `conversation_users`
 --
 ALTER TABLE `conversation_users`
-  MODIFY `conversation_user_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
+  MODIFY `conversation_user_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=80;
 
 --
 -- AUTO_INCREMENT for table `cover_images`
 --
 ALTER TABLE `cover_images`
-  MODIFY `cover_image_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `cover_image_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
@@ -744,7 +803,7 @@ ALTER TABLE `images`
 -- AUTO_INCREMENT for table `messages`
 --
 ALTER TABLE `messages`
-  MODIFY `message_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `message_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT for table `migrations`
@@ -786,7 +845,7 @@ ALTER TABLE `post_like_types`
 -- AUTO_INCREMENT for table `profile_images`
 --
 ALTER TABLE `profile_images`
-  MODIFY `profile_image_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `profile_image_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `roles`
