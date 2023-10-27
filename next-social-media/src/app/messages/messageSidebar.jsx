@@ -27,7 +27,7 @@ export default function MessageSidebar() {
   return (
     <div className="w-1/4 px-6 space-y-3" style={{ height: "calc(100vh - 5rem)" }}>
       <SearchChats mutate={mutate} />
-      <div className="overflow-y-auto space-y-3" style={{ height: "calc(100% - 11rem)" }}>
+      <div className="overflow-y-auto space-y-4" style={{ height: "calc(100% - 11rem)" }}>
         {conversations?.map(({ conversation }) => {
           const userIndex = calculateUserIndex(conversation, userId);
           const conversationUserProfileImage = process.env.NEXT_PUBLIC_BACKEND_URL + "/" + conversation.conversation_users[userIndex].user.active_profile_image.image_path;
@@ -38,9 +38,9 @@ export default function MessageSidebar() {
                 <div className="flex gap-3 items-center" style={isActive ? { background: "rgb(229 231 235)", padding: "10px", borderRadius: "7px" } : null}>
                   <img className="h-10 w-10 object-cover rounded-full" src={conversationUserProfileImage} alt="" />
                   <div>
-                    <h3>{conversation.conversation_users[userIndex].user.user_first_name + " " + conversation.conversation_users[userIndex].user.user_last_name}</h3>
+                    <h3 className="font-bold">{conversation.conversation_users[userIndex].user.user_first_name + " " + conversation.conversation_users[userIndex].user.user_last_name}</h3>
                     <div className="flex gap-4 items-center">
-                      <p>{conversation?.last_message?.message_text}</p>
+                      <p className="text-sm text-gray-500">{conversation?.last_message?.message_text}</p>
                       <img className="w-5 h-5 rounded-full" src={process.env.NEXT_PUBLIC_BACKEND_URL + "/" + conversation?.last_message?.user?.active_profile_image?.image_path} alt="" />
                     </div>
                   </div>
@@ -56,12 +56,12 @@ export default function MessageSidebar() {
                   {conversation?.conversation_image && <img className="h-10 w-10 object-cover rounded-full" src={process.env.NEXT_PUBLIC_BACKEND_URL + "/" + conversation.conversation_image} alt="" />}
                   {!conversation?.conversation_image && <img className="h-10 w-10 object-cover rounded-full" src="/img/group.png" alt="" />}
                   <div>
-                    <h3>
+                    <h3 className="font-bold">
                       {conversation.conversation_title} <i class="fa-solid fa-people-group text-emerald-500"></i>
                     </h3>
                     {conversation?.last_message && (
                       <div className="flex gap-4 items-center">
-                        <p>{conversation?.last_message?.message_text}</p>
+                        <p className="text-sm text-gray-500">{conversation?.last_message?.message_text}</p>
                         <img className="w-5 h-5 rounded-full" src={process.env.NEXT_PUBLIC_BACKEND_URL + "/" + conversation?.last_message?.user?.active_profile_image?.image_path} alt="" />
                       </div>
                     )}

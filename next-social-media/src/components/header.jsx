@@ -7,7 +7,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useRef } from "react";
 import useSWR from "swr";
-import logo from "./../../public/img/logo.png";
+import logo from "./../../public/logo.png";
 import MessengerModal from "./utils/messengerModal";
 import NotificationModal from "./utils/notificationModal";
 
@@ -36,13 +36,13 @@ export default function Header() {
   const { data: profileImage } = useSWR("profileImage", () => axios.get("api/profile-image"));
   return (
     <header class=" flex justify-between items-center bg-white text-black px-5 shadow-lg sticky top-0 z-10 h-20">
-      <div class="flex space-x-4 w-1/4">
+      <div class="flex items-center space-x-4 w-1/4">
         <Link href="/">
-          <Image class="w-10" src={logo} alt="" />
+          <Image class="w-60" src={logo} alt="" />
         </Link>
-        <input class="w-44 rounded-full px-4 py-1 text-black bg-gray-200" type="text" placeholder="Search" />
+        <input class="w-full rounded-full px-4 py-1 h-10 text-black bg-gray-200" type="text" placeholder="Search" />
       </div>
-      <nav class="flex space-x-16 text-bold justify-center w-2/4 text-2xl">
+      <nav class="flex space-x-16 text-bold justify-center w-1/3 text-2xl">
         <a class="text-blue-600" href="#">
           <i class="fa-solid fa-house"></i>
         </a>
@@ -53,7 +53,7 @@ export default function Header() {
           <i class="fa-solid fa-gamepad"></i>
         </a>
       </nav>
-      <div class="w-1/4 flex space-x-4 justify-end items-center text-2xl">
+      <div class="w-1/3 flex space-x-4 justify-end items-center text-2xl">
         <div class="  block">
           <div class="bg-gray-200 w-10 h-10 flex justify-center items-center rounded-full">
             <a href="#">
