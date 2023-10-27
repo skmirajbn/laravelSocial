@@ -47,7 +47,7 @@ Route::middleware(['auth'])->get('/cover-image', [CoverImageController::class, '
 Route::middleware(['auth'])->post('/cover-image', [CoverImageController::class, 'post']);
 
 // All users Photos
-Route::middleware(['auth'])->get('/cover-image', [TimelinePhotosController::class, 'getAllPhotos']);
+Route::middleware(['auth'])->get('/profile/all-photos', [TimelinePhotosController::class, 'getAllPhotos']);
 
 // Friend Requests
 Route::middleware(['auth'])->post('/friend-request', [FriendRequestController::class, 'post']);

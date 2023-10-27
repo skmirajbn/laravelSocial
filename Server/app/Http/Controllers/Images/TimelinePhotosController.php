@@ -4,12 +4,21 @@ namespace App\Http\Controllers\Images;
 
 use App\Http\Controllers\Controller;
 use App\Models\Image;
+use App\Models\ProfileImage;
 use App\Models\User;
 
 class TimelinePhotosController extends Controller {
     function getAllPhotos() {
         $userId = auth()->user()->user_id;
-        echo $userId;
+        $profilePhotos = ProfileImage::where("user_id", $userId)->get();
+
+        $timeLinePhotos = User::find($userId)->with('images')->first()->images;
+
+        return response()->json([
+            'profile_photos' => $profilePhotos,
+            'timeline_photos' => $timeLinePhotos,
+        ]);
+
     }
     function get() {
         $user = auth()->user();

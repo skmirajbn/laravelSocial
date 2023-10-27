@@ -13,4 +13,7 @@ class Image extends Model {
         'post_id',
         'image_path',
     ];
+    public function user() {
+        return $this->hasOneThrough(User::class, Post::class, 'user_id', 'user_id', 'post_id');
+    }
 }
