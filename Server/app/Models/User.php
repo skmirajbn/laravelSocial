@@ -72,6 +72,9 @@ class User extends Authenticatable {
     public function activeProfileImage() {
         return $this->hasOne(ProfileImage::class, 'user_id', 'user_id')->where('status', 1);
     }
+    public function about() {
+        return $this->hasOne(About::class, 'user_id', 'user_id');
+    }
 
     public static function getFriends($user_id) {
         $friendsTo = User::find($user_id)
