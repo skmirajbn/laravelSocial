@@ -18,7 +18,7 @@ export default function Message({ params }) {
       }
     });
   });
-  console.dir(params.username);
+
   return (
     <div className="flex w-3/4 px-4">
       <MessageBody conversationuser={conversationuser} conversationID={conversationID} />

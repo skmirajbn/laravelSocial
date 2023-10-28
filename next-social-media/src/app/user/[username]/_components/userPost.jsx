@@ -10,7 +10,6 @@ export default function UserPost() {
   const params = useParams();
   const { data } = useSWR("/api/profile/khaleda", () => axios.get(`api/profile/${params.username}`));
   const posts = data?.data?.data?.posts;
-  console.dir(posts);
 
   return (
     posts &&
