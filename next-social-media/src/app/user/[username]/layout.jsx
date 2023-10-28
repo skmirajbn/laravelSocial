@@ -1,22 +1,26 @@
 "use client";
 import Header from "@/components/header";
-import { useAuth } from "@/hooks/auth";
 import axios from "@/lib/axios";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { useParams } from "next/navigation";
 import useSWR from "swr";
 import UserCoverPhoto from "./_components/userCoverPhoto";
 import UserProfileName from "./_components/userProfileName";
 import UserProfilePicture from "./_components/userProfilePicture";
 
 export default function UserProfileLayout({ children }) {
-  const { user } = useAuth();
-  const router = useRouter();
-  const { data: { data: { data: userInfo } = {} } = {} } = useSWR("/api/profile/khaleda", () => axios.get(`api/profile/${params.username}`));
+  const params = useParams();
+  const { data: { data: { data: userInfo } = {} } = {}, mutate } = useSWR("/api/profile/khaleda", () => axios.get(`api/profile/${params.username}`));
+
+  if (userInfo?.user_username != params?.username) {
+    mutate(undefined);
+  }
+
   if (userInfo === null) {
     window.location.href = "/profile";
     return;
   }
+
   console.log(userInfo);
   return (
     <div>
