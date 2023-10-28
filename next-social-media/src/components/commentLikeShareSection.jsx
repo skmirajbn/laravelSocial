@@ -30,7 +30,7 @@ export default function CommentLikeShareSection({ post }) {
         <i class="fa-solid fa-comment text-3xl"></i> {length} {length > 1 ? "Comments" : "Comment"}
       </div>
       <div>
-        <i class="fa-solid fa-share text-3xl"></i> 150 Share
+        <i class="fa-solid fa-share text-3xl"></i> 0 Share
       </div>
     </div>
   );
