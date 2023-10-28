@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export default function CommentLikeShareSection() {
+export default function CommentLikeShareSection({ post }) {
   const [isShowing, setIsShowing] = useState(false);
   const handleMouseEnter = () => {
     setIsShowing(true);
@@ -8,6 +8,7 @@ export default function CommentLikeShareSection() {
   const handleMouseLeave = () => {
     setIsShowing(false);
   };
+  const length = post.comments.length;
   return (
     <div className="flex justify-between text-lg relative">
       {/* Post React Section */}
@@ -26,7 +27,7 @@ export default function CommentLikeShareSection() {
         <i class="fa-solid fa-thumbs-up text-3xl"></i> 0 Like
       </div>
       <div>
-        <i class="fa-solid fa-comment text-3xl"></i> 750 Comment
+        <i class="fa-solid fa-comment text-3xl"></i> {length} {length > 1 ? "Comments" : "Comment"}
       </div>
       <div>
         <i class="fa-solid fa-share text-3xl"></i> 150 Share

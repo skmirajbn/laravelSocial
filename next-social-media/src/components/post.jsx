@@ -36,7 +36,7 @@ export default function Post({ post }) {
             </div>
           )}
         </div>
-        <CommentLikeShareSection />
+        <CommentLikeShareSection post={post} />
       </div>
       <CommentSection post={post} />
     </div>
