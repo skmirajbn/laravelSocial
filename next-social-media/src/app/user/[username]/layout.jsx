@@ -21,7 +21,6 @@ export default function UserProfileLayout({ children }) {
     return;
   }
 
-  console.log(userInfo);
   return (
     <div>
       <Header />

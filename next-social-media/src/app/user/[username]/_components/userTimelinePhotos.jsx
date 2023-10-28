@@ -6,7 +6,7 @@ import useSWR from "swr";
 export default function UserTimelinePhotos() {
   const { data } = useSWR("/api/profile/khaleda", () => axios.get(`api/profile/${params.username}`));
   const photos = data?.data?.data.images;
-  console.log(photos);
+
   return (
     <div className="shadow-lg shadow-gray-400 rounded-lg p-6 space-y-4 ">
       <h3 className="text-2xl font-bold">Photos</h3>

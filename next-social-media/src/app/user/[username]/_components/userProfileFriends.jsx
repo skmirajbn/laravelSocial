@@ -9,7 +9,7 @@ export default function UserProfileFriends() {
   const params = useParams();
   const { data } = useSWR("/api/profile/khaleda", () => axios.get(`api/profile/${params.username}`));
   const friends = data?.data?.data?.friends;
-  console.log(friends);
+
   return (
     <div className="shadow-lg shadow-gray-400 rounded-lg p-6 space-y-4">
       <h3 className="text-2xl font-bold">Friends</h3>

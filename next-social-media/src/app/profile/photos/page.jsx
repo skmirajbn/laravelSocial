@@ -7,7 +7,6 @@ import useSWR from "swr";
 export default function Photos() {
   const { data: { data: photos } = {}, isLoading } = useSWR("photos", () => axios.get("api/profile/all-photos"));
 
-  console.log(photos);
   return (
     <div className="flex flex-col gap-6 py-8">
       <div className=" rounded-lg w-full px-10 py-4 space-y-4">

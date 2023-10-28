@@ -8,7 +8,7 @@ import useSWR from "swr";
 export default function GroupMessageOptions({ conversationGroup }) {
   const { user } = useAuth();
   const { data } = useSWR("profileImage", () => axios.get("/profile-image"));
-  console.log(conversationGroup?.conversation?.conversation_users);
+
   return (
     <div className="w-1/3 py-4 space-y-4">
       {conversationGroup?.conversation?.conversation_image && <img className="h-32 w-32 object-cover rounded-full mx-auto" src={process.env.NEXT_PUBLIC_BACKEND_URL + "/" + conversationGroup?.conversation?.conversation_image} alt="" />}

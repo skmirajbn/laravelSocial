@@ -14,7 +14,7 @@ export default function GroupMessageBody({ conversationGroup, conversationID }) 
   const { user } = useAuth();
 
   const { data: messages, mutate } = useSWR("conversationMessage", () => axios.get(`api/message/get/${conversationID}`));
-  console.log(messages);
+
   const sendMessage = async (e) => {
     if (e.key === "Enter") {
       // Api call for sending Message
@@ -24,7 +24,6 @@ export default function GroupMessageBody({ conversationGroup, conversationID }) 
       let res = axios.post("api/message/send", formData);
       setMessage("");
       mutate();
-      console.log(res);
     }
   };
   useEffect(() => {
@@ -34,7 +33,7 @@ export default function GroupMessageBody({ conversationGroup, conversationID }) 
   useEffect(() => {
     messageDiv.current.scrollTop = messageDiv.current.scrollHeight;
   }, []);
-  console.log(conversationGroup);
+
   return (
     <div className="w-2/3 px-4" style={{ height: "calc(100vh - 5rem)" }}>
       <div className="h-24 py-4">
