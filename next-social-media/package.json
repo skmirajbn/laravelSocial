@@ -5,12 +5,13 @@
   "scripts": {
     "dev": "start http://localhost:3000 && next dev -p 3000",
     "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "start": "concurrently \"cd ../ && cd server && cd public && rm storage && cd ../ && php artisan optimize && php artisan storage:link && php artisan serve \" \"cd ../ && cd server && php artisan websockets:serve \" \"start http://localhost:3000 && next dev -p 3000 \""
   },
   "dependencies": {
     "@tanstack/react-query": "^4.36.1",
     "axios": "^0.21.1",
+    "concurrently": "^8.2.2",
     "formik": "^2.4.5",
     "laravel-echo": "^1.15.3",
     "next": "^13.5.4",
