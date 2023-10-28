@@ -8,7 +8,7 @@ export default function CommentLikeShareSection({ post }) {
   const handleMouseLeave = () => {
     setIsShowing(false);
   };
-  const length = post.comments.length;
+  const length = post?.comments?.length;
   return (
     <div className="flex justify-between text-lg relative">
       {/* Post React Section */}

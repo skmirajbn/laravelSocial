@@ -42,9 +42,9 @@ export default function Header() {
         <input class="w-full rounded-full px-4 py-1 h-10 text-black bg-gray-200" type="text" placeholder="Search" />
       </div>
       <nav class="flex space-x-16 text-bold justify-center w-1/3 text-2xl">
-        <a class="text-blue-600" href="#">
+        <Link class="text-blue-600" href="/">
           <i class="fa-solid fa-house"></i>
-        </a>
+        </Link>
         <a href="#">
           <i class="fa-solid fa-people-group"></i>
         </a>
