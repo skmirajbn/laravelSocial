@@ -1,4 +1,5 @@
 import PostLoading from "@/components/postLoading";
+import UserPost from "./_components/userPost";
 import UserProfileLeftSidebar from "./_components/userProfileLeftSidebar";
 
 export default function UserProfile() {
@@ -7,7 +8,7 @@ export default function UserProfile() {
       <UserProfileLeftSidebar />
       {/* Profile Timeline */}
       <div className="w-2/3 space-y-8">
-        Post is here
+        <UserPost />
         <div>
           <PostLoading />
         </div>
