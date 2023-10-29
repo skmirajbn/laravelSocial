@@ -192,18 +192,12 @@ class PostController extends Controller {
         //check if already have like of this user of same like type
         $like = PostLike::where('post_id', $postId)->where('user_id', $userId)->first();
         if ($like) {
-            if ($like->post_like_type_id == $likeType) {
-                $like->delete();
-                return response()->json([
-                    'message' => 'Post Unliked',
-                ]);
-            } else {
-                $like->post_like_type_id = $likeType;
-                $like->save();
-                return response()->json([
-                    'message' => 'Like Type Changed',
-                ]);
-            }
+            $like->post_like_type_id = $likeType;
+            $like->save();
+            return response()->json([
+                'message' => 'Like Type Changed',
+            ]);
+
         }
         // create like
         $like = PostLike::create([
