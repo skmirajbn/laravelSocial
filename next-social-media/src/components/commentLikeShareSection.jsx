@@ -101,7 +101,6 @@ export default function CommentLikeShareSection({ post: apiPost, fetcher }) {
               </div>
             );
         })}
-        {post?.post_likes?.length == 0 && <i class="fa-solid fa-thumbs-up text-3xl pr-2"></i>}
         {totalLikes} React
       </div>
       <div>
