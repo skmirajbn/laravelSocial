@@ -4,7 +4,7 @@ import axios from "@/lib/axios";
 import { useState } from "react";
 import useSWR from "swr";
 
-export default function CommentSection({ post }) {
+export default function CommentSection({ post, fetcher }) {
   const { data: profileImage } = useSWR("profileImage", () => axios.get("api/profile-image"));
   const { user } = useAuth({ middleware: "auth" });
   const [input, setInput] = useState("");
@@ -33,6 +33,7 @@ export default function CommentSection({ post }) {
       };
       post.comments.push(commentObject);
       setIsLoading(false);
+      fetcher();
     }
   };
 

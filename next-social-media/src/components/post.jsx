@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import CommentLikeShareSection from "./commentLikeShareSection";
 import CommentSection from "./commentSection";
 
-export default function Post({ post }) {
+export default function Post({ post, fetcher }) {
   const [imageCount, setImageCount] = useState(1);
   useEffect(() => {
     let imageCount = post?.images?.length;
@@ -36,9 +36,9 @@ export default function Post({ post }) {
             </div>
           )}
         </div>
-        <CommentLikeShareSection post={post} />
+        <CommentLikeShareSection post={post} fetcher={fetcher} />
       </div>
-      <CommentSection post={post} />
+      <CommentSection post={post} fetcher={fetcher} />
     </div>
   );
 }
