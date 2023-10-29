@@ -22,14 +22,11 @@ export default function CommentLikeShareSection({ post: apiPost, fetcher }) {
     console.log(res);
     post?.post_likes?.forEach((like, index) => {
       if (like.user_id == user.user_id) {
-        if (like.post_like_type_id === likeType) {
-          post.post_likes.splice(index, 1);
-        } else {
-          post.post_likes[index] = {
-            ...like,
-            post_like_type_id: likeType,
-          };
-        }
+        post.post_likes[index] = {
+          ...like,
+          post_like_type_id: likeType,
+        };
+
         setPost({ ...post });
       }
     });
