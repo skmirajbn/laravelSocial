@@ -35,7 +35,7 @@ class PostController extends Controller {
         });
         $userPosts->each(function ($post) {
             $postId = $post->post_id;
-            $postComments = Comment::where('post_id', $postId)->orderBy('created_at', 'asc')->get();
+            $postComments = Comment::where('post_id', $postId)->with('likes')->orderBy('created_at', 'asc')->get();
 
             $postComments->each(function ($comment) {
                 $comment->user = User::find($comment->user_id);
@@ -89,7 +89,7 @@ class PostController extends Controller {
 
         // Retrieve the posts from the friend IDs
         $friendPosts = Post::whereIn('user_id', $friendIds)->orderBy('created_at', 'desc')
-            ->with(['user', 'images', 'comments.user', 'postLikes'])
+            ->with(['user', 'images', 'comments.user', 'postLikes', 'comments.likes'])
             ->paginate(3);
 
         $friendPosts->each(function ($post) {

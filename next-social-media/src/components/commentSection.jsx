@@ -3,6 +3,7 @@ import { useAuth } from "@/hooks/auth";
 import axios from "@/lib/axios";
 import { useState } from "react";
 import useSWR from "swr";
+import SingleComment from "./singleComment";
 
 export default function CommentSection({ post, fetcher }) {
   const { data: profileImage } = useSWR("profileImage", () => axios.get("api/profile-image"));
@@ -38,26 +39,13 @@ export default function CommentSection({ post, fetcher }) {
   };
 
   let comments = post?.comments;
+  console.log(comments);
   return (
     <div className="flex flex-col gap-4">
-      {/* Comment */}
       {comments &&
-        comments.map((comment) => (
-          <div key={comment.comment_id}>
-            <div className="flex gap-3">
-              <img className="w-10 h-10 rounded-full object-cover" src={process.env.NEXT_PUBLIC_BACKEND_URL + "/" + comment?.user?.profile_image?.image_path} alt="" />
-              <div>
-                <h3 className="font-bold">{comment.user.user_first_name + " " + comment.user.user_last_name}</h3>
-                <div className="flex items-center gap-3">
-                  <div>
-                    <h3>{comment.comment_text}</h3>
-                    <h5 className="text-blue-600 text-sm">0 Like</h5>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        ))}
+        comments.map((comment) => {
+          return <SingleComment key={comment.comment_id} comment={comment} />;
+        })}
       {/* Writing Comment */}
       <div className="flex flex-col items-end gap-2">
         <input className="border-gray-500 border-2 w-full p-4 rounded-lg" type="text" placeholder="Enter Comment Here" value={input} onChange={handleChagne} onKeyUp={submitComment} />

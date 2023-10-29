@@ -27,4 +27,23 @@ class CommentController extends Controller {
             'data' => $createdComment
         ]);
     }
+    function like($commentId) {
+        $user = auth()->user();
+        $userId = $user['user_id'];
+        $comment = Comment::find($commentId);
+
+        if ($comment->isLikedBy($userId)) {
+            $comment->unlike($userId);
+            return response()->json([
+                'message' => 'Comment Unliked Sucessfully',
+                'data' => $comment
+            ]);
+        } else {
+            $comment->like($userId);
+            return response()->json([
+                'message' => 'Comment Liked Sucessfully',
+                'data' => $comment,
+            ]);
+        }
+    }
 }

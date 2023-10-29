@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Comment extends Model {
     use HasFactory;
 
-    protected $primaryKey = 'profile_image_id';
+    protected $primaryKey = 'comment_id';
 
 
     protected $fillable = [
@@ -21,5 +21,19 @@ class Comment extends Model {
 
     function user() {
         return $this->belongsTo(User::class, 'user_id', 'user_id');
+    }
+    function likes() {
+        return $this->hasMany(CommentLike::class, 'comment_id', 'comment_id');
+    }
+    function isLikedBy($userId) {
+        return $this->likes()->where('user_id', $userId)->exists();
+    }
+    function unlike($userId) {
+        $this->likes()->where('user_id', $userId)->delete();
+    }
+    public function like($userId) {
+        $this->likes()->create([
+            'user_id' => $userId,
+        ]);
     }
 }

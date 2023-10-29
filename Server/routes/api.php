@@ -75,3 +75,5 @@ Route::middleware(['auth'])->get('/profile/{username}', [UserProfileController::
 
 // Post Likes route
 Route::middleware(['auth'])->post('/{postId}/{likeType}', [PostController::class, 'like']);
+// comment likes route
+Route::middleware(['auth'])->post('/comment/like/{commentId}', [CommentController::class, 'like']);

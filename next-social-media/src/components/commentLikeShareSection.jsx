@@ -19,7 +19,7 @@ export default function CommentLikeShareSection({ post: apiPost, fetcher }) {
     let postId = post.post_id;
     let apiEndPoint = `/api/${postId}/${likeType}`;
     const res = await axios.post(apiEndPoint);
-    console.log(res);
+
     post?.post_likes?.forEach((like, index) => {
       if (like.user_id == user.user_id) {
         post.post_likes[index] = {
@@ -46,7 +46,7 @@ export default function CommentLikeShareSection({ post: apiPost, fetcher }) {
   useEffect(() => {
     setPost(apiPost);
   }, [apiPost]);
-  console.log(post);
+
   return (
     <div className="flex justify-between text-lg relative">
       {/* Post React Section */}
