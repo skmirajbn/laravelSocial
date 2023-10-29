@@ -180,17 +180,42 @@ class PostController extends Controller {
     }
 
     function like(Request $request, $postId, $likeType) {
-        // recevie the data from the url
-        $userId = auth()->user()->user_id;
-        //check if already have like of this user
-        $like = PostLike::where('post_id', $postId)->where('user_id', $userId)->first();
-        if ($like) {
-            $like->delete();
+        //likeType value must be of range 1-6 
+        if ($likeType < 1 || $likeType > 6) {
             return response()->json([
-                'message' => 'Post Unliked',
+                'message' => 'Invalid Like Type'
             ]);
         }
-        //create Like
 
+        // recevie the data from the url
+        $userId = auth()->user()->user_id;
+        //check if already have like of this user of same like type
+        $like = PostLike::where('post_id', $postId)->where('user_id', $userId)->first();
+        if ($like) {
+            if ($like->post_like_type_id == $likeType) {
+                $like->delete();
+                return response()->json([
+                    'message' => 'Post Unliked',
+                ]);
+            } else {
+                $like->post_like_type_id = $likeType;
+                $like->save();
+                return response()->json([
+                    'message' => 'Like Type Changed',
+                ]);
+            }
+        }
+        // create like
+        $like = PostLike::create([
+            'post_id' => $postId,
+            'user_id' => $userId,
+            'post_like_type_id' => $likeType,
+        ]);
+        if ($like) {
+            return response()->json([
+                'message' => 'Post Liked',
+                'data' => $like
+            ]);
+        }
     }
 }
