@@ -34,6 +34,11 @@ export default function UserProfileLayout({ children }) {
               {userInfo?.friends.length} Friend{userInfo?.friends.length > 1 ? "s" : null}
             </h5>
           </div>
+          <Link href={`/messages/${userInfo?.user_username}`} className="ml-auto">
+            <h5 className="text-lg bg-gray-200 p-2 rounded-lg">
+              <i class="fa-brands fa-facebook-messenger text-xl"></i> Send Message
+            </h5>
+          </Link>
         </div>
         <hr className="mt-3" />
         <div className="flex px-16 py-2 gap-4 text-xl font-medium text-gray-700 border-b border-t border-gray-400">
