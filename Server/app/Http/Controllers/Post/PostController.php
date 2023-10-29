@@ -7,6 +7,7 @@ use App\Models\Comment;
 use App\Models\FriendRequest;
 use App\Models\Image;
 use App\Models\Post;
+use App\Models\PostLike;
 use App\Models\ProfileImage;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -176,7 +177,20 @@ class PostController extends Controller {
             'message' => 'Post Created',
             'data' => $newPost
         ]);
+    }
 
+    function like(Request $request, $postId, $likeType) {
+        // recevie the data from the url
+        $userId = auth()->user()->user_id;
+        //check if already have like of this user
+        $like = PostLike::where('post_id', $postId)->where('user_id', $userId)->first();
+        if ($like) {
+            $like->delete();
+            return response()->json([
+                'message' => 'Post Unliked',
+            ]);
+        }
+        //create Like
 
     }
 }

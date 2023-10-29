@@ -11,7 +11,7 @@ return new class extends Migration {
     public function up(): void {
         Schema::create('post_like_types', function (Blueprint $table) {
             $table->id('post_like_type_id');
-            $table->integer('post_like_type_name');
+            $table->string('post_like_type_name');
             $table->timestamps();
         });
     }
