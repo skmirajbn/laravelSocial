@@ -38,25 +38,20 @@ export default function MessageBody({ conversationuser, conversationID }) {
   useEffect(() => {
     messageDiv.current.scrollTop = messageDiv.current.scrollHeight;
   }, [messages]);
-  console.log(messages);
+
   useEffect(() => {
     echo
       .channel("message")
-      .subscribed(() => {
-        console.log("subscribed");
-      })
+      .subscribed(() => {})
       .listen("Message", async (data) => {
-        console.log(data);
         if (data.message.conversation_id === conversationID) {
           setMessages((prevMessages) => ({
             ...prevMessages,
             data: [...prevMessages.data, data.message],
           }));
-          console.log(data.message.message_text);
+
           messageDiv.current.scrollTop = messageDiv.current.scrollHeight;
         }
-        console.log(data.message.conversationID);
-        console.log(conversationID);
       });
   }, [conversationID]);
   return (

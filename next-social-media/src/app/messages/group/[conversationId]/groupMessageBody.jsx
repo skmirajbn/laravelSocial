@@ -37,22 +37,18 @@ export default function GroupMessageBody({ conversationGroup, conversationID }) 
   useEffect(() => {
     messageDiv.current.scrollTop = messageDiv.current.scrollHeight;
   }, [messages]);
-  console.log(messages);
+
   useEffect(() => {
     echo
       .channel("message")
-      .subscribed(() => {
-        console.log("subscribed");
-      })
+      .subscribed(() => {})
       .listen("Message", async (data) => {
-        console.log(data);
         if (data.message.conversation_id == conversationID) {
-          console.log("message updated started");
           setMessages((prevMessages) => ({
             ...prevMessages,
             data: [...prevMessages.data, data.message],
           }));
-          console.log("message updated");
+
           messageDiv.current.scrollTop = messageDiv.current.scrollHeight;
         }
       });
