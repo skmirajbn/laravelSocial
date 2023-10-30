@@ -51,19 +51,6 @@ export default function Home() {
   }, [isLoading]);
 
   useEffect(() => {
-    // const echo = new Echo({
-    //   broadcaster: "pusher",
-    //   key: "mydsfgdskey",
-
-    //   client: new Pusher("mydsfgdskey", {
-    //     wsHost: "localhost",
-    //     wsPort: 6001,
-    //     cluster: "mt1",
-    //     disableStats: true,
-    //     forceTLS: false,
-    //   }),
-    // });
-
     echo
       .channel("message")
       .subscribed(() => {})

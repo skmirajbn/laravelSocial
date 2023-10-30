@@ -1,6 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
 import { useAuth } from "@/hooks/auth";
+import echo from "@/hooks/echo";
 import axios from "@/lib/axios";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
@@ -31,6 +32,17 @@ export default function MessageBody({ conversationuser, conversationID }) {
   }, [conversationID, mutate]);
   useEffect(() => {
     messageDiv.current.scrollTop = messageDiv.current.scrollHeight;
+  }, []);
+
+  useEffect(() => {
+    echo
+      .channel("message")
+      .subscribed(() => {
+        console.log("subscribed");
+      })
+      .listen("Message", (data) => {
+        console.log(data);
+      });
   }, []);
   return (
     <div className="w-2/3 px-4" style={{ height: "calc(100vh - 5rem)" }}>

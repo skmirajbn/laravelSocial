@@ -2,7 +2,7 @@
 
 namespace App\Events;
 
-use Illuminate\Broadcasting\Channel;
+use BeyondCode\LaravelWebSockets\WebSockets\Channels\PrivateChannel;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
@@ -26,7 +26,7 @@ class Message implements ShouldBroadcast {
      */
     public function broadcastOn(): array {
         return [
-            new Channel('message'),
+            new PrivateChannel('message'),
         ];
     }
 }
