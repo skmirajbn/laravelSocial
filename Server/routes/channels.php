@@ -19,5 +19,8 @@ Broadcast::channel('App.Models.User.{id}', function ($user, $id) {
 // Broadcast::channel('message', function ($user, $id) {
 //     return true;
 // });
+Broadcast::channel('message', function ($user, $id) {
+    return true;
+});
 
 

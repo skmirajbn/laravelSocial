@@ -14,7 +14,11 @@ export default function MessageBody({ conversationuser, conversationID }) {
   const [message, setMessage] = useState();
   const { user } = useAuth();
 
-  const { data: messages, mutate } = useSWR("conversationMessage", () => axios.get(`api/message/get/${conversationID}`));
+  const { data: apiMessages, mutate } = useSWR("conversationMessage", () => axios.get(`api/message/get/${conversationID}`));
+  const [messages, setMessages] = useState(apiMessages);
+  useEffect(() => {
+    setMessages(apiMessages);
+  }, [apiMessages]);
 
   const sendMessage = async (e) => {
     if (e.key === "Enter") {
@@ -24,26 +28,37 @@ export default function MessageBody({ conversationuser, conversationID }) {
       formData.append("message_text", message);
       let res = axios.post("api/message/send", formData);
       setMessage("");
-      mutate();
+      // mutate();
     }
   };
   useEffect(() => {
     mutate([]);
   }, [conversationID, mutate]);
+
   useEffect(() => {
     messageDiv.current.scrollTop = messageDiv.current.scrollHeight;
-  }, []);
-
+  }, [messages]);
+  console.log(messages);
   useEffect(() => {
     echo
       .channel("message")
       .subscribed(() => {
         console.log("subscribed");
       })
-      .listen("Message", (data) => {
+      .listen("Message", async (data) => {
         console.log(data);
+        if (data.message.conversation_id === conversationID) {
+          setMessages((prevMessages) => ({
+            ...prevMessages,
+            data: [...prevMessages.data, data.message],
+          }));
+          console.log(data.message.message_text);
+          messageDiv.current.scrollTop = messageDiv.current.scrollHeight;
+        }
+        console.log(data.message.conversationID);
+        console.log(conversationID);
       });
-  }, []);
+  }, [conversationID]);
   return (
     <div className="w-2/3 px-4" style={{ height: "calc(100vh - 5rem)" }}>
       <div className="h-24 py-4">

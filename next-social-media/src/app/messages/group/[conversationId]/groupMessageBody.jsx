@@ -2,6 +2,7 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
 import { useAuth } from "@/hooks/auth";
+import echo from "@/hooks/echo";
 import axios from "@/lib/axios";
 import { useEffect, useRef, useState } from "react";
 import useSWR from "swr";
@@ -13,7 +14,11 @@ export default function GroupMessageBody({ conversationGroup, conversationID }) 
   const [message, setMessage] = useState();
   const { user } = useAuth();
 
-  const { data: messages, mutate } = useSWR("conversationMessage", () => axios.get(`api/message/get/${conversationID}`));
+  const { data: apiMessages, mutate } = useSWR("conversationMessage", () => axios.get(`api/message/get/${conversationID}`));
+  const [messages, setMessages] = useState(apiMessages);
+  useEffect(() => {
+    setMessages(apiMessages);
+  }, [apiMessages]);
 
   const sendMessage = async (e) => {
     if (e.key === "Enter") {
@@ -23,7 +28,6 @@ export default function GroupMessageBody({ conversationGroup, conversationID }) 
       formData.append("message_text", message);
       let res = axios.post("api/message/send", formData);
       setMessage("");
-      mutate();
     }
   };
   useEffect(() => {
@@ -32,7 +36,27 @@ export default function GroupMessageBody({ conversationGroup, conversationID }) 
   }, [conversationID]);
   useEffect(() => {
     messageDiv.current.scrollTop = messageDiv.current.scrollHeight;
-  }, []);
+  }, [messages]);
+  console.log(messages);
+  useEffect(() => {
+    echo
+      .channel("message")
+      .subscribed(() => {
+        console.log("subscribed");
+      })
+      .listen("Message", async (data) => {
+        console.log(data);
+        if (data.message.conversation_id == conversationID) {
+          console.log("message updated started");
+          setMessages((prevMessages) => ({
+            ...prevMessages,
+            data: [...prevMessages.data, data.message],
+          }));
+          console.log("message updated");
+          messageDiv.current.scrollTop = messageDiv.current.scrollHeight;
+        }
+      });
+  }, [conversationID]);
 
   return (
     <div className="w-2/3 px-4" style={{ height: "calc(100vh - 5rem)" }}>

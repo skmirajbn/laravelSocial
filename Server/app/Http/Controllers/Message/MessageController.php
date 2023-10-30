@@ -12,16 +12,20 @@ class MessageController extends Controller {
         $messageText = $request->message_text;
         $conversationId = $request->conversation_id;
 
-        $createdMessage = Message::create([
+
+        $createdMessage = [
             'user_id' => $userId,
             'conversation_id' => $conversationId,
             'message_text' => $messageText,
-        ]);
+        ];
 
+        $createdMessage = Message::create($createdMessage);
+        $messagesData = Message::where('message_id', $createdMessage->message_id)->with('user.activeProfileImage')->first();
         if ($createdMessage) {
+            event(new \App\Events\Message($messagesData));
             return response()->json([
                 'message' => 'Message Sent',
-                'data' => $createdMessage
+                'data' => $messagesData
             ]);
         }
 

@@ -54,7 +54,9 @@ export default function Home() {
     echo
       .channel("message")
       .subscribed(() => {})
-      .listen("Message", (data) => {});
+      .listen("Message", (data) => {
+        console.log(data);
+      });
   }, []);
 
   return (
