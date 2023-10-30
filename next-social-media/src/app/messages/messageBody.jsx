@@ -50,7 +50,7 @@ export default function MessageBody({ conversationuser, conversationID }) {
             data: [...prevMessages.data, data.message],
           }));
 
-          messageDiv.current.scrollTop = messageDiv.current.scrollHeight;
+          messageDiv.current.scrollTop = messageDiv?.current?.scrollHeight;
         }
       });
   }, [conversationID]);
