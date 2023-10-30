@@ -12,7 +12,9 @@ export default function MessageSidebar() {
   const { user } = useAuth();
   const params = useParams();
   const userId = user?.user_id;
-  const conversations = data?.data?.data;
+  let conversations = data?.data?.data;
+  console.log(conversations);
+  conversations = conversations?.sort((a, b) => new Date(b.conversation.last_message?.created_at) - new Date(a.conversation.last_message?.created_at));
 
   const calculateUserIndex = (conversation, userId) => {
     for (let i = 0; i < conversation.conversation_users.length; i++) {
