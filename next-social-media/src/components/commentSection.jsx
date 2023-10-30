@@ -39,7 +39,7 @@ export default function CommentSection({ post, fetcher }) {
   };
 
   let comments = post?.comments;
-  console.log(comments);
+
   return (
     <div className="flex flex-col gap-4">
       {comments &&
