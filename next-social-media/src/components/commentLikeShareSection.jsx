@@ -64,39 +64,39 @@ export default function CommentLikeShareSection({ post: apiPost, fetcher }) {
       <div className="flex items-center" onMouseOver={handleMouseEnter} onMouseOut={handleMouseLeave}>
         {post?.post_likes?.map((postLike) => {
           //check user is user.user_id and post like
-          if (postLike.user_id === user.user_id && postLike.post_like_type_id === 1)
+          if (postLike?.user_id === user?.user_id && postLike?.post_like_type_id === 1)
             return (
               <div className="text-3xl" key={postLike.post_like_type_id}>
                 👍
               </div>
             );
-          if (postLike.user_id === user.user_id && postLike.post_like_type_id === 2)
+          if (postLike?.user_id === user?.user_id && postLike?.post_like_type_id === 2)
             return (
-              <div className="text-3xl" key={postLike.post_like_type_id}>
+              <div className="text-3xl" key={postLike?.post_like_type_id}>
                 😁
               </div>
             );
-          if (postLike.user_id === user.user_id && postLike.post_like_type_id === 3)
+          if (postLike?.user_id === user?.user_id && postLike?.post_like_type_id === 3)
             return (
-              <div className="text-3xl" key={postLike.post_like_type_id}>
+              <div className="text-3xl" key={postLike?.post_like_type_id}>
                 ❤️
               </div>
             );
-          if (postLike.user_id === user.user_id && postLike.post_like_type_id === 4)
+          if (postLike?.user_id === user?.user_id && postLike?.post_like_type_id === 4)
             return (
-              <div className="text-3xl" key={postLike.post_like_type_id}>
+              <div className="text-3xl" key={postLike?.post_like_type_id}>
                 😢
               </div>
             );
-          if (postLike.user_id === user.user_id && postLike.post_like_type_id === 5)
+          if (postLike?.user_id === user?.user_id && postLike?.post_like_type_id === 5)
             return (
-              <div className="text-3xl" key={postLike.post_like_type_id}>
+              <div className="text-3xl" key={postLike?.post_like_type_id}>
                 😡
               </div>
             );
-          if (postLike.user_id === user.user_id && postLike.post_like_type_id === 6)
+          if (postLike?.user_id === user?.user_id && postLike?.post_like_type_id === 6)
             return (
-              <div className="text-3xl" key={postLike.post_like_type_id}>
+              <div className="text-3xl" key={postLike?.post_like_type_id}>
                 😎
               </div>
             );

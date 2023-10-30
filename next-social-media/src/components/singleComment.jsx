@@ -8,7 +8,7 @@ export default function SingleComment({ comment }) {
   const [likes, setLikes] = useState(0);
   const { user } = useAuth();
   useEffect(() => {
-    comment.likes?.forEach((like) => (like.user_id == user.user_id ? setIsLiked(true) : setIsLiked(false)));
+    comment?.likes?.forEach((like) => (like?.user_id == user?.user_id ? setIsLiked(true) : setIsLiked(false)));
   }, [comment, user]);
   useEffect(() => {
     setLikes(comment?.likes?.length);
