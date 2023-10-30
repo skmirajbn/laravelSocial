@@ -21,7 +21,6 @@ export default function CommentSection({ post, fetcher }) {
       let formData = new FormData();
       formData.append("commentText", input);
       setInput("");
-      await axios.post(`api/comment/${post.post_id}`, formData);
       let commentObject = {
         comment_text: input,
         user: {
@@ -34,6 +33,7 @@ export default function CommentSection({ post, fetcher }) {
       };
       post.comments.push(commentObject);
       setIsLoading(false);
+      await axios.post(`api/comment/${post.post_id}`, formData);
       fetcher();
     }
   };
