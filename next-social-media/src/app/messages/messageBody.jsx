@@ -20,6 +20,12 @@ export default function MessageBody({ conversationuser, conversationID }) {
     setMessages(apiMessages);
   }, [apiMessages]);
 
+  /**
+   * Sends a message when the Enter key is pressed.
+   *
+   * @param {Event} e - The event object.
+   * @return {Promise} A promise that resolves when the message is sent.
+   */
   const sendMessage = async (e) => {
     if (e.key === "Enter") {
       // Api call for sending Message
@@ -31,6 +37,7 @@ export default function MessageBody({ conversationuser, conversationID }) {
       // mutate();
     }
   };
+
   useEffect(() => {
     mutate([]);
   }, [conversationID, mutate]);
