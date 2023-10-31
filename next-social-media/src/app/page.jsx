@@ -8,7 +8,6 @@ import Sidebar from "@/components/sidebar";
 import { useAuth } from "@/hooks/auth";
 import UseEcho from "@/hooks/echo";
 import axios from "@/lib/axios";
-
 import { useEffect, useState } from "react";
 // window.pusher = Pusher;
 export default function Home() {
