@@ -38,7 +38,7 @@ export default function GroupMessageOptions({ conversationGroup }) {
                   <img className="w-12 h-12 rounded-full" src={process.env.NEXT_PUBLIC_BACKEND_URL + "/" + cUser.user.active_profile_image.image_path} alt="" />
                 </Link>
                 <Link href={`/user/${cUser.user.user_username}`}>
-                  <h5 className="text-lg font-bold">{cUser.user.user_first_name}</h5>
+                  <h5 className="text-lg font-bold">{cUser.user.user_first_name + " " + cUser.user.user_last_name}</h5>
                 </Link>
                 <h5 className="text-sm text-gray-400">{cUser.conversation_user_role}</h5>
               </div>
