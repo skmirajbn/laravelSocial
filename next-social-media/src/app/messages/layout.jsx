@@ -6,7 +6,6 @@ export const metadata = {
   title: "Message",
   description: "Send message to your Friend",
 };
-
 export default function MessageLayout({ children }) {
   return (
     <div className="h-screen">
