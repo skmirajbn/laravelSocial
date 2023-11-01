@@ -80,4 +80,3 @@ Route::middleware(['auth'])->post('/comment/like/{commentId}', [CommentControlle
 
 // Notification routes
 Route::middleware(['auth'])->get('/notifications', [UserProfileController::class, 'getNotifications']);
-Route::middleware(['auth'])->post('/notifications', [UserProfileController::class, 'postNotifications']);

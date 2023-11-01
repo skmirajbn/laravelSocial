@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Comment;
 
 use App\Http\Controllers\Controller;
 use App\Models\Comment;
+use App\Models\Notification;
 use Illuminate\Http\Request;
 
 class CommentController extends Controller {
@@ -40,9 +41,20 @@ class CommentController extends Controller {
             ]);
         } else {
             $comment->like($userId);
+            $commentOwnerUserId = $comment->user->user_id;
+            $Notification = Notification::create([
+                'user_id' => $commentOwnerUserId,
+                'notification_type' => 'comment',
+                'notification_message' => $user->user_first_name . " " . $user->user_last_name . " Liked comment of  your post",
+                'notification_link' => 'comment/' . $commentId,
+                'notification_status' => 1,
+            ]);
             return response()->json([
                 'message' => 'Comment Liked Sucessfully',
-                'data' => $comment,
+                'data' => [
+                    'comment' => $comment,
+                    'notification' => $Notification
+                ],
             ]);
         }
     }

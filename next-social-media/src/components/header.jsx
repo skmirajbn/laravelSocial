@@ -13,6 +13,11 @@ import NotificationModal from "./utils/notificationModal";
 
 export default function Header() {
   const { logout, mutate } = useAuth({ middleware: "auth" });
+  // notification count getting
+  const { data: apiNotifications, isLoading } = useSWR("/api/notifications", () => axios.get("/api/notifications"));
+  const notifications = apiNotifications?.data?.data;
+  const length = notifications?.length;
+
   const router = useRouter();
   const doLogOut = () => {
     logout();
@@ -73,7 +78,7 @@ export default function Header() {
         </div>
         <div href="#" class="bg-gray-200 w-10 h-10 flex justify-center items-center rounded-full relative">
           <i class="fa-solid fa-bell " onClick={notificationToggle}></i>
-          <div className="bg-red-600 h-5 w-5 rounded-full absolute flex justify-center items-center text-xs text-white font-medium -right-1 -top-1">0</div>
+          <div className="bg-red-600 h-5 w-5 rounded-full absolute flex justify-center items-center text-xs text-white font-medium -right-1 -top-1">{length}</div>
           <NotificationModal notificationModal={notificationModal} />
         </div>
         <div className="flex items-center gap-2 relative" onClick={toggleProfileDropdown}>
