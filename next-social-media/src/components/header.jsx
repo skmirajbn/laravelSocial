@@ -68,12 +68,12 @@ export default function Header() {
         </div>
         <div class="bg-gray-200 w-10 h-10 flex justify-center items-center rounded-full relative">
           <i class="fa-brands fa-facebook-messenger" onClick={showToggle}></i>
-          <div className="bg-red-600 h-5 w-5 rounded-full absolute flex justify-center items-center text-xs text-white font-medium -right-1 -top-1">15</div>
+          <div className="bg-red-600 h-5 w-5 rounded-full absolute flex justify-center items-center text-xs text-white font-medium -right-1 -top-1">0</div>
           <MessengerModal messageModal={messageModal} />
         </div>
         <div href="#" class="bg-gray-200 w-10 h-10 flex justify-center items-center rounded-full relative">
           <i class="fa-solid fa-bell " onClick={notificationToggle}></i>
-          <div className="bg-red-600 h-5 w-5 rounded-full absolute flex justify-center items-center text-xs text-white font-medium -right-1 -top-1">28</div>
+          <div className="bg-red-600 h-5 w-5 rounded-full absolute flex justify-center items-center text-xs text-white font-medium -right-1 -top-1">0</div>
           <NotificationModal notificationModal={notificationModal} />
         </div>
         <div className="flex items-center gap-2 relative" onClick={toggleProfileDropdown}>

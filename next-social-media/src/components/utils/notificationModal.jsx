@@ -6,6 +6,7 @@ export default function NotificationModal({ notificationModal }) {
     <div ref={notificationModal} className="absolute bg-white top-14 -right-24 px-2 w-80 py-2 shadow-lg shadow-gray-700 rounded-md hidden">
       <i class="text-white text-5xl fa-solid fa-sort-up absolute -top-4 left-1/2 -translate-x-1/2"></i>
       <div className="space-y-6 max-h-[83vh] overflow-auto px-3 py-3">
+        <h3 className="text-sm text-right text-blue-600">Mark as Read</h3>
         <SingleNotification />
         <SingleNotification />
         <SingleNotification />
