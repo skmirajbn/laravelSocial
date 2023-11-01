@@ -28,4 +28,13 @@ class UserProfileController extends Controller {
 
         }
     }
+
+    function postNotifications(Request $request) {
+        $userId = auth()->user()->user_id;
+        $notificationType = $request->notificationType;
+        $notificationMessage = $request->notificationMessage;
+        $notificationLink = $request->notificationLink;
+        $notificationStatus = $request->notificationStatus;
+
+    }
 }
