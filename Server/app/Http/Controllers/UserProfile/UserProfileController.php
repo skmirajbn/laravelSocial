@@ -44,6 +44,7 @@ class UserProfileController extends Controller {
             'notification_link' => $notificationLink,
             'notification_status' => $notificationStatus,
         ]);
+        // dd($notification);
         if ($notification->save()) {
             return response()->json([
                 'message' => 'Notification sent successfully',
