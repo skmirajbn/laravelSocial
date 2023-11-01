@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\UserProfile;
 
 use App\Http\Controllers\Controller;
+use App\Models\Notification;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -35,6 +36,20 @@ class UserProfileController extends Controller {
         $notificationMessage = $request->notificationMessage;
         $notificationLink = $request->notificationLink;
         $notificationStatus = $request->notificationStatus;
+
+        $notification = Notification::make([
+            'user_id' => $userId,
+            'notification_type' => $notificationType,
+            'notification_message' => $notificationMessage,
+            'notification_link' => $notificationLink,
+            'notification_status' => $notificationStatus,
+        ]);
+        if ($notification->save()) {
+            return response()->json([
+                'message' => 'Notification sent successfully',
+                'data' => $notification
+            ]);
+        }
 
     }
 }

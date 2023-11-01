@@ -48,6 +48,10 @@ class User extends Authenticatable {
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function notifications() {
+        return $this->hasMany(Notification::class, 'user_id', 'user_id');
+    }
     public function getAuthPassword() {
         return $this->password;
     }
