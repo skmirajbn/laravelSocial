@@ -68,7 +68,7 @@ export default function SearchChats({ mutate }) {
             {resultUsers &&
               resultUsers.map((user) => (
                 <div key={user.user_name} className="flex items-center gap-3 py-3 px-8 hover:bg-gray-300 rounded-lg" onClick={() => createConversation(user.user_id)}>
-                  <img className="w-9 h-9 object-cover rounded-full" src={process.env.NEXT_PUBLIC_BACKEND_URL + "/" + user.active_profile_image.image_path} alt="" />
+                  <img className="w-9 h-9 object-cover rounded-full" src={process.env.NEXT_PUBLIC_BACKEND_URL + "/" + user.active_profile_image?.image_path} alt="" />
                   {user && <h3>{user.user_first_name + " " + user.user_last_name}</h3>}
                 </div>
               ))}

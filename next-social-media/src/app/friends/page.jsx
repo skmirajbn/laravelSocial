@@ -18,7 +18,7 @@ export default function Friend() {
           <h3 className="text-lg font-bold">All Friends</h3>
           {friends?.data.map((friend) => (
             <div key={friend.user_id} className="flex gap-3 items-center p-3">
-              <img className="w-12 h-12 object-cover rounded-full" src={process.env.NEXT_PUBLIC_BACKEND_URL + "/" + friend.profile_image.image_path} alt="" />
+              <img className="w-12 h-12 object-cover rounded-full" src={process.env.NEXT_PUBLIC_BACKEND_URL + "/" + friend.profile_image?.image_path} alt="" />
               <h3 className="font-medium text-lg">{friend.user_first_name + " " + friend.user_last_name}</h3>
             </div>
           ))}

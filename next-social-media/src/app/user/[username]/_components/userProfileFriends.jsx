@@ -18,7 +18,7 @@ export default function UserProfileFriends() {
           friends.slice(0, 12).map((friend) => (
             <Link key={friend.user_id} href="">
               <div className="flex flex-col justify-center items-center">
-                <img className="rounded-md h-24 w-24 object-cover" src={process.env.NEXT_PUBLIC_BACKEND_URL + "/" + friend.active_profile_image.image_path} alt="" />
+                <img className="rounded-md h-24 w-24 object-cover" src={process.env.NEXT_PUBLIC_BACKEND_URL + "/" + friend.active_profile_image?.image_path} alt="" />
                 <h3 className="text-xs font-bold text-center">{friend.user_first_name + " " + friend.user_last_name}</h3>
               </div>
             </Link>

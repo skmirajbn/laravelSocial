@@ -41,7 +41,7 @@ export default function DisCoverPeople() {
           {peoples &&
             peoples?.data.map((people) => (
               <div key={people.user_id} className="flex gap-3 items-center p-3">
-                <img className="w-12 h-12 object-cover rounded-full" src={process.env.NEXT_PUBLIC_BACKEND_URL + "/" + people.profile_image.image_path} alt="" />
+                <img className="w-12 h-12 object-cover rounded-full" src={process.env.NEXT_PUBLIC_BACKEND_URL + "/" + people?.profile_image?.image_path} alt="" />
                 <h3 className="font-medium text-lg">{people.user_first_name + " " + people.user_last_name}</h3>
                 {!people.is_friend_request_sent && (
                   <button className="bg-blue-600 text-white px-4 py-2 rounded-lg" onClick={() => handleClick(people.user_id)}>

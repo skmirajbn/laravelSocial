@@ -27,7 +27,7 @@ export default function MessengerModalMessage() {
     <div className="overflow-y-auto space-y-6" style={{ height: "calc(100% - 11rem)" }}>
       {conversations?.map(({ conversation }) => {
         const userIndex = calculateUserIndex(conversation, userId);
-        const conversationUserProfileImage = process.env.NEXT_PUBLIC_BACKEND_URL + "/" + conversation.conversation_users[userIndex].user.active_profile_image.image_path;
+        const conversationUserProfileImage = process.env.NEXT_PUBLIC_BACKEND_URL + "/" + conversation.conversation_users[userIndex].user.active_profile_image?.image_path;
         if (conversation?.conversation_type == "individual") {
           let isActive = conversation.conversation_users[userIndex].user.user_username === params.username;
           return (

@@ -113,7 +113,7 @@ export default function CreateGroupModal() {
                   <div className="w-5 h-5 rounded-full flex justify-center items-center bg-red-600 absolute -right-2 -top-2" onClick={() => removeUser(user.user_id)}>
                     <i class="fa-solid fa-x text-sm text-white"></i>
                   </div>
-                  <img className="w-8 h-8 object-cover rounded-full" src={process.env.NEXT_PUBLIC_BACKEND_URL + "/" + user.active_profile_image.image_path} alt="" />
+                  <img className="w-8 h-8 object-cover rounded-full" src={process.env.NEXT_PUBLIC_BACKEND_URL + "/" + user.active_profile_image?.image_path} alt="" />
                   <h3>{user.user_first_name + " " + user.user_last_name}</h3>
                 </div>
               ))}
@@ -128,7 +128,7 @@ export default function CreateGroupModal() {
                 {resultUsers &&
                   resultUsers.map((user) => (
                     <div key={user.user_name} className="flex items-center gap-3 py-3 px-8 hover:bg-gray-300 rounded-lg" onClick={() => addToList(user)}>
-                      <img className="w-9 h-9 object-cover rounded-full" src={process.env.NEXT_PUBLIC_BACKEND_URL + "/" + user.active_profile_image.image_path} alt="" />
+                      <img className="w-9 h-9 object-cover rounded-full" src={process.env.NEXT_PUBLIC_BACKEND_URL + "/" + user.active_profile_image?.image_path} alt="" />
                       {user && <h3>{user.user_first_name + " " + user.user_last_name}</h3>}
                     </div>
                   ))}

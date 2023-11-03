@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Message;
 
+use App\Events\MyEvent;
 use App\Http\Controllers\Controller;
 use App\Models\Message;
 use Illuminate\Http\Request;
@@ -22,7 +23,7 @@ class MessageController extends Controller {
         $createdMessage = Message::create($createdMessage);
         $messagesData = Message::where('message_id', $createdMessage->message_id)->with('user.activeProfileImage')->first();
         if ($createdMessage) {
-            event(new \App\Events\Message($messagesData));
+            event(new MyEvent($messagesData));
             return response()->json([
                 'message' => 'Message Sent',
                 'data' => $messagesData

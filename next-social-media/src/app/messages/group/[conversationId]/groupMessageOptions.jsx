@@ -35,7 +35,7 @@ export default function GroupMessageOptions({ conversationGroup }) {
             conversationGroup?.conversation?.conversation_users?.map((cUser) => (
               <div className="flex items-center gap-3" key={cUser.user.user_id}>
                 <Link href={`/user/${cUser.user.user_username}`}>
-                  <img className="w-12 h-12 rounded-full" src={process.env.NEXT_PUBLIC_BACKEND_URL + "/" + cUser.user.active_profile_image.image_path} alt="" />
+                  <img className="w-12 h-12 rounded-full" src={process.env.NEXT_PUBLIC_BACKEND_URL + "/" + cUser.user.active_profile_image?.image_path} alt="" />
                 </Link>
                 <Link href={`/user/${cUser.user.user_username}`}>
                   <h5 className="text-lg font-bold">{cUser.user.user_first_name + " " + cUser.user.user_last_name}</h5>
