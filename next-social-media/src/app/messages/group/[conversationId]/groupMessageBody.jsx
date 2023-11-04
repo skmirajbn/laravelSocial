@@ -97,7 +97,7 @@ export default function GroupMessageBody({ conversationGroup, conversationID }) 
       <div ref={messageDiv} className="overflow-y-auto py-4 px-3 rounded-lg bg-gradient-to-r from-emerald-50 to-blue-50" style={{ height: "calc(100% - 10rem)" }}>
         <div className="flex flex-col gap-3 justify-end min-h-full">
           {messages?.data?.map((message) => {
-            if (message?.user_id === user.user_id) {
+            if (message?.user_id === user?.user_id) {
               return <MessageSender key={message.message_id} message={message?.message_text} user={message?.user} />;
             } else {
               return <MessageReceiver key={message.message_id} message={message?.message_text} user={message?.user} />;

@@ -98,7 +98,7 @@ export default function MessageBody({ conversationuser, conversationID }) {
         {conversationuser && (
           <div className="flex flex-col gap-3 justify-end min-h-full">
             {messages?.data?.map((message) => {
-              if (message?.user_id === user.user_id) {
+              if (message?.user_id === user?.user_id) {
                 return <MessageSender key={message.message_id} message={message?.message_text} user={message?.user} />;
               } else {
                 return <MessageReceiver key={message.message_id} message={message?.message_text} user={message?.user} />;
