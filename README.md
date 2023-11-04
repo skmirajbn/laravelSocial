@@ -4,15 +4,30 @@
 
 <!-- create some bullet ponits -->
 
+## login Screen
+
 ![image](https://github.com/skmirajbn/laravelSocial/assets/67829716/458b5ff2-64d3-4b24-8938-82d63f1bb9af)
+
+## Signup Screen
+
 ![image](https://github.com/skmirajbn/laravelSocial/assets/67829716/e15c5acf-eda1-4cd3-ba2f-a9a7c93bf56c)
+
+## Homepage
+
 ![image](https://github.com/skmirajbn/laravelSocial/assets/67829716/0b97d052-7d29-4bc8-bfe0-28d8450c7b57)
+
+## User Profile
+
 ![image](https://github.com/skmirajbn/laravelSocial/assets/67829716/a23e49b7-98f6-4611-94cc-d1f1994c7d39)
 ![image](https://github.com/skmirajbn/laravelSocial/assets/67829716/a37198e5-1952-40cf-9464-44d7633915fa)
+
+## Profile Photos
+
 ![image](https://github.com/skmirajbn/laravelSocial/assets/67829716/3adec103-b94d-40c1-a834-f75befffdc88)
+
+## Messenger Screen
+
 ![image](https://github.com/skmirajbn/laravelSocial/assets/67829716/38d319dc-f6e9-44fd-9f3d-abc498e53b0c)
-
-
 
 # Project Features
 
