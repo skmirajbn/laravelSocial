@@ -49,23 +49,6 @@ export default function MessageBody({ conversationuser, conversationID }) {
   // ! Laravel Echo is Invoking here
 
   useEffect(() => {
-    // echo
-    //   .channel("my-channel")
-    //   .subscribed(() => {
-    //     console.log("my channel is subscribed");
-    //   })
-    //   .bind("my-event", async (data) => {
-    //     alert(JSON.stringify(data));
-    //     console.log("event received");
-    //     if (data.message.conversation_id === conversationID) {
-    //       setMessages((prevMessages) => ({
-    //         ...prevMessages,
-    //         data: [...prevMessages.data, data.message],
-    //       }));
-
-    //       messageDiv.current.scrollTop = messageDiv?.current?.scrollHeight;
-    //     }
-    //   });
     var pusher = new Pusher("2fbf7ea3d2be305d21c4", {
       cluster: "ap1",
     });

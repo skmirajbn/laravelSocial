@@ -2,8 +2,8 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
 import { useAuth } from "@/hooks/auth";
-import echo from "@/hooks/echo";
 import axios from "@/lib/axios";
+import Pusher from "pusher-js";
 import { useEffect, useRef, useState } from "react";
 import useSWR from "swr";
 import MessageReceiver from "../../messageReceiver";
@@ -39,20 +39,39 @@ export default function GroupMessageBody({ conversationGroup, conversationID }) 
   }, [messages]);
 
   useEffect(() => {
-    echo
-      .channel("message")
-      .subscribed(() => {})
-      .listen("Message", async (data) => {
-        if (data.message.conversation_id == conversationID) {
-          setMessages((prevMessages) => ({
-            ...prevMessages,
-            data: [...prevMessages.data, data.message],
-          }));
+    var pusher = new Pusher("2fbf7ea3d2be305d21c4", {
+      cluster: "ap1",
+    });
 
-          messageDiv.current.scrollTop = messageDiv.current.scrollHeight;
-        }
-      });
+    var channel = pusher.subscribe("my-channel");
+    channel.bind("my-event", function (data) {
+      if (data.message.conversation_id == conversationID) {
+        setMessages((prevMessages) => ({
+          ...prevMessages,
+          data: [...prevMessages.data, data.message],
+        }));
+
+        messageDiv.current.scrollTop = messageDiv.current.scrollHeight;
+      }
+    });
   }, [conversationID]);
+
+  //   echo
+  //     .channel("message")
+  //     .subscribed(() => {
+  //       console.log("subscribed");
+  //     })
+  //     .listen("Message", async (data) => {
+  //       if (data.message.conversation_id == conversationID) {
+  //         setMessages((prevMessages) => ({
+  //           ...prevMessages,
+  //           data: [...prevMessages.data, data.message],
+  //         }));
+
+  //         messageDiv.current.scrollTop = messageDiv.current.scrollHeight;
+  //       }
+  //     });
+  // }, [conversationID]);
 
   return (
     <div className="w-2/3 px-4" style={{ height: "calc(100vh - 5rem)" }}>

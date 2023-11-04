@@ -15,7 +15,6 @@ export default function MessageSidebar() {
   let conversations = data?.data?.data;
 
   conversations = conversations?.sort((a, b) => new Date(b.conversation.last_message?.created_at) - new Date(a.conversation.last_message?.created_at));
-
   const calculateUserIndex = (conversation, userId) => {
     for (let i = 0; i < conversation.conversation_users.length; i++) {
       if (conversation.conversation_users[i].user_id !== userId) {
