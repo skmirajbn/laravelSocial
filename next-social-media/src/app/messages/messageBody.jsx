@@ -60,8 +60,9 @@ export default function MessageBody({ conversationuser, conversationID }) {
           ...prevMessages,
           data: [...prevMessages.data, data.message],
         }));
-
-        messageDiv.current.scrollTop = messageDiv?.current?.scrollHeight;
+        if (messageDiv?.current?.scrollHeight) {
+          messageDiv.current.scrollTop = messageDiv?.current?.scrollHeight;
+        }
       }
     });
   }, [conversationID]);

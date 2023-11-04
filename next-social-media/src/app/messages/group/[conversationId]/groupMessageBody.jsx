@@ -35,7 +35,9 @@ export default function GroupMessageBody({ conversationGroup, conversationID }) 
     mutate();
   }, [conversationID]);
   useEffect(() => {
-    messageDiv.current.scrollTop = messageDiv?.current?.scrollHeight;
+    if (messageDiv?.current?.scrollHeight) {
+      messageDiv.current.scrollTop = messageDiv?.current?.scrollHeight;
+    }
   }, [messages]);
 
   useEffect(() => {
@@ -48,10 +50,11 @@ export default function GroupMessageBody({ conversationGroup, conversationID }) 
       if (data.message.conversation_id == conversationID) {
         setMessages((prevMessages) => ({
           ...prevMessages,
-          data: [...prevMessages.data, data.message],
+          data: [...prevMessages?.data, data?.message],
         }));
-
-        messageDiv.current.scrollTop = messageDiv.current.scrollHeight;
+        if (messageDiv?.current && messageDiv.current.scrollHeight) {
+          messageDiv.current.scrollTop = messageDiv.current.scrollHeight;
+        }
       }
     });
   }, [conversationID]);
