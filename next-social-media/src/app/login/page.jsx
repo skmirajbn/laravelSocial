@@ -95,7 +95,7 @@ export default function SignUp() {
             <h3 className="text-red-600 italic text-sm">{errors?.email}</h3>
             <input className="w-96 py-3 px-4 border-2 border-gray-300 focus:border-blue-600  rounded-md" type="text" placeholder="Email Address or Phone Number" value={email} onChange={(e) => setEmail(e.target.value)} />
             <h3 className="text-red-600 italic text-sm">{errors?.password}</h3>
-            <input className="w-96 py-3 px-4 border-2 border-gray-300 focus:border-blue-600  rounded-md" type="text" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
+            <input className="w-96 py-3 px-4 border-2 border-gray-300 focus:border-blue-600  rounded-md" type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
             <button className="bg-gradient-to-r from-cyan-500  to-blue-500 text-white py-3 rounded-md font-medium text-xl flex justify-center items-center">Log in {isLoading && <span className="loading loading-infinity loading-md ml-2 mt-1"></span>}</button>
             <h5 className="text-center text-blue-600 text-sm">Forgotten Password?</h5>
             <hr />
