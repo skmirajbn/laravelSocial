@@ -1,12 +1,12 @@
 # Social Media - IsDB Connect
 
-## Project Features:
+## Project Screenshots:
 
 <!-- create some bullet ponits -->
 
 ![image](https://github.com/skmirajbn/laravelSocial/assets/67829716/458b5ff2-64d3-4b24-8938-82d63f1bb9af)
 
-# Project Screenshots
+# Project Features
 
 ## User Management
 
