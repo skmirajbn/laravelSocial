@@ -69,17 +69,22 @@
 
 ## Homepage
 
-![image](https://github.com/skmirajbn/laravelSocial/assets/67829716/0b97d052-7d29-4bc8-bfe0-28d8450c7b57)
+![image](https://github.com/skmirajbn/laravelSocial/assets/67829716/13f96ac6-1c17-41d4-aa17-d643456169c3)
+
 
 ## User Profile
 
-![image](https://github.com/skmirajbn/laravelSocial/assets/67829716/a23e49b7-98f6-4611-94cc-d1f1994c7d39)
-![image](https://github.com/skmirajbn/laravelSocial/assets/67829716/a37198e5-1952-40cf-9464-44d7633915fa)
+![image](https://github.com/skmirajbn/laravelSocial/assets/67829716/e62cf113-f20e-4cc8-b7b3-fca73dcfe4d8)
+![image](https://github.com/skmirajbn/laravelSocial/assets/67829716/ca27505c-1f83-4457-81ec-032895e8dc6d)
+
+
+
 
 ## Profile Photos
 
-![image](https://github.com/skmirajbn/laravelSocial/assets/67829716/3adec103-b94d-40c1-a834-f75befffdc88)
+![image](https://github.com/skmirajbn/laravelSocial/assets/67829716/14053ee2-3e12-4c3c-a3b7-577e8c812aa1)
 
 ## Messenger Screen
 
-![image](https://github.com/skmirajbn/laravelSocial/assets/67829716/38d319dc-f6e9-44fd-9f3d-abc498e53b0c)
+![image](https://github.com/skmirajbn/laravelSocial/assets/67829716/6ec90b34-ebb0-40d5-9f07-8673de596bb5)
+
