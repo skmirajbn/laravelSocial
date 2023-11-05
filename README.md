@@ -59,11 +59,13 @@
 
 ## login Screen
 
-![image](https://github.com/skmirajbn/laravelSocial/assets/67829716/458b5ff2-64d3-4b24-8938-82d63f1bb9af)
+![image](https://github.com/skmirajbn/laravelSocial/assets/67829716/1b113f66-6eb9-4e9d-993c-a6676badfff5)
+
 
 ## Signup Screen
 
-![image](https://github.com/skmirajbn/laravelSocial/assets/67829716/e15c5acf-eda1-4cd3-ba2f-a9a7c93bf56c)
+![image](https://github.com/skmirajbn/laravelSocial/assets/67829716/56f78188-0827-4285-b504-712bba4b96aa)
+
 
 ## Homepage
 
