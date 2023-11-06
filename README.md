@@ -1,4 +1,4 @@
-# Social Media - IsDB Connect  [live Link](https://isdbsocialmedia.skmiraj.online/)
+# Social Media - IsDB Connect  [live Link](https://isdbsocialmedia.skmiraj.online/login)
 
 # Project Features
 
